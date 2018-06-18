@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
-
+import { writeUserData } from '../services/firebase'
 const IndexPage = ({ data }) => (
   <div>
     <h1>Hi people</h1>
@@ -18,6 +18,7 @@ const IndexPage = ({ data }) => (
         </div>
       ))}
     </div>
+    <button onClick={() => writeUserData('product1')}>Click</button>
     <Link to="/page-2/">Go to page 2</Link>
   </div>
 )
