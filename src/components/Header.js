@@ -6,8 +6,8 @@ import { StyledLink } from './styled/StyledLink'
 import { Container } from './styled/Container'
 
 const HeaderContent = styled.div`
-  background-color: ${colors.black};
-  margin-bottom: 1.45rem;
+  background-color: ${colors.white};
+  margin-bottom: 2rem;
 `
 
 const HeaderContainer = Container.extend`
@@ -28,46 +28,38 @@ const DesktopMenuItem = styled.li`
   list-style: none;
   margin: 0;
 `
-const activeClassName = 'active'
 
+const activeClassName = 'active'
 const NavLink = styled(StyledLink).attrs({ activeClassName })`
   &.${activeClassName} {
-    color: ${colors.fullWhite};
+    color: ${colors.main};
   }
+`
+
+const HomeNavLink = StyledLink.extend`
+  text-transform: uppercase;
 `
 
 const Header = ({ siteTitle }) => {
   return (
     <HeaderContent>
       <HeaderContainer>
-        <StyledLink light to="/">
-          {siteTitle}
-        </StyledLink>
+        <HomeNavLink to="/">{siteTitle}</HomeNavLink>
         <DesktopMenu>
           <DesktopMenuItem>
-            <NavLink light to="/products">
-              Products
-            </NavLink>
+            <NavLink to="/products">Products</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink light to="/gallery">
-              Gallery
-            </NavLink>
+            <NavLink to="/gallery">Gallery</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink light to="/influencers">
-              Influencers
-            </NavLink>
+            <NavLink to="/influencers">Influencers</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink light to="/shipping">
-              Shipping
-            </NavLink>
+            <NavLink to="/shipping">Shipping</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink light to="/contacts">
-              Contacts
-            </NavLink>
+            <NavLink to="/contacts">Contacts</NavLink>
           </DesktopMenuItem>
         </DesktopMenu>
       </HeaderContainer>
