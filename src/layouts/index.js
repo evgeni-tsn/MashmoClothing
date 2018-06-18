@@ -14,7 +14,12 @@ const Layout = ({ children, data }) => (
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
       ]}
-    />
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Montserrat"
+        rel="stylesheet"
+      />
+    </Helmet>
     <Header siteTitle={data.site.siteMetadata.title} />
     <Container>{children()}</Container>
   </div>

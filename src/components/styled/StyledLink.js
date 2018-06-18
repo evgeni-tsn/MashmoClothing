@@ -4,8 +4,7 @@ import colors from '../../utils/colors'
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: ${({ light }) => (light ? colors.white : colors.black)};
-  font-weight: lighter;
+  font-weight: bold;
 `
