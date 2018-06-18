@@ -1,10 +1,10 @@
 const colors = {
-  main: '#393276',
-  dark: '#0D083B',
-  light: '#837EB1',
-  white: '#d2d2d2',
-  black: '#2a2a2a',
-  fullWhite: '#ffffff',
+  main: '#f09a7a',
+  dark: '#C57F64',
+  light: '#F2AC92',
+  white: '#F1F1F1',
+  black: '#2A2A2A',
+  fullWhite: '#FFFFFF',
   fullBlack: '#000000',
 }
 

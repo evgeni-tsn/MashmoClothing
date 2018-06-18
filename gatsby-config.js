@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Mashmo Clothing',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -11,8 +11,8 @@ module.exports = {
         name: 'GatsbyJS',
         short_name: 'GatsbyJS',
         start_url: '/',
-        background_color: '#f7f0eb',
-        theme_color: '#a2466c',
+        background_color: '#F1F1F1',
+        theme_color: '#f09a7a',
         display: 'minimal-ui',
         icon: 'src/images/icon.png', // This path is relative to the root of the site.
       },
