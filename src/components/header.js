@@ -1,40 +1,78 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import styled from 'styled-components'
+import colors from '../utils/colors'
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
+import { StyledLink } from './styled/StyledLink'
+import { Container } from './styled/Container'
+
+const HeaderContent = styled.div`
+  background-color: ${colors.black};
+  margin-bottom: 1.45rem;
+`
+
+const HeaderContainer = Container.extend`
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+`
+
+const DesktopMenu = styled.ul`
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+`
+
+const DesktopMenuItem = styled.li`
+  padding-left: 20px;
+  list-style: none;
+  margin: 0;
+`
+const activeClassName = 'active'
+
+const NavLink = styled(StyledLink).attrs({ activeClassName })`
+  &.${activeClassName} {
+    color: ${colors.fullWhite};
+  }
+`
+
+const Header = ({ siteTitle }) => {
+  return (
+    <HeaderContent>
+      <HeaderContainer>
+        <StyledLink light to="/">
           {siteTitle}
-        </Link>
-      </h1>
-      <ul>
-        <li style={{ display: 'inline-block' }}>Test</li>
-        <li style={{ display: 'inline-block' }}>Test</li>
-        <li style={{ display: 'inline-block' }}>Test</li>
-      </ul>
-    </div>
-  </div>
-)
+        </StyledLink>
+        <DesktopMenu>
+          <DesktopMenuItem>
+            <NavLink light to="/products">
+              Products
+            </NavLink>
+          </DesktopMenuItem>
+          <DesktopMenuItem>
+            <NavLink light to="/gallery">
+              Gallery
+            </NavLink>
+          </DesktopMenuItem>
+          <DesktopMenuItem>
+            <NavLink light to="/influencers">
+              Influencers
+            </NavLink>
+          </DesktopMenuItem>
+          <DesktopMenuItem>
+            <NavLink light to="/shipping">
+              Shipping
+            </NavLink>
+          </DesktopMenuItem>
+          <DesktopMenuItem>
+            <NavLink light to="/contacts">
+              Contacts
+            </NavLink>
+          </DesktopMenuItem>
+        </DesktopMenu>
+      </HeaderContainer>
+    </HeaderContent>
+  )
+}
 
 export default Header
