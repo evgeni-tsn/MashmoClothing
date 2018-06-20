@@ -1,10 +1,11 @@
 import React from 'react'
+import H1 from '../components/styled/H1'
 
 export default ({ data }) => {
   const productData = data.products
   return (
     <div>
-      <h1>{productData.name}</h1>
+      <H1 underlined>{productData.name}</H1>
       <p>Price: {productData.price}</p>
       <p>URL: {productData.slug}</p>
       <button>Add to Cart</button>

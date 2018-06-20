@@ -1,8 +1,9 @@
 import React from 'react'
+import H1 from '../components/styled/H1'
 
 const Shipping = () => (
   <div>
-    <h1>Shipping</h1>
+    <H1 underlined>Shipping</H1>
   </div>
 )
 

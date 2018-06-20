@@ -1,8 +1,9 @@
 import React from 'react'
+import H1 from '../components/styled/H1'
 
 const Influencers = () => (
   <div>
-    <h1>Influencers</h1>
+    <H1 underlined>Influencers</H1>
   </div>
 )
 

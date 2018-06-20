@@ -2,10 +2,11 @@ import React from 'react'
 import Link from 'gatsby-link'
 import 'react-simple-flex-grid/lib/main.css'
 import { Row, Col } from 'react-simple-flex-grid'
+import H1 from '../components/styled/H1'
 
 const Products = ({ data }) => (
   <div>
-    <h1>Products</h1>
+    <H1 underlined>Products</H1>
     <Row gutter={40}>
       {data.allProducts.edges.map(({ node }) => (
         <Col span={6} key={node.id}>

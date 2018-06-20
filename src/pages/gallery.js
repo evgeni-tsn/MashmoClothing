@@ -1,8 +1,9 @@
 import React from 'react'
+import H1 from '../components/styled/H1'
 
 const Gallery = () => (
   <div>
-    <h1>Gallery</h1>
+    <H1 underlined>Gallery</H1>
   </div>
 )
 
