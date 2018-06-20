@@ -62,6 +62,9 @@ const Header = ({ siteTitle }) => {
           <DesktopMenuItem>
             <NavLink to="/contacts">Contacts</NavLink>
           </DesktopMenuItem>
+          <DesktopMenuItem>
+            <NavLink to="/cart">Cart</NavLink>
+          </DesktopMenuItem>
         </DesktopMenu>
       </HeaderContainer>
     </HeaderContent>
