@@ -30,7 +30,7 @@ const H1 = ({ children, underlined }) => (
 
 H1.propTypes = {
   underlined: PropTypes.bool,
-  children: PropTypes.element,
+  children: PropTypes.any,
 }
 
 export default H1
