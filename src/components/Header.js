@@ -33,6 +33,7 @@ const activeClassName = 'active'
 const NavLink = styled(StyledLink).attrs({ activeClassName })`
   &.${activeClassName} {
     color: ${colors.main};
+    border-bottom: 2px solid ${colors.light};
   }
 `
 
