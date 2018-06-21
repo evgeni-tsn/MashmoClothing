@@ -8,27 +8,6 @@ import H1 from '../components/styled/H1'
 import { Container } from '../components/styled/Container'
 import colors from '../utils/colors'
 
-const productsInCart = [
-  {
-    id: 1,
-    name: 'Mashmo Palms Cap',
-    price: 20,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: 'Mashmo Black T-Shirt',
-    price: 30,
-    quantity: 2,
-  },
-  {
-    id: 3,
-    name: 'Mashmo Black Cap',
-    price: 10,
-    quantity: 1,
-  },
-]
-
 const TABLE = styled(Table)`
   margin-bottom: 1.45rem;
 `
@@ -62,6 +41,11 @@ const Button = styled.button`
   color: ${colors.white};
   border: none;
   text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 1px 8px 0px ${colors.dark};
+  }
 `
 
 const Span = styled.span`
@@ -81,48 +65,98 @@ const P = styled.p`
   margin-right: 1rem;
   font-size: 1.2rem;
 `
+class Cart extends React.Component {
+  state = {
+    cartItems: [],
+  }
 
-const Cart = () => (
-  <div>
-    <H1 underlined>Your Cart</H1>
-    <Container backgroundColor={colors.grey} height="0.9rem">
-      <TABLE>
-        <Thead>
-          <Tr>
-            <TH>Product</TH>
-            <TH>Price</TH>
-            <TH>Quantity</TH>
-            <TH>Total</TH>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {productsInCart.map(product => (
-            <TR key={product.id}>
-              {/* TODO: This could be a link to the item */}
-              <TD>{product.name}</TD>
-              <TD>${product.price}</TD>
-              <TD>{product.quantity}</TD>
-              <TD>${product.price * product.quantity}</TD>
-            </TR>
-          ))}
-        </Tbody>
-      </TABLE>
-    </Container>
-    <TotalContainer>
-      <P>
-        Total:{' '}
-        <Span>
-          ${productsInCart.reduce(
-            (total, curr) => total + Number(curr.price * curr.quantity),
-            0
-          )}
-        </Span>
-      </P>
-      <Link to="/">
-        <Button>Proceed</Button>
-      </Link>
-    </TotalContainer>
-  </div>
-)
+  componentDidMount() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.setState({
+        cartItem: JSON.parse(localStorage.getItem('cart')) || [],
+      })
+    }
+  }
+
+  render() {
+    const { cartItems } = this.state
+    let isCartEmpty = cartItems.length === 0
+
+    let removeItemFromCart = e => {
+      cartItems.forEach(cartItem => {
+        if (cartItem.id === e.target.id) {
+          let updatedItems = cartItems.filter(e => e.id !== cartItem.id)
+          this.setState({ cartItems: updatedItems }, () => {
+            if (typeof window !== 'undefined' && window.localStorage) {
+              localStorage.setItem('cart', JSON.stringify(updatedItems))
+            }
+          })
+        }
+      })
+    }
+    return (
+      <div>
+        <H1 underlined>Your Cart</H1>
+        {isCartEmpty ? (
+          //TODO: Add more cool msg and redirect
+          <Container backgroundColor={colors.grey} height="0.9rem">
+            <h1>The Cart is Empty</h1>
+          </Container>
+        ) : (
+          <div>
+            <Container backgroundColor={colors.grey} height="0.9rem">
+              <TABLE>
+                <Thead>
+                  <Tr>
+                    <TH>Product</TH>
+                    <TH>Price</TH>
+                    <TH>Quantity</TH>
+                    <TH>Total</TH>
+                    <TH />
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {cartItems.map(product => (
+                    <TR key={product.id}>
+                      <TD>
+                        <Link to={product.slug}>{product.name}</Link>
+                      </TD>
+                      <TD>${product.price}</TD>
+                      <TD>{product.quantity}</TD>
+                      <TD>${product.price * product.quantity}</TD>
+                      <TD>
+                        {/* TODO: Display modal msg are you sure? */}
+                        <Button
+                          id={product.id}
+                          onClick={e => removeItemFromCart(e)}
+                        >
+                          Remove
+                        </Button>
+                      </TD>
+                    </TR>
+                  ))}
+                </Tbody>
+              </TABLE>
+            </Container>
+            <TotalContainer>
+              <P>
+                Total:{' '}
+                <Span>
+                  ${cartItems.reduce(
+                    (total, curr) => total + Number(curr.price * curr.quantity),
+                    0
+                  )}
+                </Span>
+              </P>
+              <Link to="/createOrder">
+                <Button>Proceed</Button>
+              </Link>
+            </TotalContainer>
+          </div>
+        )}
+      </div>
+    )
+  }
+}
 
 export default Cart
