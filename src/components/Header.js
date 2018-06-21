@@ -3,19 +3,18 @@ import styled from 'styled-components'
 import colors from '../utils/colors'
 
 import { StyledLink } from './styled/StyledLink'
+import { Logo } from './styled/Logo'
 import { Container } from './styled/Container'
-
-import logo from '../images/header-logo.png'
 
 const HeaderContent = styled.div`
   background-color: ${colors.white};
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 `
 
 const HeaderContainer = Container.extend`
   display: flex;
   justify-content: space-between;
-  height: 80px;
+  height: 5rem;
   align-items: center;
 `
 
@@ -39,21 +38,11 @@ const NavLink = styled(StyledLink).attrs({ activeClassName })`
   }
 `
 
-const HomeNavLink = StyledLink.extend`
-  text-transform: uppercase;
-`
-
-const HeaderLogoImg = styled.img`
-  width: 75%;
-`
-
 const Header = () => {
   return (
     <HeaderContent>
       <HeaderContainer>
-        <HomeNavLink to="/">
-          <HeaderLogoImg src={logo} />
-        </HomeNavLink>
+        <Logo />
         <DesktopMenu>
           <DesktopMenuItem>
             <NavLink to="/products">Products</NavLink>
