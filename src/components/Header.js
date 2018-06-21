@@ -5,6 +5,8 @@ import colors from '../utils/colors'
 import { StyledLink } from './styled/StyledLink'
 import { Container } from './styled/Container'
 
+import logo from '../images/header-logo.png'
+
 const HeaderContent = styled.div`
   background-color: ${colors.white};
   margin-bottom: 2rem;
@@ -41,11 +43,17 @@ const HomeNavLink = StyledLink.extend`
   text-transform: uppercase;
 `
 
-const Header = ({ siteTitle }) => {
+const HeaderLogoImg = styled.img`
+  width: 75%;
+`
+
+const Header = () => {
   return (
     <HeaderContent>
       <HeaderContainer>
-        <HomeNavLink to="/">{siteTitle}</HomeNavLink>
+        <HomeNavLink to="/">
+          <HeaderLogoImg src={logo} />
+        </HomeNavLink>
         <DesktopMenu>
           <DesktopMenuItem>
             <NavLink to="/products">Products</NavLink>
