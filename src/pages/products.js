@@ -4,6 +4,7 @@ import { Row, Col } from 'react-simple-flex-grid'
 import styled from 'styled-components'
 
 import ProductCard from '../components/ProductCard'
+import FeaturedSection from '../components/FeaturedSection'
 
 const ProductListRow = styled(Row)`
   padding-left: 3rem;
@@ -29,6 +30,7 @@ class Products extends React.Component {
             </Col>
           ))}
         </ProductListRow>
+        <FeaturedSection allProducts={data.allProducts} />
       </div>
     )
   }
@@ -48,6 +50,7 @@ export const query = graphql`
           quantity
           onSale
           onSalePrice
+          featured
         }
       }
     }

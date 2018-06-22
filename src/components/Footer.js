@@ -26,7 +26,10 @@ const Footer = () => {
       <FooterContainer>
         <Logo />
         <div>Center</div>
-        <div>Right</div>
+        <div>
+          <div>IG</div>
+          <div>FB</div>
+        </div>
       </FooterContainer>
     </FooterContent>
   )

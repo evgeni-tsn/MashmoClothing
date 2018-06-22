@@ -1,5 +1,6 @@
 import React from 'react'
 import H1 from '../components/styled/H1'
+import FeaturedSection from '../components/FeaturedSection'
 
 class ProductTemplate extends React.Component {
   state = {
@@ -36,6 +37,7 @@ class ProductTemplate extends React.Component {
 
   render() {
     const productData = this.props.data.products
+    const allProducts = this.props.data.allProducts
     return (
       <div>
         <H1 underlined>{productData.name}</H1>
@@ -55,6 +57,7 @@ class ProductTemplate extends React.Component {
           Add to Cart
         </button>
         {this.state.errorMsgShow && <p>Please add at least one item</p>}
+        <FeaturedSection allProducts={allProducts} />
       </div>
     )
   }
@@ -69,6 +72,20 @@ export const productQuery = graphql`
       name
       price
       slug
+    }
+    allProducts {
+      edges {
+        node {
+          id
+          name
+          price
+          slug
+          quantity
+          onSale
+          onSalePrice
+          featured
+        }
+      }
     }
   }
 `
