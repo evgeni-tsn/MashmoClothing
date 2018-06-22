@@ -7,7 +7,6 @@ import { StyledLink } from '../components/styled/StyledLink'
 
 import styled from 'styled-components'
 import colors from '../utils/colors'
-import productPlaceholder from '../images/productPlaceholder.png'
 
 const ProductCardContainer = styled.div`
   border: 2px solid ${colors.grey};
