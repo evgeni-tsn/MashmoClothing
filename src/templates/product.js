@@ -4,6 +4,8 @@ import H1 from '../components/styled/H1'
 class ProductTemplate extends React.Component {
   state = {
     quantityValue: 1,
+    disabledButton: false,
+    errorMsgShow: false,
   }
 
   addToCart = productData => {
@@ -25,7 +27,11 @@ class ProductTemplate extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ quantityValue: event.target.value })
+    this.setState({ quantityValue: event.target.value }, () => {
+      Number(this.state.quantityValue) < 1
+        ? this.setState({ disabledButton: true, errorMsgShow: true })
+        : this.setState({ disabledButton: false, errorMsgShow: false })
+    })
   }
 
   render() {
@@ -37,12 +43,18 @@ class ProductTemplate extends React.Component {
         <p>URL: {productData.slug}</p>
         <input
           type="number"
-          min="1"
+          min={1}
           value={this.state.quantityValue}
           onChange={e => this.handleChange(e)}
         />
         <br />
-        <button onClick={() => this.addToCart(productData)}>Add to Cart</button>
+        <button
+          disabled={this.state.disabledButton}
+          onClick={() => this.addToCart(productData)}
+        >
+          Add to Cart
+        </button>
+        {this.state.errorMsgShow && <p>Please add at least one item</p>}
       </div>
     )
   }
