@@ -22,6 +22,10 @@ const DesktopMenu = styled.ul`
   display: flex;
   flex-direction: row;
   margin: 0;
+
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 `
 
 const DesktopMenuItem = styled.li`

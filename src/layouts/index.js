@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Container } from '../components/styled/Container'
 import './index.css'
 
+const MainContainer = styled(Container)`
+  min-height: 75vh;
+`
 const Layout = ({ children, data }) => (
   <div>
     <Helmet
@@ -22,7 +26,7 @@ const Layout = ({ children, data }) => (
       />
     </Helmet>
     <Header />
-    <Container>{children()}</Container>
+    <MainContainer>{children()}</MainContainer>
     <Footer />
   </div>
 )

@@ -7,9 +7,7 @@ import { Container } from './styled/Container'
 import { Logo } from './styled/Logo'
 
 const FooterContent = styled.div`
-  position: fixed;
   width: 100%;
-  bottom: 0;
   background-color: ${colors.black};
   margin-top: 2rem;
 `
