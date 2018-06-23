@@ -57,7 +57,7 @@ class ProductTemplate extends React.Component {
           Add to Cart
         </button>
         {this.state.errorMsgShow && <p>Please add at least one item</p>}
-        <FeaturedSection allProducts={allProducts} />
+        <FeaturedSection filterOut={productData} allProducts={allProducts} />
       </div>
     )
   }

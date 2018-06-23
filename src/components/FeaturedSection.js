@@ -8,9 +8,18 @@ const FeaturedProductListRow = styled(Row)`
   padding-right: 3rem;
   padding-top: 1rem;
 `
-const FeaturedSection = ({ allProducts }) => {
-  let getFirst3Featured = allProducts =>
-    allProducts.edges.filter(({ node }) => node.featured === true).slice(0, 3)
+const FeaturedSection = ({ allProducts, filterOut }) => {
+  let getFirst3Featured = allProducts => {
+    let filteredProducts = allProducts.edges
+    if (filterOut) {
+      filteredProducts = allProducts.edges.filter(
+        ({ node }) => node.id !== filterOut.id
+      )
+    }
+    return filteredProducts
+      .filter(({ node }) => node.featured === true)
+      .slice(0, 3)
+  }
 
   return (
     <div>

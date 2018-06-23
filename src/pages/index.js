@@ -3,8 +3,8 @@ import H1 from '../components/styled/H1'
 
 import { writeUserData } from '../services/firebase'
 import FeaturedSection from '../components/FeaturedSection'
+
 const IndexPage = ({ data }) => {
-  console.log('index.js', data)
   return (
     <div>
       <H1 underlined>Hi people</H1>
