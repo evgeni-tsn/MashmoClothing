@@ -6,6 +6,13 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `ng68lttvxpth`,
+        accessToken: `e02159a779e1d982b3f98b8bdcba8eadb078193ed9d3700781fd8093efe5bfe2`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'GatsbyJS',
@@ -28,19 +35,6 @@ module.exports = {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: `tomato`,
-      },
-    },
-    {
-      resolve: `gatsby-source-firebase`,
-      options: {
-        credential: require('./firebase-key.json'),
-        databaseURL: 'https://mashmo-on-gatsby-dev.firebaseio.com/',
-        types: [
-          {
-            type: 'Products',
-            path: 'products',
-          },
-        ],
       },
     },
   ],

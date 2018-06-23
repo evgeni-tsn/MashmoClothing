@@ -15,8 +15,8 @@ const ProductCardImage = styled.img`
   transition: 0.7s ease-in-out;
   display: block;
   object-fit: cover;
-  min-width: 300px;
-  min-height: 300px;
+  max-width: 300px;
+  max-height: 300px;
 
   &:hover {
     transform: scale(1.3);
@@ -81,7 +81,7 @@ class ProductCard extends React.Component {
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
-            src={this.state.imgUrl}
+            src={node.mainImage.resolutions.src}
             onMouseEnter={() =>
               this.changeImage('https://picsum.photos/900/600/?random')
             }

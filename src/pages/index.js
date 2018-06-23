@@ -1,8 +1,9 @@
 import React from 'react'
 import H1 from '../components/styled/H1'
 
-import { writeUserData } from '../services/firebase'
 import FeaturedSection from '../components/FeaturedSection'
+
+import { tryContentfulAPI } from '../services/contentfulManagement'
 
 const IndexPage = ({ data }) => {
   return (
@@ -10,25 +11,34 @@ const IndexPage = ({ data }) => {
       <H1 underlined>Hi people</H1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
-      <button onClick={() => writeUserData('product1')}>Click</button>
-      <FeaturedSection allProducts={data.allProducts} />
+      <button onClick={() => tryContentfulAPI()}>Click</button>
+      <FeaturedSection allProducts={data.allContentfulProduct} />
     </div>
   )
 }
 
 export const query = graphql`
   query HomePageQuery {
-    allProducts {
+    allContentfulProduct {
       edges {
         node {
-          id
-          name
-          price
           slug
-          quantity
+          name
+          featured
           onSale
           onSalePrice
-          featured
+          price
+          quantity
+          contentfulid
+          contentful_id
+          createdAt
+          mainImage {
+            id
+            resolutions {
+              src
+              tracedSVG
+            }
+          }
         }
       }
     }

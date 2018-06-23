@@ -36,8 +36,8 @@ class ProductTemplate extends React.Component {
   }
 
   render() {
-    const productData = this.props.data.products
-    const allProducts = this.props.data.allProducts
+    const productData = this.props.data.contentfulProduct
+    const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
         <H1 underlined>{productData.name}</H1>
@@ -67,23 +67,46 @@ export default ProductTemplate
 
 export const productQuery = graphql`
   query ProductQuery($slug: String!) {
-    products(slug: { eq: $slug }) {
-      id
-      name
-      price
+    contentfulProduct(slug: { eq: $slug }) {
       slug
+      name
+      featured
+      onSale
+      onSalePrice
+      price
+      quantity
+      contentfulid
+      contentful_id
+      createdAt
+      mainImage {
+        id
+        resolutions {
+          src
+          tracedSVG
+        }
+      }
     }
-    allProducts {
+    allContentfulProduct {
       edges {
         node {
           id
-          name
-          price
           slug
-          quantity
+          name
+          featured
           onSale
           onSalePrice
-          featured
+          price
+          quantity
+          contentfulid
+          contentful_id
+          createdAt
+          mainImage {
+            id
+            resolutions {
+              src
+              tracedSVG
+            }
+          }
         }
       }
     }

@@ -7,14 +7,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 
   return graphql(`
     {
-      allProducts {
+      allContentfulProduct {
         edges {
           node {
-            id
-            name
-            price
             slug
-            path
+            name
+            featured
+            onSale
+            onSalePrice
+            price
+            quantity
+            contentfulid
+            contentful_id
+            createdAt
           }
         }
       }
@@ -25,7 +30,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(res.errors)
     }
 
-    res.data.allProducts.edges.forEach(({ node }) => {
+    res.data.allContentfulProduct.edges.forEach(({ node }) => {
       createPage({
         path: node.slug,
         component: productTemplate,

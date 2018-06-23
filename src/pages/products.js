@@ -24,13 +24,13 @@ class Products extends React.Component {
         <hr />
 
         <ProductListRow gutter={20}>
-          {data.allProducts.edges.map(({ node }) => (
+          {data.allContentfulProduct.edges.map(({ node }) => (
             <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.id}>
               <ProductCard productData={node} />
             </Col>
           ))}
         </ProductListRow>
-        <FeaturedSection allProducts={data.allProducts} />
+        <FeaturedSection allProducts={data.allContentfulProduct} />
       </div>
     )
   }
@@ -40,17 +40,26 @@ export default Products
 
 export const query = graphql`
   query ProductsPageQuery {
-    allProducts {
+    allContentfulProduct {
       edges {
         node {
-          id
-          name
-          price
           slug
-          quantity
+          name
+          featured
           onSale
           onSalePrice
-          featured
+          price
+          quantity
+          contentfulid
+          contentful_id
+          createdAt
+          mainImage {
+            id
+            resolutions {
+              src
+              tracedSVG
+            }
+          }
         }
       }
     }
