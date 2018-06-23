@@ -14,7 +14,7 @@ class ProductTemplate extends React.Component {
       let oldItems = JSON.parse(localStorage.getItem('cart')) || []
       let updateQuantity = false
       for (const savedItem of oldItems) {
-        if (savedItem.id === productData.id) {
+        if (savedItem.contentful_id === productData.contentful_id) {
           updateQuantity = true
           savedItem.quantity =
             Number(this.state.quantityValue) + Number(savedItem.quantity)
@@ -78,9 +78,9 @@ export const productQuery = graphql`
       contentfulid
       contentful_id
       createdAt
-      mainImage {
+      mainImages {
         id
-        resolutions {
+        resolutions(width: 500, height: 500) {
           src
           tracedSVG
         }
@@ -100,9 +100,9 @@ export const productQuery = graphql`
           contentfulid
           contentful_id
           createdAt
-          mainImage {
+          mainImages {
             id
-            resolutions {
+            resolutions(width: 500, height: 500) {
               src
               tracedSVG
             }

@@ -13,7 +13,7 @@ const FeaturedSection = ({ allProducts, filterOut }) => {
     let filteredProducts = allProducts.edges
     if (filterOut) {
       filteredProducts = allProducts.edges.filter(
-        ({ node }) => node.id !== filterOut.id
+        ({ node }) => node.contentful_id !== filterOut.contentful_id
       )
     }
     return filteredProducts
@@ -27,7 +27,7 @@ const FeaturedSection = ({ allProducts, filterOut }) => {
       <hr />
       <FeaturedProductListRow gutter={20}>
         {getFirst3Featured(allProducts).map(({ node }) => (
-          <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.id}>
+          <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
             <ProductCard productData={node} />
           </Col>
         ))}

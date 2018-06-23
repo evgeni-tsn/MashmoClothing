@@ -32,9 +32,9 @@ export const query = graphql`
           contentfulid
           contentful_id
           createdAt
-          mainImage {
+          mainImages {
             id
-            resolutions {
+            resolutions(width: 500, height: 500) {
               src
               tracedSVG
             }

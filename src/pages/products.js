@@ -25,7 +25,7 @@ class Products extends React.Component {
 
         <ProductListRow gutter={20}>
           {data.allContentfulProduct.edges.map(({ node }) => (
-            <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.id}>
+            <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
               <ProductCard productData={node} />
             </Col>
           ))}
@@ -53,9 +53,9 @@ export const query = graphql`
           contentfulid
           contentful_id
           createdAt
-          mainImage {
+          mainImages {
             id
-            resolutions {
+            resolutions(width: 500, height: 500) {
               src
               tracedSVG
             }

@@ -11,20 +11,26 @@ const ProductCardContainer = styled.div`
 `
 const ProductCardImage = styled.img`
   filter: ${({ crossout }) => (crossout ? 'grayscale(80%)' : 'none')};
-  transform: scale(1);
   transition: 0.7s ease-in-out;
-  display: block;
   object-fit: cover;
-  max-width: 300px;
-  max-height: 300px;
-
+  width: 300px;
+  height: 300px;
   &:hover {
     transform: scale(1.3);
+    transition: 0.7s ease-in-out;
+    opacity: 0;
   }
+`
+
+const ProductSecondCardImage = styled(ProductCardImage)`
+  position: absolute;
+  left: 0;
 `
 
 const ProductImageWrapper = styled.figure`
   overflow: hidden;
+  position: relative;
+  height: 300px;
 `
 
 const ProductCardInfo = styled.div`
@@ -67,27 +73,20 @@ const ProductCardFooter = styled.div`
   background-color: ${colors.grey};
 `
 class ProductCard extends React.Component {
-  state = {
-    imgUrl: 'https://placeimg.com/900/600/people',
-  }
-  changeImage(url) {
-    this.setState({ imgUrl: url })
-  }
   render() {
     const { productData: node } = this.props
+    console.log(node)
     return (
       <ProductCardContainer>
         {/* TODO: Add taglabels (out of stock & limited & hotsale) */}
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
-            src={node.mainImage.resolutions.src}
-            onMouseEnter={() =>
-              this.changeImage('https://picsum.photos/900/600/?random')
-            }
-            onMouseOut={() =>
-              this.changeImage('https://placeimg.com/850/500/people')
-            }
+            src={node.mainImages[1].resolutions.src}
+          />
+          <ProductSecondCardImage
+            crossout={node.quantity === 0}
+            src={node.mainImages[0].resolutions.src}
           />
         </ProductImageWrapper>
         <StyledLink to={node.slug}>

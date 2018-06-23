@@ -85,8 +85,10 @@ class Cart extends React.Component {
 
     let removeItemFromCart = e => {
       cartItems.forEach(cartItem => {
-        if (cartItem.id === e.target.id) {
-          let updatedItems = cartItems.filter(e => e.id !== cartItem.id)
+        if (cartItem.contentful_id === e.target.contentful_id) {
+          let updatedItems = cartItems.filter(
+            e => e.contentful_id !== cartItem.contentful_id
+          )
           this.setState({ cartItems: updatedItems }, () => {
             if (typeof window !== 'undefined' && window.localStorage) {
               localStorage.setItem('cart', JSON.stringify(updatedItems))
@@ -118,7 +120,7 @@ class Cart extends React.Component {
                 </Thead>
                 <Tbody>
                   {cartItems.map(product => (
-                    <TR key={product.id}>
+                    <TR key={product.contentful_id}>
                       <TD>
                         <Link to={product.slug}>{product.name}</Link>
                       </TD>
@@ -128,7 +130,7 @@ class Cart extends React.Component {
                       <TD>
                         {/* TODO: Display modal msg are you sure? */}
                         <Button
-                          id={product.id}
+                          id={product.contentful_id}
                           onClick={e => removeItemFromCart(e)}
                         >
                           Remove
