@@ -3,7 +3,7 @@ import H1 from '../components/styled/H1'
 
 import FeaturedSection from '../components/FeaturedSection'
 
-import { tryContentfulAPI } from '../services/contentfulManagement'
+import { tryContentfulAPI, createOrder } from '../services/contentfulManagement'
 
 const IndexPage = ({ data }) => {
   return (
@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
       <H1 underlined>Hi people</H1>
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
-      <button onClick={() => tryContentfulAPI()}>Click</button>
+      <button onClick={() => createOrder()}>Click</button>
       <FeaturedSection allProducts={data.allContentfulProduct} />
     </div>
   )

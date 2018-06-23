@@ -15,3 +15,26 @@ export function tryContentfulAPI() {
     .then(entry => console.log(`Entry ${entry.sys.id} updated.`))
     .catch(console.error)
 }
+
+export function createOrder() {
+  client
+    .getSpace('ng68lttvxpth')
+    .then(space => space.getEnvironment('master'))
+    .then(environment =>
+      environment.createEntry('order', {
+        fields: {
+          name: {
+            'en-US': 'First Customer',
+          },
+          phone: {
+            'en-US': '0888888888',
+          },
+          econtAddress: {
+            'en-US': 'Sofia Business Park',
+          },
+        },
+      })
+    )
+    .then(entry => console.log(entry))
+    .catch(console.error)
+}
