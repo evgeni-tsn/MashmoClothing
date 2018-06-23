@@ -75,7 +75,6 @@ const ProductCardFooter = styled.div`
 class ProductCard extends React.Component {
   render() {
     const { productData: node } = this.props
-    console.log(node)
     return (
       <ProductCardContainer>
         {/* TODO: Add taglabels (out of stock & limited & hotsale) */}

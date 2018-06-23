@@ -71,7 +71,6 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    console.log('here')
     if (typeof window !== 'undefined' && window.localStorage) {
       this.setState({
         cartItems: JSON.parse(localStorage.getItem('cart')) || [],
