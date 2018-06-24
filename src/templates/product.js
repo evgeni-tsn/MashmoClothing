@@ -80,7 +80,11 @@ export const productQuery = graphql`
       createdAt
       mainImages {
         id
-        resolutions(width: 500, height: 500) {
+        sizes(maxWidth: 800, quality: 80) {
+          src
+          tracedSVG
+        }
+        resolutions(width: 800, quality: 80) {
           src
           tracedSVG
         }
@@ -102,7 +106,11 @@ export const productQuery = graphql`
           createdAt
           mainImages {
             id
-            resolutions(width: 500, height: 500) {
+            sizes(maxWidth: 800, quality: 80) {
+              src
+              tracedSVG
+            }
+            resolutions(width: 800, quality: 80) {
               src
               tracedSVG
             }

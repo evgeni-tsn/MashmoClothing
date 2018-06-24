@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import colors from '../utils/colors'
 import { StyledLink } from './styled/StyledLink'
 
+import Img from 'gatsby-image'
+
 const ProductCardContainer = styled.div`
   border: 2px solid ${colors.grey};
   margin-bottom: 2rem;
@@ -15,6 +17,7 @@ const ProductCardImage = styled.img`
   object-fit: cover;
   width: 300px;
   height: 300px;
+
   &:hover {
     transform: scale(1.3);
     transition: 0.7s ease-in-out;
@@ -81,10 +84,12 @@ class ProductCard extends React.Component {
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
+            // resolutions={node.mainImages[1].resolutions}
             src={node.mainImages[1].resolutions.src}
           />
           <ProductSecondCardImage
             crossout={node.quantity === 0}
+            // resolutions={node.mainImages[0].resolutions}
             src={node.mainImages[0].resolutions.src}
           />
         </ProductImageWrapper>
