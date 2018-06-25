@@ -88,7 +88,7 @@ class ProductTemplate extends React.Component {
             <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <Image
-                  resolutions={productData.mainImages[0].sizes}
+                  // resolutions={productData.mainImages[0].resolutions}
                   src={productData.mainImages[0].resolutions.src}
                 />
               </Col>
@@ -96,11 +96,11 @@ class ProductTemplate extends React.Component {
             <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <SmallImage1
-                  resolutions={productData.mainImages[0].sizes}
+                  // resolutions={productData.mainImages[0].resolutions}
                   src={productData.mainImages[0].resolutions.src}
                 />
                 <SmallImage2
-                  resolutions={productData.mainImages[1].sizes}
+                  // resolutions={productData.mainImages[1].resolutions}
                   src={productData.mainImages[1].resolutions.src}
                 />
               </Col>
@@ -162,10 +162,6 @@ export const productQuery = graphql`
       createdAt
       mainImages {
         id
-        sizes(maxWidth: 800, quality: 80) {
-          src
-          tracedSVG
-        }
         resolutions(width: 800, height: 800, quality: 80) {
           src
           tracedSVG
@@ -188,10 +184,6 @@ export const productQuery = graphql`
           createdAt
           mainImages {
             id
-            sizes(maxWidth: 800, quality: 80) {
-              src
-              tracedSVG
-            }
             resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
