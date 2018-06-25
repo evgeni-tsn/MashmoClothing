@@ -84,7 +84,7 @@ export const productQuery = graphql`
           src
           tracedSVG
         }
-        resolutions(width: 800, quality: 80) {
+        resolutions(width: 800, height: 800, quality: 80) {
           src
           tracedSVG
         }
@@ -110,7 +110,7 @@ export const productQuery = graphql`
               src
               tracedSVG
             }
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
             }

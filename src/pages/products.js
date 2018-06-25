@@ -23,7 +23,7 @@ class Products extends React.Component {
         </Row>
         <hr />
 
-        <ProductListRow gutter={20}>
+        <ProductListRow gutter={20} align={'middle'}>
           {data.allContentfulProduct.edges.map(({ node }) => (
             <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
               <ProductCard productData={node} />
@@ -59,7 +59,7 @@ export const query = graphql`
               src
               tracedSVG
             }
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
             }

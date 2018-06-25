@@ -11,29 +11,46 @@ const ProductCardContainer = styled.div`
   border: 2px solid ${colors.grey};
   margin-bottom: 2rem;
 `
-const ProductCardImage = styled.img`
+const ProductCardImage = styled(Img)`
   filter: ${({ crossout }) => (crossout ? 'grayscale(80%)' : 'none')};
-  transition: 0.7s ease-in-out;
+  transition: 1s ease-in-out;
   object-fit: cover;
-  width: 300px;
-  height: 300px;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  position: inherit !important;
 
   &:hover {
     transform: scale(1.3);
-    transition: 0.7s ease-in-out;
+    transition: 1s ease-in-out;
     opacity: 0;
   }
-`
-
-const ProductSecondCardImage = styled(ProductCardImage)`
-  position: absolute;
-  left: 0;
 `
 
 const ProductImageWrapper = styled.figure`
   overflow: hidden;
   position: relative;
   height: 300px;
+
+  & > div {
+    position: absolute !important;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  & > div:nth-child(odd) {
+    background-color: ${colors.white};
+    transition: 1s ease-in-out;
+    z-index: 99;
+    &:hover {
+      background-color: transparent;
+      transition: 1s ease-in-out;
+    }
+  }
+
+  & > div:nth-child(even) {
+    z-index: 0;
+  }
 `
 
 const ProductCardInfo = styled.div`
@@ -84,13 +101,13 @@ class ProductCard extends React.Component {
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
-            // resolutions={node.mainImages[1].resolutions}
-            src={node.mainImages[1].resolutions.src}
+            resolutions={node.mainImages[1].resolutions}
+            // src={node.mainImages[1].resolutions.src}
           />
-          <ProductSecondCardImage
+          <ProductCardImage
             crossout={node.quantity === 0}
-            // resolutions={node.mainImages[0].resolutions}
-            src={node.mainImages[0].resolutions.src}
+            resolutions={node.mainImages[0].resolutions}
+            // src={node.mainImages[0].resolutions.src}
           />
         </ProductImageWrapper>
         <StyledLink to={node.slug}>
