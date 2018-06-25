@@ -6,7 +6,6 @@ import colors from '../../utils/colors'
 const HR = styled.hr`
   border: 0;
   height: 2px;
-  width: 75%;
   background: ${colors.main};
   background-image: linear-gradient(
     to right,
@@ -17,7 +16,7 @@ const HR = styled.hr`
 `
 
 const StyledH1 = styled.h1`
-  /* margin-left: 1rem; */
+  margin-left: 1rem;
   margin-bottom: 0.8rem;
   color: ${colors.black};
 `

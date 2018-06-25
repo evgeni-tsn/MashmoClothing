@@ -84,7 +84,7 @@ class Cart extends React.Component {
 
     let removeItemFromCart = e => {
       cartItems.forEach(cartItem => {
-        if (cartItem.contentful_id === e.target.id) {
+        if (cartItem.contentful_id === e.target.contentful_id) {
           let updatedItems = cartItems.filter(
             e => e.contentful_id !== cartItem.contentful_id
           )
