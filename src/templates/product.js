@@ -89,7 +89,7 @@ class ProductTemplate extends React.Component {
               <Col offset={2} span={8}>
                 <Image
                   // resolutions={productData.mainImages[0].resolutions}
-                  src={productData.mainImages[0].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
               </Col>
             </Row>
@@ -97,11 +97,11 @@ class ProductTemplate extends React.Component {
               <Col offset={2} span={8}>
                 <SmallImage1
                   // resolutions={productData.mainImages[0].resolutions}
-                  src={productData.mainImages[0].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
                 <SmallImage2
                   // resolutions={productData.mainImages[1].resolutions}
-                  src={productData.mainImages[1].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
               </Col>
             </Row>
@@ -160,7 +160,7 @@ export const productQuery = graphql`
       contentfulid
       contentful_id
       createdAt
-      mainImages {
+      mainImage {
         id
         resolutions(width: 800, quality: 80) {
           src
@@ -182,7 +182,7 @@ export const productQuery = graphql`
           contentfulid
           contentful_id
           createdAt
-          mainImages {
+          mainImage {
             id
             resolutions(width: 800, quality: 80) {
               src

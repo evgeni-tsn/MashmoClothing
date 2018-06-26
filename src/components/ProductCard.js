@@ -101,12 +101,12 @@ class ProductCard extends React.Component {
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
-            resolutions={node.mainImages[1].resolutions}
+            resolutions={node.mainImage.resolutions}
             // src={node.mainImages[1].resolutions.src}
           />
           <ProductCardImage
             crossout={node.quantity === 0}
-            resolutions={node.mainImages[0].resolutions}
+            resolutions={node.mainImage.resolutions}
             // src={node.mainImages[0].resolutions.src}
           />
         </ProductImageWrapper>
