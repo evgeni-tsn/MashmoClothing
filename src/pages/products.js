@@ -55,10 +55,6 @@ export const query = graphql`
           createdAt
           mainImages {
             id
-            sizes(maxWidth: 800, quality: 80) {
-              src
-              tracedSVG
-            }
             resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG

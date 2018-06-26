@@ -40,15 +40,61 @@ class ProductTemplate extends React.Component {
     const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
-        <H1 underlined>{productData.name}</H1>
-        <p>Price: {productData.price}</p>
-        <p>URL: {productData.slug}</p>
-        <input
-          type="number"
-          min={1}
-          value={this.state.quantityValue}
-          onChange={e => this.handleChange(e)}
-        />
+        <Row justify={'center'}>
+          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+            <Row justify={'center'}>
+              <Col offset={2} span={8}>
+                <Image
+                  // resolutions={productData.mainImages[0].resolutions}
+                  src={productData.mainImages[0].resolutions.src}
+                />
+              </Col>
+            </Row>
+            <Row justify={'center'}>
+              <Col offset={2} span={8}>
+                <SmallImage1
+                  // resolutions={productData.mainImages[0].resolutions}
+                  src={productData.mainImages[0].resolutions.src}
+                />
+                <SmallImage2
+                  // resolutions={productData.mainImages[1].resolutions}
+                  src={productData.mainImages[1].resolutions.src}
+                />
+              </Col>
+            </Row>
+          </Col>
+          <Col span={6}>
+            <H1 underlined>{productData.name}</H1>
+            <h3>Price: {productData.price}</h3>
+            <span>Quantity: </span>
+            <button
+              onClick={() => this.decreaseQuantity()}
+              disabled={this.state.disableMinusButton}
+            >
+              -
+            </button>
+            <span>{this.state.quantityValue}</span>
+            <button
+              onClick={() => this.increaseQuantity()}
+              disabled={this.state.disablePlusButton}
+            >
+              +
+            </button>
+            <br />
+            <button
+              disabled={
+                this.state.quantityValue < this.state.minimumQuantity ||
+                this.state.quantityValue > this.state.maximumQuantity
+              }
+              onClick={() => this.addToCart(productData)}
+            >
+              Add to Cart
+            </button>
+            {this.state.errorMsgShow && (
+              <p>Quantity must be between 1 and 8 items.</p>
+            )}
+          </Col>
+        </Row>
         <br />
         <button
           disabled={this.state.disabledButton}
@@ -80,10 +126,6 @@ export const productQuery = graphql`
       createdAt
       mainImages {
         id
-        sizes(maxWidth: 800, quality: 80) {
-          src
-          tracedSVG
-        }
         resolutions(width: 800, height: 800, quality: 80) {
           src
           tracedSVG
@@ -106,10 +148,6 @@ export const productQuery = graphql`
           createdAt
           mainImages {
             id
-            sizes(maxWidth: 800, quality: 80) {
-              src
-              tracedSVG
-            }
             resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
