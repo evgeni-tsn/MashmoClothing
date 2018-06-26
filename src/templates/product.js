@@ -119,6 +119,7 @@ class ProductTemplate extends React.Component {
             >
               +
             </button>
+            <p>Quantity</p>
             <br />
             <button
               disabled={
