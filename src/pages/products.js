@@ -60,6 +60,13 @@ export const query = graphql`
               tracedSVG
             }
           }
+          mainImages {
+            id
+            resolutions(width: 800, quality: 80) {
+              src
+              tracedSVG
+            }
+          }
         }
       }
     }
