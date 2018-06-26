@@ -5,13 +5,13 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "contentful-management": "^5.1.4",
-    "gatsby": "^1.9.272",
+    "gatsby": "^1.9.273",
     "gatsby-image": "^1.0.54",
-    "gatsby-link": "^1.6.40",
+    "gatsby-link": "^1.6.45",
     "gatsby-plugin-manifest": "^1.0.27",
     "gatsby-plugin-nprogress": "^1.0.14",
     "gatsby-plugin-offline": "^1.0.18",
-    "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-plugin-typography": "^1.7.19",
     "gatsby-source-contentful": "^1.3.54",
@@ -19,7 +19,7 @@
     "react-helmet": "^5.2.0",
     "react-simple-flex-grid": "^1.2.3",
     "react-super-responsive-table": "^4.2.4",
-    "styled-components": "^3.3.2",
+    "styled-components": "^3.3.3",
     "typography-theme-irving": "^0.15.10"
   },
   "keywords": [
