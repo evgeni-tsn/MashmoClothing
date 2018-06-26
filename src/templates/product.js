@@ -84,7 +84,6 @@ class ProductTemplate extends React.Component {
     } = this.props.data.allContentfulProduct.edges.find(
       ({ node }) => node.slug === this.props.pathContext.slug
     )
-    console.log(productData)
     const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
