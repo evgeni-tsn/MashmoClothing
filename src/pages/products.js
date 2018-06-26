@@ -53,7 +53,7 @@ export const query = graphql`
           contentfulid
           contentful_id
           createdAt
-          mainImage {
+          mainImages {
             id
             resolutions(width: 800, quality: 80) {
               src
