@@ -87,22 +87,13 @@ class ProductTemplate extends React.Component {
           <Col xs={12} sm={12} md={6} lg={6} xl={6}>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <Image
-                  // resolutions={productData.mainImages[0].resolutions}
-                  src={productData.mainImages[0].resolutions.src}
-                />
+                <Image src={productData.mainImages[0].resolutions.src} />
               </Col>
             </Row>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <SmallImage1
-                  // resolutions={productData.mainImages[0].resolutions}
-                  src={productData.mainImages[0].resolutions.src}
-                />
-                <SmallImage2
-                  // resolutions={productData.mainImages[1].resolutions}
-                  src={productData.mainImages[1].resolutions.src}
-                />
+                <SmallImage1 src={productData.mainImages[0].resolutions.src} />
+                <SmallImage2 src={productData.mainImages[1].resolutions.src} />
               </Col>
             </Row>
           </Col>
