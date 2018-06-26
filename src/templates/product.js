@@ -119,7 +119,7 @@ class ProductTemplate extends React.Component {
             >
               +
             </button>
-            <p>Quantity</p>
+            <p>Quantity {productData.updatedAt}</p>
             <br />
             <button
               disabled={
@@ -160,6 +160,7 @@ export const productQuery = graphql`
           contentfulid
           contentful_id
           createdAt
+          updatedAt
           mainImages {
             id
             resolutions(width: 800, height: 800, quality: 80) {
