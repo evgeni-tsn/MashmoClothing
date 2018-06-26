@@ -79,7 +79,12 @@ class ProductTemplate extends React.Component {
   }
 
   render() {
-    const productData = this.props.data.contentfulProduct
+    const {
+      node: productData,
+    } = this.props.data.allContentfulProduct.edges.find(
+      ({ node }) => node.slug === this.props.pathContext.slug
+    )
+    console.log(productData)
     const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
@@ -93,7 +98,7 @@ class ProductTemplate extends React.Component {
                 />
               </Col>
             </Row>
-            <Row justify={'center'}>
+            {/* <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <SmallImage1
                   // resolutions={productData.mainImages[0].resolutions}
@@ -104,7 +109,7 @@ class ProductTemplate extends React.Component {
                   src={productData.mainImage.resolutions.src}
                 />
               </Col>
-            </Row>
+            </Row> */}
           </Col>
           <Col span={6}>
             <H1 underlined>{productData.name}</H1>
@@ -148,26 +153,7 @@ class ProductTemplate extends React.Component {
 export default ProductTemplate
 
 export const productQuery = graphql`
-  query ProductQuery($slug: String!) {
-    contentfulProduct(slug: { eq: $slug }) {
-      slug
-      name
-      featured
-      onSale
-      onSalePrice
-      price
-      quantity
-      contentfulid
-      contentful_id
-      createdAt
-      mainImage {
-        id
-        resolutions(width: 800, quality: 80) {
-          src
-          tracedSVG
-        }
-      }
-    }
+  query ProductQuery {
     allContentfulProduct {
       edges {
         node {
