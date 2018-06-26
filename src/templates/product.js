@@ -81,7 +81,6 @@ class ProductTemplate extends React.Component {
   render() {
     const productData = this.props.data.contentfulProduct
     const allProducts = this.props.data.allContentfulProduct
-    const images = productData.mainImages
     return (
       <div>
         <Row justify={'center'}>
@@ -90,7 +89,7 @@ class ProductTemplate extends React.Component {
               <Col offset={2} span={8}>
                 <Image
                   // resolutions={productData.mainImages[0].resolutions}
-                  src={images[0].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
               </Col>
             </Row>
@@ -98,11 +97,11 @@ class ProductTemplate extends React.Component {
               <Col offset={2} span={8}>
                 <SmallImage1
                   // resolutions={productData.mainImages[0].resolutions}
-                  src={images[0].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
                 <SmallImage2
                   // resolutions={productData.mainImages[1].resolutions}
-                  src={images[1].resolutions.src}
+                  src={productData.mainImage.resolutions.src}
                 />
               </Col>
             </Row>
@@ -168,13 +167,6 @@ export const productQuery = graphql`
           tracedSVG
         }
       }
-      mainImages {
-        id
-        resolutions(width: 800, quality: 80) {
-          src
-          tracedSVG
-        }
-      }
     }
     allContentfulProduct {
       edges {
@@ -191,13 +183,6 @@ export const productQuery = graphql`
           contentful_id
           createdAt
           mainImage {
-            id
-            resolutions(width: 800, quality: 80) {
-              src
-              tracedSVG
-            }
-          }
-          mainImages {
             id
             resolutions(width: 800, quality: 80) {
               src
