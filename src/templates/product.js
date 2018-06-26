@@ -98,7 +98,7 @@ class ProductTemplate extends React.Component {
                 />
               </Col>
             </Row>
-            {/* <Row justify={'center'}>
+            <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <SmallImage1
                   // resolutions={productData.mainImages[0].resolutions}
@@ -109,7 +109,7 @@ class ProductTemplate extends React.Component {
                   src={productData.mainImage.resolutions.src}
                 />
               </Col>
-            </Row> */}
+            </Row>
           </Col>
           <Col span={6}>
             <H1 underlined>{productData.name}</H1>
