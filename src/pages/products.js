@@ -55,14 +55,14 @@ export const query = graphql`
           createdAt
           mainImage {
             id
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
             }
           }
           mainImages {
             id
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 800, height: 800, quality: 80) {
               src
               tracedSVG
             }
