@@ -162,7 +162,7 @@ export const productQuery = graphql`
           updatedAt
           mainImages {
             id
-            resolutions(width: 800, height: 800, quality: 80) {
+            resolutions(width: 600, height: 600) {
               src
               tracedSVG
             }

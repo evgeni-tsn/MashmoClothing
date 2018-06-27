@@ -55,7 +55,7 @@ export const query = graphql`
           createdAt
           mainImages {
             id
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 600, height: 600) {
               src
               tracedSVG
             }
