@@ -45,15 +45,14 @@ export const query = graphql`
         node {
           slug
           name
-          featured
-          onSale
+          isFeatured
+          isOnSale
           onSalePrice
           price
           quantity
-          contentfulid
           contentful_id
           createdAt
-          mainImages {
+          photos {
             id
             resolutions(width: 600, height: 600) {
               src

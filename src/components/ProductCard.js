@@ -101,18 +101,18 @@ class ProductCard extends React.Component {
         <ProductImageWrapper>
           <ProductCardImage
             crossout={node.quantity === 0}
-            resolutions={node.mainImages[0].resolutions}
+            resolutions={node.photos[0].resolutions}
           />
           <ProductCardImage
             crossout={node.quantity === 0}
-            resolutions={node.mainImages[1].resolutions}
+            resolutions={node.photos[1].resolutions}
           />
         </ProductImageWrapper>
         <StyledLink to={node.slug}>
           <ProductCardInfo>
             <ProductTitle>{node.name}</ProductTitle>
             <ProductPriceWrapper>
-              {node.onSale &&
+              {node.isOnSale &&
                 node.onSalePrice && (
                   <ProductPrice crossout={true}>
                     ${node.onSalePrice}

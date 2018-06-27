@@ -17,7 +17,7 @@ const FeaturedSection = ({ allProducts, filterOut }) => {
       )
     }
     return filteredProducts
-      .filter(({ node }) => node.featured === true)
+      .filter(({ node }) => node.isFeatured === true)
       .slice(0, 3)
   }
 

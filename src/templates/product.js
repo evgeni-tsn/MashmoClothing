@@ -91,13 +91,13 @@ class ProductTemplate extends React.Component {
           <Col xs={12} sm={12} md={6} lg={6} xl={6}>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <Image src={productData.mainImages[0].resolutions.src} />
+                <Image src={productData.photos[0].resolutions.src} />
               </Col>
             </Row>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <SmallImage1 src={productData.mainImages[0].resolutions.src} />
-                <SmallImage2 src={productData.mainImages[1].resolutions.src} />
+                <SmallImage1 src={productData.photos[0].resolutions.src} />
+                <SmallImage2 src={productData.photos[1].resolutions.src} />
               </Col>
             </Row>
           </Col>
@@ -148,19 +148,17 @@ export const productQuery = graphql`
     allContentfulProduct {
       edges {
         node {
-          id
           slug
           name
-          featured
-          onSale
+          isFeatured
+          isOnSale
           onSalePrice
           price
           quantity
-          contentfulid
           contentful_id
           createdAt
           updatedAt
-          mainImages {
+          photos {
             id
             resolutions(width: 600, height: 600) {
               src

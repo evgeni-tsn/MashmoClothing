@@ -12,12 +12,11 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           node {
             slug
             name
-            featured
-            onSale
+            isFeatured
+            isOnSale
             onSalePrice
             price
             quantity
-            contentfulid
             contentful_id
             createdAt
           }
