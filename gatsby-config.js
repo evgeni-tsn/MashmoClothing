@@ -1,3 +1,5 @@
+require('dotenv').config({ path: `.env.development` })
+
 module.exports = {
   siteMetadata: {
     title: 'Mashmo Clothing',
@@ -10,8 +12,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `ng68lttvxpth`,
-        accessToken: `e02159a779e1d982b3f98b8bdcba8eadb078193ed9d3700781fd8093efe5bfe2`,
+        spaceId: process.env.CONTENTFUL_SPACEID,
+        accessToken: process.env.CONTENTFUL_TOKEN,
       },
     },
     {

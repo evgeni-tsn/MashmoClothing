@@ -1,10 +1,11 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "mashmo-clothing",
   "description": "Gatsby default starter",
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "contentful-management": "^5.1.4",
+    "dotenv": "^6.0.0",
     "gatsby": "^1.9.273",
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.45",
@@ -40,6 +41,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/evgeni-tsn/MashmoClothing"
   }
 }

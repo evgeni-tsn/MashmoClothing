@@ -1,7 +1,7 @@
 import { createClient } from 'contentful-management'
+
 const client = createClient({
-  accessToken:
-    'CFPAT-a3c4195e56d45acec59f1d671ce4ddb1df01f678f98e3fec9549a6e07567e354',
+  accessToken: process.env.CONTENTFUL_API_CALLS_TOKEN,
 })
 
 export function tryContentfulAPI() {
