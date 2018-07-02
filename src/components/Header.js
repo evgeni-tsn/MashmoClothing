@@ -54,7 +54,12 @@ const NavLink = styled(StyledLink).attrs({ activeClassName })`
 `
 
 const IconExternalLink = styled.a`
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+`
+
+const MailIconLink = styled(IconLink)`
+  margin-left: 0.9rem;
 `
 
 const Header = () => {
@@ -96,14 +101,14 @@ const Header = () => {
           >
             <HeaderIcon src={igIcon} alt={'instagram'} />
           </IconExternalLink>
-          <IconLink to="/contacts">
+          <MailIconLink to="/contacts">
             <HeaderIcon src={mailIcon} alt={'mail'} />
-          </IconLink>
+          </MailIconLink>
           <VerticalLine />
 
-          <IconLink to="/cart">
+          <MailIconLink to="/cart">
             <HeaderIcon src={cartIcon} alt={'cart'} />
-          </IconLink>
+          </MailIconLink>
         </DesktopMenu>
       </HeaderContainer>
     </HeaderContent>

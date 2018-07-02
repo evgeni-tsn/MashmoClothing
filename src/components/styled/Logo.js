@@ -10,10 +10,14 @@ const StyledLogo = styled.img`
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '75%')};
 `
 
+const StyledLink = styled(Link)`
+  text-align: center;
+`
+
 export const Logo = ({ maxWidth }) => (
-  <Link to="/">
+  <StyledLink to="/">
     <StyledLogo src={logo} maxWidth={maxWidth} />
-  </Link>
+  </StyledLink>
 )
 
 Logo.propTypes = {
