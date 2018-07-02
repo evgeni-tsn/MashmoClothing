@@ -1,10 +1,20 @@
 import React from 'react'
+import Link from 'gatsby-link'
 import styled from 'styled-components'
 import colors from '../utils/colors'
 
 import { StyledLink } from './styled/StyledLink'
 import { Logo } from './styled/Logo'
 import { Container } from './styled/Container'
+import { VerticalLine } from './styled/VericalLine'
+import { IconLink } from './styled/IconLink'
+import { HeaderIcon } from './styled/HeaderIcon'
+import { FeaturedButtonLink } from './styled/FeaturedButtonLink'
+
+import fbIcon from '../images/icons/facebook.png'
+import igIcon from '../images/icons/instagram.png'
+import mailIcon from '../images/icons/mail.png'
+import cartIcon from '../images/icons/cart.png'
 
 const HeaderContent = styled.div`
   background-color: ${colors.white};
@@ -29,7 +39,7 @@ const DesktopMenu = styled.ul`
 `
 
 const DesktopMenuItem = styled.li`
-  padding-left: 20px;
+  padding-left: 30px;
   list-style: none;
   margin: 0;
 `
@@ -38,8 +48,13 @@ const activeClassName = 'active'
 const NavLink = styled(StyledLink).attrs({ activeClassName })`
   &.${activeClassName} {
     color: ${colors.main};
-    border-bottom: 2px solid ${colors.light};
+    padding-bottom: 0.2rem;
+    border-bottom: 0.11rem solid ${colors.light};
   }
+`
+
+const IconExternalLink = styled.a`
+  margin-left: 1rem;
 `
 
 const Header = () => {
@@ -49,23 +64,46 @@ const Header = () => {
         <Logo />
         <DesktopMenu>
           <DesktopMenuItem>
-            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/" exact={true}>
+              Начало
+            </NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink to="/gallery">Gallery</NavLink>
+            <NavLink to="/influencers">Инфлуенсъри</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink to="/influencers">Influencers</NavLink>
+            <NavLink to="/gallery">Галерия</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink to="/shipping">Shipping</NavLink>
+            <NavLink to="/info">Полезно</NavLink>
           </DesktopMenuItem>
           <DesktopMenuItem>
-            <NavLink to="/contacts">Contacts</NavLink>
+            <FeaturedButtonLink to="/products">Продукти</FeaturedButtonLink>
           </DesktopMenuItem>
-          <DesktopMenuItem>
-            <NavLink to="/cart">Cart</NavLink>
-          </DesktopMenuItem>
+          <VerticalLine />
+
+          <IconExternalLink
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <HeaderIcon src={fbIcon} alt={'facebook'} />
+          </IconExternalLink>
+          <IconExternalLink
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <HeaderIcon src={igIcon} alt={'instagram'} />
+          </IconExternalLink>
+          <IconLink to="/contacts">
+            <HeaderIcon src={mailIcon} alt={'mail'} />
+          </IconLink>
+          <VerticalLine />
+
+          <IconLink to="/cart">
+            <HeaderIcon src={cartIcon} alt={'cart'} />
+          </IconLink>
         </DesktopMenu>
       </HeaderContainer>
     </HeaderContent>
