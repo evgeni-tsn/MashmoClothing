@@ -9,4 +9,8 @@ export const FeaturedButtonLink = styled(StyledLink)`
   padding: 0.4rem 0.6rem;
   border-radius: 1rem;
   font-weight: lighter;
+
+  &:hover {
+    color: ${colors.black};
+  }
 `
