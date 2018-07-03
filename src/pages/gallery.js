@@ -13,54 +13,6 @@ import colors from '../utils/colors'
 //For image border see: https://www.npmjs.com/package/react-photo-gallery
 //And create Custom Image Components
 
-const photos = [
-  {
-    src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799',
-    width: 1,
-    height: 1,
-  },
-  {
-    src: 'https://source.unsplash.com/qDkso9nvCg0/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/iecJiKe_RNg/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/NQSWvyVRIJk/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/zh7GEuORbUw/600x799',
-    width: 3,
-    height: 4,
-  },
-  {
-    src: 'https://source.unsplash.com/PpOHJezOalU/800x599',
-    width: 4,
-    height: 3,
-  },
-  {
-    src: 'https://source.unsplash.com/I1ASdgphUH4/800x599',
-    width: 4,
-    height: 3,
-  },
-]
-
 const theme = {
   // container
   container: {
@@ -120,6 +72,12 @@ class Gallery extends React.Component {
     super()
     this.state = { currentImage: 0, width: -1 }
   }
+
+  componentDidMount() {
+    this.photos = this.props.data.allContentfulGallery.edges[0].node.photos.map(
+      e => e.resolutions
+    )
+  }
   openLightbox = (event, obj) => {
     this.setState({
       currentImage: obj.index,
@@ -168,13 +126,13 @@ class Gallery extends React.Component {
           return (
             <div ref={measureRef}>
               <PhotoGallery
-                photos={photos}
+                photos={this.photos}
                 columns={columns}
                 onClick={this.openLightbox}
                 margin={5}
               />
               <Lightbox
-                images={photos}
+                images={this.photos}
                 onClose={this.closeLightbox}
                 onClickPrev={this.gotoPrevious}
                 onClickNext={this.gotoNext}
@@ -193,5 +151,23 @@ class Gallery extends React.Component {
     )
   }
 }
+
+export const query = graphql`
+  query GalleryPageQuery {
+    allContentfulGallery {
+      edges {
+        node {
+          photos {
+            resolutions(width: 1200, quality: 60) {
+              src
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default Gallery
