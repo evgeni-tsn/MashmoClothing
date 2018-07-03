@@ -40,6 +40,7 @@ const DesktopMenu = styled.ul`
 
 const DesktopMenuItem = styled.li`
   padding-left: 30px;
+  padding: 0.4rem 0.6rem;
   list-style: none;
   margin: 0;
 `
@@ -59,7 +60,8 @@ const IconExternalLink = styled.a`
 `
 
 const MailIconLink = styled(IconLink)`
-  margin-left: 0.9rem;
+  padding-top: 0.1rem;
+  margin-left: 0.4rem;
 `
 
 const Header = () => {
