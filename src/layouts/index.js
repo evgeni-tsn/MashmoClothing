@@ -8,10 +8,12 @@ import Footer from '../components/Footer'
 import { Container } from '../components/styled/Container'
 import './index.css'
 
+import heroImage from '../images/hero.png'
+
 const MainContainer = styled(Container)`
   min-height: 75vh;
 `
-const Layout = ({ children, data }) => (
+const Layout = ({ children, data, location }) => (
   <div>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -28,6 +30,11 @@ const Layout = ({ children, data }) => (
     </Helmet>
     <Header />
     <main>
+      {location.pathname === '/' && (
+        <div>
+          <img src={heroImage} alt={'Hero Image'} />
+        </div>
+      )}
       <MainContainer>{children()}</MainContainer>
     </main>
     <Footer />

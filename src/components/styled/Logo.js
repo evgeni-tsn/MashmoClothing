@@ -7,6 +7,7 @@ import logo from '../../images/header-logo.png'
 
 const StyledLogo = styled.img`
   width: 75%;
+  margin-top: 0.5rem;
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '75%')};
 `
 
