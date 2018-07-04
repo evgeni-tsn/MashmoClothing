@@ -1,18 +1,29 @@
 import React from 'react'
+import { Row, Col } from 'react-simple-flex-grid'
+import styled from 'styled-components'
+
+import ProductCard from '../components/ProductCard'
+import FeaturedSection from '../components/FeaturedSection'
 import H1 from '../components/styled/H1'
 
-import FeaturedSection from '../components/FeaturedSection'
-
-import { tryContentfulAPI, createOrder } from '../services/contentfulManagement'
+const ProductListRow = styled(Row)`
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 1rem;
+`
 
 const IndexPage = ({ data }) => {
   return (
     <div>
-      <H1 underlined>Hi people</H1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <button onClick={() => createOrder()}>Click</button>
       <FeaturedSection allProducts={data.allContentfulProduct} />
+      <hr />
+      <ProductListRow gutter={20} align={'middle'}>
+        {data.allContentfulProduct.edges.map(({ node }) => (
+          <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
+            <ProductCard productData={node} />
+          </Col>
+        ))}
+      </ProductListRow>
     </div>
   )
 }
