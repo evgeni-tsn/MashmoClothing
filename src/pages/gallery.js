@@ -3,20 +3,12 @@ import PhotoGallery from 'react-photo-gallery'
 import Measure from 'react-measure'
 import Lightbox from 'react-images'
 import colors from '../utils/colors'
-
-// Add these props: https://github.com/jossmac/react-images
-// src:
-// srcSet:
-// caption:
-// alt:
-
-//For image border see: https://www.npmjs.com/package/react-photo-gallery
-//And create Custom Image Components
+import GalleryImageComponent from '../components/GalleryImageComponent'
 
 const theme = {
   // container
   container: {
-    background: colors.white,
+    background: colors.white + 'DD',
   },
 
   // arrows
@@ -75,7 +67,16 @@ class Gallery extends React.Component {
 
   componentDidMount() {
     this.photos = this.props.data.allContentfulGallery.edges[0].node.photos.map(
-      e => e.resolutions
+      e => {
+        return {
+          height: e.resolutions.height,
+          width: e.resolutions.width,
+          src: e.resolutions.src,
+          srcSet: e.resolutions.srcSet.split(',\n'),
+          tracedSVG: e.resolutions.tracedSVG,
+          alt: e.title,
+        }
+      }
     )
   }
   openLightbox = (event, obj) => {
@@ -110,19 +111,11 @@ class Gallery extends React.Component {
         }
       >
         {({ measureRef }) => {
-          if (width < 1) {
-            return <div ref={measureRef} />
-          }
+          if (width < 1) return <div ref={measureRef} />
           let columns = 1
-          if (width >= 480) {
-            columns = 2
-          }
-          if (width >= 1024) {
-            columns = 3
-          }
-          if (width >= 1824) {
-            columns = 4
-          }
+          if (width >= 480) columns = 2
+          if (width >= 1024) columns = 3
+          if (width >= 1824) columns = 4
           return (
             <div ref={measureRef}>
               <PhotoGallery
@@ -130,6 +123,7 @@ class Gallery extends React.Component {
                 columns={columns}
                 onClick={this.openLightbox}
                 margin={5}
+                ImageComponent={GalleryImageComponent}
               />
               <Lightbox
                 images={this.photos}
@@ -142,6 +136,7 @@ class Gallery extends React.Component {
                 backdropClosesModal
                 imageCountSeparator=" / "
                 spinnerColor={colors.main}
+                spinnerSize={150}
                 theme={theme}
               />
             </div>
@@ -152,14 +147,19 @@ class Gallery extends React.Component {
   }
 }
 
+//TODO: Sort images by order
+//TODO: Consider adding description of the images and use thar for alt tag
 export const query = graphql`
   query GalleryPageQuery {
     allContentfulGallery {
       edges {
         node {
           photos {
+            title
             resolutions(width: 1200, quality: 60) {
               src
+              tracedSVG
+              srcSet
               width
               height
             }
