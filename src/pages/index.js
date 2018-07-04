@@ -16,6 +16,7 @@ const IndexPage = ({ data }) => {
   return (
     <div>
       <FeaturedSection allProducts={data.allContentfulProduct} />
+      <h2>Rest</h2>
       <hr />
       <ProductListRow gutter={20} align={'middle'}>
         {data.allContentfulProduct.edges.map(({ node }) => (

@@ -18,13 +18,12 @@ import cartIcon from '../images/icons/cart.png'
 
 const HeaderContent = styled.div`
   background-color: ${colors.white};
-  margin-bottom: 0.5rem;
 `
 
 const HeaderContainer = Container.extend`
   display: flex;
   justify-content: space-between;
-  height: 5rem;
+  height: 4rem;
   align-items: center;
 `
 
