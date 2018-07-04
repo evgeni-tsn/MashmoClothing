@@ -9,8 +9,6 @@ import Footer from '../components/Footer'
 import { Container } from '../components/styled/Container'
 import './index.css'
 
-import heroImage from '../images/hero.png'
-
 const MainContainer = styled(Container)`
   min-height: 75vh;
 `
