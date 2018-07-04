@@ -43,6 +43,10 @@ const FooterLinks = styled(StyledLink)`
 const FooterLinksContainer = styled.div`
   margin-top: 1.4rem;
   margin-bottom: 1.4rem;
+
+  @media only screen and (max-width: 900px) {
+    display: none;
+  }
 `
 
 const Footer = () => {
