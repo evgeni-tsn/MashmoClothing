@@ -15,8 +15,8 @@ const StyledLink = styled(Link)`
 `
 
 export const Logo = ({ maxWidth }) => (
-  <StyledLink to="/">
-    <StyledLogo src={logo} maxWidth={maxWidth} />
+  <StyledLink className="logo" to="/">
+    <StyledLogo alt={'Mashmo Clothing logo'} src={logo} maxWidth={maxWidth} />
   </StyledLink>
 )
 

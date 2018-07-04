@@ -24,9 +24,12 @@ const Layout = ({ children, data }) => (
         href="https://fonts.googleapis.com/css?family=Montserrat"
         rel="stylesheet"
       />
+      <html lang="en" />
     </Helmet>
     <Header />
-    <MainContainer>{children()}</MainContainer>
+    <main>
+      <MainContainer>{children()}</MainContainer>
+    </main>
     <Footer />
   </div>
 )
