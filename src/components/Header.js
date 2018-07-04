@@ -103,7 +103,7 @@ const Header = () => {
           >
             <HeaderIcon src={igIcon} alt={'instagram'} />
           </IconExternalLink>
-          <MailIconLink to="/contacts">
+          <MailIconLink to="/contact">
             <HeaderIcon src={mailIcon} alt={'mail'} />
           </MailIconLink>
           <VerticalLine />
