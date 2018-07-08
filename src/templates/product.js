@@ -1,7 +1,9 @@
 import React from 'react'
-import H1 from '../components/styled/H1'
-import FeaturedSection from '../components/FeaturedSection'
 import styled from 'styled-components'
+import H1 from '../components/styled/H1'
+import QuantityButton from '../components/styled/QuantityButton'
+
+import FeaturedSection from '../components/FeaturedSection'
 
 import 'react-simple-flex-grid/lib/main.css'
 import { Row, Col } from 'react-simple-flex-grid'
@@ -11,6 +13,9 @@ const Image = styled.img`
 `
 const SmallImage1 = styled.img`
   max-width: 145px;
+  &:hover {
+    cursor: pointer;
+  }
 `
 const SmallImage2 = styled(SmallImage1)`
   margin-left: 10px;
@@ -24,6 +29,16 @@ class ProductTemplate extends React.Component {
     disableMinusButton: true,
     disablePlusButton: false,
     errorMsgShow: false,
+    mainImage: '',
+  }
+
+  componentDidMount() {
+    const {
+      node: productData,
+    } = this.props.data.allContentfulProduct.edges.find(
+      ({ node }) => node.slug === this.props.pathContext.slug
+    )
+    this.setState({ mainImage: productData.photos[0].resolutions.src })
   }
 
   addToCart = productData => {
@@ -78,6 +93,11 @@ class ProductTemplate extends React.Component {
     )
   }
 
+  changeMainImage(e) {
+    console.log(this.state)
+    this.setState({ mainImage: e.target.src })
+  }
+
   render() {
     const {
       node: productData,
@@ -91,13 +111,19 @@ class ProductTemplate extends React.Component {
           <Col xs={12} sm={12} md={6} lg={6} xl={6}>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <Image src={productData.photos[0].resolutions.src} />
+                <Image src={this.state.mainImage} />
               </Col>
             </Row>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <SmallImage1 src={productData.photos[0].resolutions.src} />
-                <SmallImage2 src={productData.photos[1].resolutions.src} />
+                <SmallImage1
+                  onClick={e => this.changeMainImage(e)}
+                  src={productData.photos[0].resolutions.src}
+                />
+                <SmallImage2
+                  onClick={e => this.changeMainImage(e)}
+                  src={productData.photos[1].resolutions.src}
+                />
               </Col>
             </Row>
           </Col>
@@ -105,19 +131,19 @@ class ProductTemplate extends React.Component {
             <H1 underlined>{productData.name}</H1>
             <h3>Price: {productData.price}</h3>
             <span>Quantity: </span>
-            <button
+            <QuantityButton
               onClick={() => this.decreaseQuantity()}
               disabled={this.state.disableMinusButton}
             >
               -
-            </button>
+            </QuantityButton>
             <span>{this.state.quantityValue}</span>
-            <button
+            <QuantityButton
               onClick={() => this.increaseQuantity()}
               disabled={this.state.disablePlusButton}
             >
               +
-            </button>
+            </QuantityButton>
             <p>Quantity {productData.updatedAt}</p>
             <br />
             <button
