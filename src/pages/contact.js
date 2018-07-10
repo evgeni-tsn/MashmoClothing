@@ -1,5 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
 import { navigateTo } from 'gatsby-link'
+
+import { FeaturedButton } from '../components/styled/FeaturedButton'
+import { InputField } from '../components/styled/InputField'
+import { TextAreaField } from '../components/styled/TextAreaField'
+
+const ContactsContainer = styled.div`
+  text-align: center;
+`
+
+const PageHeading = styled.h1`
+  margin-bottom: 4rem;
+`
 
 function encode(data) {
   return Object.keys(data)
@@ -35,8 +48,8 @@ export default class Contact extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Contact</h1>
+      <ContactsContainer>
+        <PageHeading>Пишете ни</PageHeading>
         <form
           name="contact"
           method="post"
@@ -55,27 +68,39 @@ export default class Contact extends React.Component {
           </p>
           <p>
             <label>
-              Your name:<br />
-              <input type="text" name="name" onChange={this.handleChange} />
+              <InputField
+                type="text"
+                name="name"
+                placeholder="Име"
+                onChange={this.handleChange}
+              />
             </label>
           </p>
           <p>
             <label>
-              Your email:<br />
-              <input type="email" name="email" onChange={this.handleChange} />
+              <InputField
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={this.handleChange}
+              />
             </label>
           </p>
           <p>
             <label>
-              Message:<br />
-              <textarea name="message" onChange={this.handleChange} />
+              <TextAreaField
+                name="message"
+                rows={4}
+                placeholder="Съобщение"
+                onChange={this.handleChange}
+              />
             </label>
           </p>
           <p>
-            <button type="submit">Send</button>
+            <FeaturedButton type="submit">Изпрати</FeaturedButton>
           </p>
         </form>
-      </div>
+      </ContactsContainer>
     )
   }
 }
