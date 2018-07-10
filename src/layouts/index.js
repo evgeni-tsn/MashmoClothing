@@ -10,6 +10,7 @@ import { Container } from '../components/styled/Container'
 import './index.css'
 
 const MainContainer = styled(Container)`
+  margin-top: 1.5rem;
   min-height: 75vh;
 `
 
