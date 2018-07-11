@@ -4,8 +4,7 @@ import colors from '../../utils/colors'
 export const TextAreaField = styled.textarea`
   display: block;
   margin: 0 auto;
-  width: 40%;
-  max-width: 40%;
+  width: 60%;
   outline: none;
   background-color: transparent;
   border: none;

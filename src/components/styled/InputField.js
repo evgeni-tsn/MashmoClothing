@@ -4,7 +4,7 @@ import colors from '../../utils/colors'
 export const InputField = styled.input`
   display: block;
   margin: 0 auto;
-  width: 40%;
+  width: 60%;
   outline: none;
   background-color: transparent;
   border: none;
