@@ -4,13 +4,26 @@ import H1 from '../components/styled/H1'
 import { Row, Col } from 'react-simple-flex-grid'
 import { FeaturedButton } from '../components/styled/FeaturedButton'
 import { InputField } from '../components/styled/InputField'
+import { Container } from '../components/styled/Container'
 import { TextAreaField } from '../components/styled/TextAreaField'
+import CartTable from '../components/CartTable'
+import colors from '../utils/colors'
 
 class Checkout extends React.Component {
   constructor(props) {
     super(props)
     //TODO: Redirect from this page to Products if there is nothing in the cart
-    this.state = {}
+    this.state = {
+      cartItems: [],
+    }
+  }
+
+  componentDidMount() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.setState({
+        cartItems: JSON.parse(localStorage.getItem('cart')) || [],
+      })
+    }
   }
 
   handleChange = e => {
@@ -25,14 +38,17 @@ class Checkout extends React.Component {
   }
 
   render() {
+    const { cartItems } = this.state
+    let isCartEmpty = cartItems.length === 0
+
     return (
       <div>
         <H1 underlined>Завършване на поръчката</H1>
-        {/* TODO: Create Cart table resuable and use is here */}
-        <p>Cart Table</p>
-        <p>Cart Table</p>
-        <p>Cart Table</p>
-        <p>Cart Table</p>
+        <Container backgroundColor={colors.grey} height="0.9rem">
+          <CartTable readOnly={true} cartItems={cartItems} />
+          {/* TODO: Replace this with link to /cart */}
+          <p style={{ textAlign: 'right' }}>Link back to the cart for edit</p>
+        </Container>
         <H1 underlined>Данни за доставка</H1>
         <form
           name="order"

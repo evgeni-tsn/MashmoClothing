@@ -6,47 +6,9 @@ import '../utils/responsiveTablesCSS.css'
 
 import H1 from '../components/styled/H1'
 import { Container } from '../components/styled/Container'
+import { FeaturedButtonLink } from '../components/styled/FeaturedButtonLink'
+import CartTable from '../components/CartTable'
 import colors from '../utils/colors'
-
-const TABLE = styled(Table)`
-  margin-bottom: 1.45rem;
-`
-
-const TH = styled(Th)`
-  border-bottom: 2px solid ${colors.darkGrey};
-  padding-bottom: 1rem;
-  text-align: center;
-  font-weight: bold;
-`
-
-const TD = styled(Td)`
-  border: none;
-  text-align: center;
-`
-
-const TR = styled(Tr)`
-  &:nth-child(odd) {
-    background: ${colors.white};
-  }
-
-  &:nth-child(even) {
-    background: ${colors.grey};
-  }
-`
-
-const Button = styled.button`
-  background-color: ${colors.main};
-  border-radius: 1rem;
-  padding: 0.5rem 1rem;
-  color: ${colors.white};
-  border: none;
-  text-transform: uppercase;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0px 1px 8px 0px ${colors.dark};
-  }
-`
 
 const Span = styled.span`
   color: ${colors.main};
@@ -107,38 +69,11 @@ class Cart extends React.Component {
         ) : (
           <div>
             <Container backgroundColor={colors.grey} height="0.9rem">
-              <TABLE>
-                <Thead>
-                  <Tr>
-                    <TH>Product</TH>
-                    <TH>Price</TH>
-                    <TH>Quantity</TH>
-                    <TH>Total</TH>
-                    <TH />
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {cartItems.map(product => (
-                    <TR key={product.contentful_id}>
-                      <TD>
-                        <Link to={product.slug}>{product.name}</Link>
-                      </TD>
-                      <TD>${product.price}</TD>
-                      <TD>{product.quantity}</TD>
-                      <TD>${product.price * product.quantity}</TD>
-                      <TD>
-                        {/* TODO: Display modal msg are you sure? */}
-                        <Button
-                          id={product.contentful_id}
-                          onClick={e => removeItemFromCart(e)}
-                        >
-                          Remove
-                        </Button>
-                      </TD>
-                    </TR>
-                  ))}
-                </Tbody>
-              </TABLE>
+              <CartTable
+                readOnly={false}
+                cartItems={cartItems}
+                removeItemFromCart={removeItemFromCart}
+              />
             </Container>
             <TotalContainer>
               <P>
@@ -150,9 +85,7 @@ class Cart extends React.Component {
                   )}
                 </Span>
               </P>
-              <Link to="/createOrder">
-                <Button>Proceed</Button>
-              </Link>
+              <FeaturedButtonLink to="/checkout">Продължи</FeaturedButtonLink>
             </TotalContainer>
           </div>
         )}
