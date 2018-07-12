@@ -23,8 +23,8 @@ module.exports = {
         short_name: 'Mashmo',
         description: 'Mashmo Clothing Online Store',
         start_url: '/',
-        background_color: '#F1F1F1',
-        theme_color: '#BFA26E',
+        background_color: '#BFA26E',
+        theme_color: '#2A2A2A',
         display: 'standalone',
         icon: 'src/images/icon.png', // This path is relative to the root of the site.
       },
@@ -40,7 +40,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
-        color: `tomato`,
+        color: '#BFA26E',
       },
     },
   ],

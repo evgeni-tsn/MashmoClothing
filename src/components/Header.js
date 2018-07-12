@@ -89,26 +89,42 @@ const Header = () => {
           <VerticalLine />
 
           <IconExternalLink
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/mashmoclothing/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <HeaderIcon src={fbIcon} alt={'facebook'} />
+            <HeaderIcon
+              src={fbIcon}
+              alt={'facebook'}
+              style={{ width: '0.6rem' }}
+            />
           </IconExternalLink>
           <IconExternalLink
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/mashmoclothing/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <HeaderIcon src={igIcon} alt={'instagram'} />
+            <HeaderIcon
+              src={igIcon}
+              alt={'instagram'}
+              style={{ width: '1.4rem', marginTop: '0.4rem' }}
+            />
           </IconExternalLink>
           <MailIconLink to="/contact">
-            <HeaderIcon src={mailIcon} alt={'mail'} />
+            <HeaderIcon
+              src={mailIcon}
+              alt={'mail'}
+              style={{ width: '1.4rem', marginTop: '0.4rem' }}
+            />
           </MailIconLink>
           <VerticalLine />
 
           <MailIconLink to="/cart">
-            <HeaderIcon src={cartIcon} alt={'cart'} />
+            <HeaderIcon
+              src={cartIcon}
+              alt={'cart'}
+              style={{ width: '1.4rem' }}
+            />
           </MailIconLink>
         </DesktopMenu>
       </HeaderContainer>

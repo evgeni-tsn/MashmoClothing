@@ -23,7 +23,7 @@ const FeaturedSection = ({ allProducts, filterOut }) => {
 
   return (
     <div>
-      <h2>Recommended</h2>
+      <h2>Препоръчани</h2>
       <hr />
       <FeaturedProductListRow gutter={20}>
         {getFirst3Featured(allProducts).map(({ node }) => (

@@ -2,13 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 
+import { GhostButtonLink } from '../components/styled/GhostButtonLink'
+
 const SectionHeading = styled.h2`
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: left;
 `
 
 const Paragraph = styled.p`
   font-size: 0.9rem;
+`
+
+const CharSpan = styled.span`
+  font-size: 2rem;
 `
 
 const Info = () => (
@@ -20,7 +26,7 @@ const Info = () => (
         md={12}
         lg={7}
         xl={7}
-        style={{ marginBottom: '2rem' }}
+        style={{ marginBottom: '2rem', borderRight: '1px solid grey' }}
       >
         <SectionHeading>Доставка</SectionHeading>
         <Paragraph>
@@ -39,13 +45,13 @@ const Info = () => (
         md={12}
         lg={5}
         xl={5}
-        style={{ marginBottom: '2rem', borderLeft: '1px solid grey' }}
+        style={{ marginBottom: '2rem' }}
       >
         <SectionHeading>Начин на доставка</SectionHeading>
         <ul>
-          <li>доставка до офис на Еконт</li>
-          <li>доставка до посочен адрес</li>
-          <li>Пратките се изпращат с опция преглед и тест</li>
+          <li>Доставка до офис на Еконт</li>
+          <li>Доставка до посочен адрес</li>
+          <li>Опция преглед и тест</li>
         </ul>
       </Col>
     </Row>
@@ -56,7 +62,7 @@ const Info = () => (
         md={12}
         lg={7}
         xl={7}
-        style={{ marginBottom: '2rem' }}
+        style={{ marginBottom: '2rem', borderRight: '1px solid grey' }}
       >
         <SectionHeading>Връщане на стоки</SectionHeading>
         <Paragraph>
@@ -75,14 +81,19 @@ const Info = () => (
         md={12}
         lg={5}
         xl={5}
-        style={{ marginBottom: '2rem', borderLeft: '1px solid grey' }}
+        style={{ marginBottom: '2rem' }}
       >
         <SectionHeading>Контакти</SectionHeading>
         <ul>
-          <li>namemail@gmail.com</li>
+          <li>mashmoclothing@gmail.com</li>
           <li>+395 899 999 999</li>
         </ul>
       </Col>
+    </Row>
+    <Row justify="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+      <GhostButtonLink to="/products">
+        Към продуктите <CharSpan>→</CharSpan>{' '}
+      </GhostButtonLink>
     </Row>
   </div>
 )

@@ -97,36 +97,36 @@ class ProductCard extends React.Component {
     const { productData: node } = this.props
     return (
       <ProductCardContainer>
-        {/* TODO: Add taglabels (out of stock & limited & hotsale) */}
-        <ProductImageWrapper>
-          <ProductCardImage
-            crossout={node.quantity === 0}
-            resolutions={node.photos[0].resolutions}
-          />
-          <ProductCardImage
-            crossout={node.quantity === 0}
-            resolutions={node.photos[1].resolutions}
-          />
-        </ProductImageWrapper>
         <StyledLink to={node.slug}>
+          {/* TODO: Add taglabels (out of stock & limited & hotsale) */}
+          <ProductImageWrapper>
+            <ProductCardImage
+              crossout={node.quantity === 0}
+              resolutions={node.photos[0].resolutions}
+            />
+            <ProductCardImage
+              crossout={node.quantity === 0}
+              resolutions={node.photos[1].resolutions}
+            />
+          </ProductImageWrapper>
           <ProductCardInfo>
             <ProductTitle>{node.name}</ProductTitle>
             <ProductPriceWrapper>
               {node.isOnSale &&
                 node.onSalePrice && (
                   <ProductPrice crossout={true}>
-                    ${node.onSalePrice}
+                    {node.onSalePrice}лв.
                   </ProductPrice>
                 )}
               <ProductPrice crossout={node.quantity === 0}>
-                ${node.price}
+                {node.price}лв.
               </ProductPrice>
             </ProductPriceWrapper>
           </ProductCardInfo>
         </StyledLink>
         <StyledLink to={node.slug}>
           <ProductCardFooter>
-            <p>Details</p>
+            <p>Детайли</p>
           </ProductCardFooter>
         </StyledLink>
       </ProductCardContainer>
