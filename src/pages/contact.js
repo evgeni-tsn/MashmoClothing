@@ -97,7 +97,9 @@ export default class Contact extends React.Component {
             </label>
           </p>
           <p>
-            <FeaturedButton type="submit">Изпрати</FeaturedButton>
+            <FeaturedButton type="submit" style={{ width: '15%' }}>
+              Изпрати
+            </FeaturedButton>
           </p>
         </form>
       </ContactsContainer>

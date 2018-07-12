@@ -1,10 +1,12 @@
 import React from 'react'
+import { push } from 'gatsby-link'
 import H1 from '../components/styled/H1'
 
 import { Row, Col } from 'react-simple-flex-grid'
 import { FeaturedButton } from '../components/styled/FeaturedButton'
 import { InputField } from '../components/styled/InputField'
 import { Container } from '../components/styled/Container'
+import { GhostButtonLink } from '../components/styled/GhostButtonLink'
 import { TextAreaField } from '../components/styled/TextAreaField'
 import CartTable from '../components/CartTable'
 import colors from '../utils/colors'
@@ -19,10 +21,19 @@ class Checkout extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     if (typeof window !== 'undefined' && window.localStorage) {
-      this.setState({
-        cartItems: JSON.parse(localStorage.getItem('cart')) || [],
-      })
+      this.setState(
+        {
+          cartItems: JSON.parse(localStorage.getItem('cart')) || [],
+        },
+        () => {
+          if (this.state.cartItems.length === 0) {
+            //TODO: Display toastr msg for redirect
+            this.props.history.push('/products')
+          }
+        }
+      )
     }
   }
 
@@ -46,9 +57,13 @@ class Checkout extends React.Component {
         <H1 underlined>Завършване на поръчката</H1>
         <Container backgroundColor={colors.grey} height="0.9rem">
           <CartTable readOnly={true} cartItems={cartItems} />
-          {/* TODO: Replace this with link to /cart */}
-          <p style={{ textAlign: 'right' }}>Link back to the cart for edit</p>
+          <Row justify="end">
+            <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
+              Обратно към кошницата
+            </GhostButtonLink>
+          </Row>
         </Container>
+        <br />
         <H1 underlined>Данни за доставка</H1>
         <form
           name="order"

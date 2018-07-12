@@ -42,6 +42,7 @@ class ProductTemplate extends React.Component {
   }
 
   addToCart = productData => {
+    //TODO: Diferentiate the Sizes of each product
     if (typeof window !== 'undefined' && window.localStorage) {
       let oldItems = JSON.parse(localStorage.getItem('cart')) || []
       let updateQuantity = false

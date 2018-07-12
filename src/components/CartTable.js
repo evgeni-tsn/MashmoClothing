@@ -3,13 +3,13 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 
-import { FeaturedButton } from './styled/FeaturedButton'
+import { GhostButton } from './styled/GhostButton'
 
 import '../utils/responsiveTablesCSS.css'
 import colors from '../utils/colors'
 
 const TABLE = styled(Table)`
-  margin-bottom: 1.45rem;
+  margin-bottom: 1.15rem;
 `
 
 const TH = styled(Th)`
@@ -39,10 +39,11 @@ const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
     <TABLE>
       <Thead>
         <Tr>
-          <TH>Product</TH>
-          <TH>Price</TH>
-          <TH>Quantity</TH>
-          <TH>Total</TH>
+          <TH>Продукт</TH>
+          <TH>Цена</TH>
+          <TH>Размер</TH>
+          <TH>Количество</TH>
+          <TH>Общо</TH>
           <TH />
         </Tr>
       </Thead>
@@ -52,19 +53,20 @@ const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
             <TD>
               <Link to={product.slug}>{product.name}</Link>
             </TD>
-            <TD>${product.price}</TD>
+            <TD>{product.price}лв.</TD>
+            <TD>---</TD>
             <TD>{product.quantity}</TD>
-            <TD>${product.price * product.quantity}</TD>
+            <TD>{product.price * product.quantity}лв.</TD>
 
             <TD>
               {/* TODO: Display modal msg are you sure? */}
               {!readOnly && (
-                <FeaturedButton
+                <GhostButton
                   id={product.contentful_id}
                   onClick={e => removeItemFromCart(e)}
                 >
-                  Remove
-                </FeaturedButton>
+                  ✕
+                </GhostButton>
               )}
             </TD>
           </TR>
