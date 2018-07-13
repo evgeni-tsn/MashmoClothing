@@ -27,6 +27,7 @@
     "react-photo-gallery": "^6.0.28",
     "react-simple-flex-grid": "^1.2.3",
     "react-super-responsive-table": "^4.2.4",
+    "react-toastify": "^4.1.0",
     "styled-components": "^3.3.3",
     "typography-theme-irving": "^0.15.10"
   },

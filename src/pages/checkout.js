@@ -1,14 +1,18 @@
 import React from 'react'
 import { push } from 'gatsby-link'
-import H1 from '../components/styled/H1'
-
 import { Row, Col } from 'react-simple-flex-grid'
+import { toast } from 'react-toastify'
+
+import Toast from '../components/Toast'
+import CartTable from '../components/CartTable'
+
+import H1 from '../components/styled/H1'
 import { FeaturedButton } from '../components/styled/FeaturedButton'
 import { InputField } from '../components/styled/InputField'
 import { Container } from '../components/styled/Container'
 import { GhostButtonLink } from '../components/styled/GhostButtonLink'
 import { TextAreaField } from '../components/styled/TextAreaField'
-import CartTable from '../components/CartTable'
+
 import colors from '../utils/colors'
 
 class Checkout extends React.Component {
@@ -41,10 +45,20 @@ class Checkout extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  successMadeOrder = () =>
+    toast(() => (
+      <div>
+        <div style={{ color: colors.black }}>
+          Поръчката беше направена успешно! 😎
+        </div>
+      </div>
+    ))
+
   handleSubmit = e => {
     //TODO: Create Validations
     e.preventDefault()
     console.log('Submit Order')
+    this.successMadeOrder()
   }
 
   render() {
@@ -110,6 +124,7 @@ class Checkout extends React.Component {
             <FeaturedButton type="submit">Поръчай</FeaturedButton>
           </Row>
         </form>
+        <Toast />
       </div>
     )
   }

@@ -6,6 +6,11 @@ import { FeaturedButton } from '../components/styled/FeaturedButton'
 import { InputField } from '../components/styled/InputField'
 import { TextAreaField } from '../components/styled/TextAreaField'
 
+import { toast } from 'react-toastify'
+import Toast from '../components/Toast'
+
+import colors from '../utils/colors'
+
 const ContactsContainer = styled.div`
   text-align: center;
 `
@@ -30,6 +35,17 @@ export default class Contact extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  //TODO: catch possible error and display another err toast
+  //TODO: redirect to a page with success msg is also an option
+  successSubmittedForm = () =>
+    toast(() => (
+      <div>
+        <div style={{ color: colors.black }}>
+          Съобщението ви беше изпратено успешно! 😎
+        </div>
+      </div>
+    ))
+
   handleSubmit = e => {
     e.preventDefault()
     const form = e.target
@@ -42,7 +58,10 @@ export default class Contact extends React.Component {
       }),
     })
       // .then(() => navigateTo(form.getAttribute('action')))
-      .then(() => console.log('Success'))
+      .then(() => {
+        this.successSubmittedForm()
+        console.log('Success')
+      })
       .catch(error => console.log(error))
   }
 
@@ -102,6 +121,7 @@ export default class Contact extends React.Component {
             </FeaturedButton>
           </p>
         </form>
+        <Toast />
       </ContactsContainer>
     )
   }

@@ -2,13 +2,15 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import '../utils/responsiveTablesCSS.css'
 
-import H1 from '../components/styled/H1'
+import { toast } from 'react-toastify'
+import Toast from '../components/Toast'
 import { Container } from '../components/styled/Container'
 import { FeaturedButtonLink } from '../components/styled/FeaturedButtonLink'
+import H1 from '../components/styled/H1'
 import CartTable from '../components/CartTable'
+
 import colors from '../utils/colors'
 
 const Span = styled.span`
@@ -56,6 +58,16 @@ class Cart extends React.Component {
     )
   }
 
+  successRemovedItemToast = () =>
+    toast(() => (
+      <div>
+        <div style={{ color: colors.black }}>
+          Продуктът беше премахнат от количката! 😎
+        </div>
+        <Link to="/products">Виж всички продукти</Link>
+      </div>
+    ))
+
   removeItemFromCart = e => {
     this.state.cartItems.forEach(cartItem => {
       if (cartItem.contentful_id === e.target.id) {
@@ -67,6 +79,7 @@ class Cart extends React.Component {
             localStorage.setItem('cart', JSON.stringify(updatedItems))
             let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
             this.props.updateCartItemsCount(cartItems)
+            this.successRemovedItemToast()
           }
         })
       }
@@ -117,6 +130,7 @@ class Cart extends React.Component {
         <Row justify="end" align="middle" style={{ marginTop: '1rem' }}>
           <FeaturedButtonLink to="/checkout">Продължи</FeaturedButtonLink>
         </Row>
+        <Toast />
       </div>
     )
   }

@@ -2,11 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import H1 from '../components/styled/H1'
 import QuantityButton from '../components/styled/QuantityButton'
+import Link from 'gatsby-link'
 
 import FeaturedSection from '../components/FeaturedSection'
 
-import 'react-simple-flex-grid/lib/main.css'
+import { toast } from 'react-toastify'
+
+import Toast from '../components/Toast'
 import { Row, Col } from 'react-simple-flex-grid'
+import 'react-simple-flex-grid/lib/main.css'
+
+import colors from '../utils/colors'
 
 const Image = styled.img`
   max-width: 300px;
@@ -61,6 +67,7 @@ class ProductTemplate extends React.Component {
       localStorage.setItem('cart', JSON.stringify(oldItems))
       let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
       this.props.updateCartItemsCount(cartItems)
+      this.successAddedItemToast()
     }
   }
 
@@ -96,6 +103,17 @@ class ProductTemplate extends React.Component {
       () => this.checkOutOfQuantityRange()
     )
   }
+
+  //TODO: Maybe we can display a little info for the product itself
+  successAddedItemToast = () =>
+    toast(() => (
+      <div>
+        <div style={{ color: colors.black }}>
+          Продуктът беше добавен в количката! 😎
+        </div>
+        <Link to="/cart">Виж количка</Link>
+      </div>
+    ))
 
   changeMainImage(e) {
     this.setState({ mainImage: e.target.src })
@@ -165,6 +183,7 @@ class ProductTemplate extends React.Component {
         </Row>
         <br />
         <FeaturedSection filterOut={productData} allProducts={allProducts} />
+        <Toast />
       </div>
     )
   }
