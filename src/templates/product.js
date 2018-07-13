@@ -57,7 +57,10 @@ class ProductTemplate extends React.Component {
 
       if (!updateQuantity)
         oldItems.push({ ...productData, quantity: this.state.quantityValue })
+
       localStorage.setItem('cart', JSON.stringify(oldItems))
+      let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
+      this.props.updateCartItemsCount(cartItems)
     }
   }
 
@@ -95,7 +98,6 @@ class ProductTemplate extends React.Component {
   }
 
   changeMainImage(e) {
-    console.log(this.state)
     this.setState({ mainImage: e.target.src })
   }
 

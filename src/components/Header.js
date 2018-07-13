@@ -10,6 +10,7 @@ import { VerticalLine } from './styled/VericalLine'
 import { IconLink } from './styled/IconLink'
 import { HeaderIcon } from './styled/HeaderIcon'
 import { FeaturedButtonLink } from './styled/FeaturedButtonLink'
+import NotificationBadge, { Effect } from 'react-notification-badge'
 
 import fbIcon from '../images/icons/facebook.png'
 import igIcon from '../images/icons/instagram.png'
@@ -62,74 +63,82 @@ const MailIconLink = styled(IconLink)`
   padding-top: 0.1rem;
   margin-left: 0.4rem;
 `
+class Header extends React.Component {
+  render() {
+    return (
+      <HeaderContent>
+        <HeaderContainer>
+          <Logo />
+          <DesktopMenu>
+            <DesktopMenuItem>
+              <NavLink to="/" exact={true}>
+                Начало
+              </NavLink>
+            </DesktopMenuItem>
+            <DesktopMenuItem>
+              <NavLink to="/influencers">Инфлуенсъри</NavLink>
+            </DesktopMenuItem>
+            <DesktopMenuItem>
+              <NavLink to="/gallery">Галерия</NavLink>
+            </DesktopMenuItem>
+            <DesktopMenuItem>
+              <NavLink to="/info">Полезно</NavLink>
+            </DesktopMenuItem>
+            <DesktopMenuItem>
+              <FeaturedButtonLink to="/products">Продукти</FeaturedButtonLink>
+            </DesktopMenuItem>
+            <VerticalLine />
 
-const Header = () => {
-  return (
-    <HeaderContent>
-      <HeaderContainer>
-        <Logo />
-        <DesktopMenu>
-          <DesktopMenuItem>
-            <NavLink to="/" exact={true}>
-              Начало
-            </NavLink>
-          </DesktopMenuItem>
-          <DesktopMenuItem>
-            <NavLink to="/influencers">Инфлуенсъри</NavLink>
-          </DesktopMenuItem>
-          <DesktopMenuItem>
-            <NavLink to="/gallery">Галерия</NavLink>
-          </DesktopMenuItem>
-          <DesktopMenuItem>
-            <NavLink to="/info">Полезно</NavLink>
-          </DesktopMenuItem>
-          <DesktopMenuItem>
-            <FeaturedButtonLink to="/products">Продукти</FeaturedButtonLink>
-          </DesktopMenuItem>
-          <VerticalLine />
+            <IconExternalLink
+              href="https://www.facebook.com/mashmoclothing/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <HeaderIcon
+                src={fbIcon}
+                alt={'facebook'}
+                style={{ width: '0.6rem' }}
+              />
+            </IconExternalLink>
+            <IconExternalLink
+              href="https://www.instagram.com/mashmoclothing/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <HeaderIcon
+                src={igIcon}
+                alt={'instagram'}
+                style={{ width: '1.4rem', marginTop: '0.4rem' }}
+              />
+            </IconExternalLink>
+            <MailIconLink to="/contact">
+              <HeaderIcon
+                src={mailIcon}
+                alt={'mail'}
+                style={{ width: '1.4rem', marginTop: '0.4rem' }}
+              />
+            </MailIconLink>
+            <VerticalLine />
 
-          <IconExternalLink
-            href="https://www.facebook.com/mashmoclothing/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <HeaderIcon
-              src={fbIcon}
-              alt={'facebook'}
-              style={{ width: '0.6rem' }}
-            />
-          </IconExternalLink>
-          <IconExternalLink
-            href="https://www.instagram.com/mashmoclothing/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <HeaderIcon
-              src={igIcon}
-              alt={'instagram'}
-              style={{ width: '1.4rem', marginTop: '0.4rem' }}
-            />
-          </IconExternalLink>
-          <MailIconLink to="/contact">
-            <HeaderIcon
-              src={mailIcon}
-              alt={'mail'}
-              style={{ width: '1.4rem', marginTop: '0.4rem' }}
-            />
-          </MailIconLink>
-          <VerticalLine />
-
-          <MailIconLink to="/cart">
-            <HeaderIcon
-              src={cartIcon}
-              alt={'cart'}
-              style={{ width: '1.4rem' }}
-            />
-          </MailIconLink>
-        </DesktopMenu>
-      </HeaderContainer>
-    </HeaderContent>
-  )
+            <MailIconLink to="/cart">
+              <div>
+                <NotificationBadge
+                  style={{ backgroundColor: colors.main }}
+                  count={this.props.cartItemsCount}
+                  effect={Effect.SCALE}
+                />
+                <HeaderIcon
+                  src={cartIcon}
+                  alt={'cart'}
+                  style={{ width: '1.4rem' }}
+                />
+              </div>
+            </MailIconLink>
+          </DesktopMenu>
+        </HeaderContainer>
+      </HeaderContent>
+    )
+  }
 }
 
 export default Header

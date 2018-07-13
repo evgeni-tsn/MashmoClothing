@@ -65,6 +65,8 @@ class Cart extends React.Component {
         this.setState({ cartItems: updatedItems }, () => {
           if (typeof window !== 'undefined' && window.localStorage) {
             localStorage.setItem('cart', JSON.stringify(updatedItems))
+            let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
+            this.props.updateCartItemsCount(cartItems)
           }
         })
       }
