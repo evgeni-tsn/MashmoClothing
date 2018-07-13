@@ -27,9 +27,17 @@ const GatsbyImage = styled(Img)`
   }
 `
 
-class Layout extends React.Component {
+class Template extends React.Component {
   state = {
-    cartItemsCount: JSON.parse(localStorage.getItem('cart')).length || 0,
+    cartItemsCount: 0,
+  }
+
+  componentDidMount() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.setState({
+        cartItemsCount: JSON.parse(localStorage.getItem('cart')).length || 0,
+      })
+    }
   }
 
   updateCartItemsCount = updatedCount => {
@@ -58,7 +66,6 @@ class Layout extends React.Component {
         </Helmet>
         <Header cartItemsCount={this.state.cartItemsCount} />
         <main>
-          {console.log()}
           {location.pathname === '/' && (
             <GatsbyImage
               resolutions={heroImageData.resolutions}
@@ -78,11 +85,11 @@ class Layout extends React.Component {
   }
 }
 
-Layout.propTypes = {
+Template.propTypes = {
   children: PropTypes.func,
 }
 
-export default Layout
+export default Template
 
 export const query = graphql`
   query SiteTitleQuery {

@@ -21,7 +21,6 @@ class Checkout extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     if (typeof window !== 'undefined' && window.localStorage) {
       this.setState(
         {
