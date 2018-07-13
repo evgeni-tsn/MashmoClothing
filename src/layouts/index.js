@@ -4,9 +4,9 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { Container } from '../components/styled/Container'
+import { Header, Footer } from '../components'
+import { Container } from '../components/styled'
+
 import './index.css'
 
 const MainContainer = styled(Container)`

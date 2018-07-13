@@ -1,5 +1,6 @@
 import React from 'react'
-import H1 from '../components/styled/H1'
+
+import { H1 } from '../components/styled'
 
 const Influencers = () => (
   <div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+
 import colors from '../../utils/colors'
 
 const HR = styled.hr`
@@ -23,7 +24,7 @@ const StyledH1 = styled.h1`
   color: ${colors.black};
 `
 
-const H1 = ({ children, underlined }) => (
+export const H1 = ({ children, underlined }) => (
   <div>
     <StyledH1>{children}</StyledH1>
     {underlined && <HR />}
@@ -34,5 +35,3 @@ H1.propTypes = {
   underlined: PropTypes.bool,
   children: PropTypes.any,
 }
-
-export default H1

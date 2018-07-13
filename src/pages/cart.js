@@ -1,15 +1,12 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
+import Link from 'gatsby-link'
+import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import '../utils/responsiveTablesCSS.css'
 
-import { toast } from 'react-toastify'
-import Toast from '../components/Toast'
-import { Container } from '../components/styled/Container'
-import { FeaturedButtonLink } from '../components/styled/FeaturedButtonLink'
-import H1 from '../components/styled/H1'
-import CartTable from '../components/CartTable'
+import { Toast, CartTable } from '../components'
+import { Container, FeaturedButtonLink, H1 } from '../components/styled'
 
 import colors from '../utils/colors'
 
@@ -109,20 +106,22 @@ class Cart extends React.Component {
           <Row justify="end" align="middle">
             <Col>
               <table>
-                <tr>
-                  <TdLabel>Междинна сума:</TdLabel>
-                  <TdValue>{this.calculateTotal(cartItems)}лв.</TdValue>
-                </tr>
-                <tr style={{ backgroundColor: colors.grey }}>
-                  <TdLabel>Доставка:</TdLabel>
-                  <TdValue>0лв.</TdValue>
-                </tr>
-                <tr>
-                  <TdLabel>Общо:</TdLabel>
-                  <TdValue>
-                    <Span>{this.calculateTotal(cartItems)}лв.</Span>
-                  </TdValue>
-                </tr>
+                <tbody>
+                  <tr>
+                    <TdLabel>Междинна сума:</TdLabel>
+                    <TdValue>{this.calculateTotal(cartItems)}лв.</TdValue>
+                  </tr>
+                  <tr style={{ backgroundColor: colors.grey }}>
+                    <TdLabel>Доставка:</TdLabel>
+                    <TdValue>0лв.</TdValue>
+                  </tr>
+                  <tr>
+                    <TdLabel>Общо:</TdLabel>
+                    <TdValue>
+                      <Span>{this.calculateTotal(cartItems)}лв.</Span>
+                    </TdValue>
+                  </tr>
+                </tbody>
               </table>
             </Col>
           </Row>

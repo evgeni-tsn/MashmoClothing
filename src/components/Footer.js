@@ -1,19 +1,20 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
-import colors from '../utils/colors'
 
-import { StyledLink } from './styled/StyledLink'
-import { Container } from './styled/Container'
-import { Logo } from './styled/Logo'
-import { IconLink } from './styled/IconLink'
-import { HeaderIcon } from './styled/HeaderIcon'
-import { VerticalLine } from './styled/VericalLine'
+import {
+  StyledLink,
+  Container,
+  Logo,
+  IconLink,
+  HeaderIcon,
+  VerticalLine,
+} from './styled'
+
+import colors from '../utils/colors'
 
 import fbIcon from '../images/icons/facebook.png'
 import igIcon from '../images/icons/instagram.png'
 import mailIcon from '../images/icons/mail.png'
-import cartIcon from '../images/icons/cart.png'
 
 const FooterContent = styled.div`
   width: 100%;
@@ -49,7 +50,7 @@ const FooterLinksContainer = styled.div`
   }
 `
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <FooterContent>
       <FooterContainer>
@@ -98,5 +99,3 @@ const Footer = () => {
     </FooterContent>
   )
 }
-
-export default Footer

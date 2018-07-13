@@ -1,16 +1,18 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
-import colors from '../utils/colors'
-
-import { StyledLink } from './styled/StyledLink'
-import { Logo } from './styled/Logo'
-import { Container } from './styled/Container'
-import { VerticalLine } from './styled/VericalLine'
-import { IconLink } from './styled/IconLink'
-import { HeaderIcon } from './styled/HeaderIcon'
-import { FeaturedButtonLink } from './styled/FeaturedButtonLink'
 import NotificationBadge, { Effect } from 'react-notification-badge'
+
+import {
+  StyledLink,
+  Logo,
+  Container,
+  VerticalLine,
+  IconLink,
+  HeaderIcon,
+  FeaturedButtonLink,
+} from './styled'
+
+import colors from '../utils/colors'
 
 import fbIcon from '../images/icons/facebook.png'
 import igIcon from '../images/icons/instagram.png'
@@ -63,7 +65,7 @@ const MailIconLink = styled(IconLink)`
   padding-top: 0.1rem;
   margin-left: 0.4rem;
 `
-class Header extends React.Component {
+export class Header extends React.Component {
   render() {
     return (
       <HeaderContent>
@@ -140,5 +142,3 @@ class Header extends React.Component {
     )
   }
 }
-
-export default Header

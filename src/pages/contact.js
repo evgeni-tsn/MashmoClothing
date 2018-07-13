@@ -1,13 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { navigateTo } from 'gatsby-link'
-
-import { FeaturedButton } from '../components/styled/FeaturedButton'
-import { InputField } from '../components/styled/InputField'
-import { TextAreaField } from '../components/styled/TextAreaField'
-
 import { toast } from 'react-toastify'
-import Toast from '../components/Toast'
+
+import { Toast } from '../components'
+import { FeaturedButton, InputField, TextAreaField } from '../components/styled'
 
 import colors from '../utils/colors'
 

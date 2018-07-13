@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-import colors from '../utils/colors'
-import { StyledLink } from './styled/StyledLink'
+import { StyledLink } from './styled'
 
-import Img from 'gatsby-image'
+import colors from '../utils/colors'
 
 const ProductCardContainer = styled.div`
   border: 2px solid ${colors.grey};
@@ -92,7 +92,7 @@ const ProductCardFooter = styled.div`
   font-size: 0.9rem;
   background-color: ${colors.grey};
 `
-class ProductCard extends React.Component {
+export class ProductCard extends React.Component {
   render() {
     const { productData: node } = this.props
     return (
@@ -137,5 +137,3 @@ class ProductCard extends React.Component {
 ProductCard.propTypes = {
   productData: PropTypes.object.isRequired,
 }
-
-export default ProductCard

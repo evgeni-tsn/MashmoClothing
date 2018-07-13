@@ -1,9 +1,11 @@
 import React from 'react'
-import PhotoGallery from 'react-photo-gallery'
 import Measure from 'react-measure'
 import Lightbox from 'react-images'
+import PhotoGallery from 'react-photo-gallery'
+
+import { GalleryImageComponent } from '../components'
+
 import colors from '../utils/colors'
-import GalleryImageComponent from '../components/GalleryImageComponent'
 
 const theme = {
   // container

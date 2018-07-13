@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
-import ProductCard from './ProductCard'
+
+import { ProductCard } from './index'
 
 const FeaturedProductListRow = styled(Row)`
   padding-left: 3rem;
   padding-right: 3rem;
   padding-top: 1rem;
 `
-const FeaturedSection = ({ allProducts, filterOut }) => {
+export const FeaturedSection = ({ allProducts, filterOut }) => {
   let getFirst3Featured = allProducts => {
     let filteredProducts = allProducts.edges
     if (filterOut) {
@@ -35,5 +36,3 @@ const FeaturedSection = ({ allProducts, filterOut }) => {
     </div>
   )
 }
-
-export default FeaturedSection

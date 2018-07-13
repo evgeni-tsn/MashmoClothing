@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import colors from '../../utils/colors'
 import { StyledLink } from './StyledLink'
+
+import colors from '../../utils/colors'
 
 export const GhostButtonLink = styled(StyledLink)`
   border: none;

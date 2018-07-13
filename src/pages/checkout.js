@@ -3,15 +3,15 @@ import { push } from 'gatsby-link'
 import { Row, Col } from 'react-simple-flex-grid'
 import { toast } from 'react-toastify'
 
-import Toast from '../components/Toast'
-import CartTable from '../components/CartTable'
-
-import H1 from '../components/styled/H1'
-import { FeaturedButton } from '../components/styled/FeaturedButton'
-import { InputField } from '../components/styled/InputField'
-import { Container } from '../components/styled/Container'
-import { GhostButtonLink } from '../components/styled/GhostButtonLink'
-import { TextAreaField } from '../components/styled/TextAreaField'
+import { Toast, CartTable } from '../components'
+import {
+  H1,
+  FeaturedButton,
+  InputField,
+  Container,
+  GhostButtonLink,
+  TextAreaField,
+} from '../components/styled'
 
 import colors from '../utils/colors'
 

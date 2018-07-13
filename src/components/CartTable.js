@@ -3,10 +3,11 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 
-import { GhostButton } from './styled/GhostButton'
+import { GhostButton } from './styled'
+
+import colors from '../utils/colors'
 
 import '../utils/responsiveTablesCSS.css'
-import colors from '../utils/colors'
 
 const TABLE = styled(Table)`
   margin-bottom: 1.15rem;
@@ -34,7 +35,7 @@ const TR = styled(Tr)`
   }
 `
 
-const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
+export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
   return (
     <TABLE>
       <Thead>
@@ -75,5 +76,3 @@ const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
     </TABLE>
   )
 }
-
-export default CartTable

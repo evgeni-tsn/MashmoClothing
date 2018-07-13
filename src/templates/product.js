@@ -1,16 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import H1 from '../components/styled/H1'
-import QuantityButton from '../components/styled/QuantityButton'
 import Link from 'gatsby-link'
-
-import FeaturedSection from '../components/FeaturedSection'
-
 import { toast } from 'react-toastify'
-
-import Toast from '../components/Toast'
 import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
+
+import { FeaturedSection, Toast } from '../components'
+import { H1, QuantityButton } from '../components/styled'
 
 import colors from '../utils/colors'
 

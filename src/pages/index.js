@@ -1,10 +1,8 @@
 import React from 'react'
-import { Row, Col } from 'react-simple-flex-grid'
 import styled from 'styled-components'
+import { Row, Col } from 'react-simple-flex-grid'
 
-import ProductCard from '../components/ProductCard'
-import FeaturedSection from '../components/FeaturedSection'
-import H1 from '../components/styled/H1'
+import { ProductCard, FeaturedSection } from '../components'
 
 const ProductListRow = styled(Row)`
   padding-left: 3rem;

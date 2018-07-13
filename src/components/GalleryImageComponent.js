@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import colors from '../utils/colors'
-
 import Img from 'gatsby-image'
+
+import colors from '../utils/colors'
 
 const GalleryGatsbyImage = styled(Img)`
   &:hover {
@@ -10,7 +10,7 @@ const GalleryGatsbyImage = styled(Img)`
   }
 `
 
-const GalleryImageComponent = ({ onClick, photo, margin, index }) => {
+export const GalleryImageComponent = ({ onClick, photo, margin, index }) => {
   return (
     <div
       style={{ display: 'inline-block' }}
@@ -36,5 +36,3 @@ const GalleryImageComponent = ({ onClick, photo, margin, index }) => {
     </div>
   )
 }
-
-export default GalleryImageComponent

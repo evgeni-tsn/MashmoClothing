@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
-import colors from '../../utils/colors'
+import Link from 'gatsby-link'
+
 import logo from '../../images/header-logo.png'
 
 const StyledLogo = styled.img`

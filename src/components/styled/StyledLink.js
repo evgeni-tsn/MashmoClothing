@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import Link from 'gatsby-link'
+import styled from 'styled-components'
+
 import colors from '../../utils/colors'
 
 export const StyledLink = styled(({ smaller, thin, light, ...rest }) => (

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 
-import { GhostButtonLink } from '../components/styled/GhostButtonLink'
+import { GhostButtonLink } from '../components/styled'
 
 const SectionHeading = styled.h2`
   margin-bottom: 1.5rem;
