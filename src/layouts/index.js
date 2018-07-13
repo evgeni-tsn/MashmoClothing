@@ -26,39 +26,56 @@ const GatsbyImage = styled(Img)`
     height: 100px;
   }
 `
-const Layout = ({ children, data, location }) => {
-  const heroImageData = data.allContentfulHeroImage.edges[0].node.heroImage
-  const siteTitleData = data.site.siteMetadata.title
-  console.log(heroImageData)
-  return (
-    <div>
-      <Helmet
-        title={siteTitleData}
-        meta={[
-          { name: 'description', content: 'Sample' },
-          { name: 'keywords', content: 'sample, something' },
-        ]}
-      >
-        <link
-          href="https://fonts.googleapis.com/css?family=Montserrat"
-          rel="stylesheet"
-        />
-        <html lang="en" />
-      </Helmet>
-      <Header />
-      <main>
-        {console.log()}
-        {location.pathname === '/' && (
-          <GatsbyImage
-            resolutions={heroImageData.resolutions}
-            alt={'Hero Image'}
+
+class Layout extends React.Component {
+  state = {
+    cartItemsCount: JSON.parse(localStorage.getItem('cart')).length || 0,
+  }
+
+  updateCartItemsCount = updatedCount => {
+    this.setState({ cartItemsCount: updatedCount })
+  }
+
+  render() {
+    const { children, data, location } = this.props
+    const heroImageData = data.allContentfulHeroImage.edges[0].node.heroImage
+    const siteTitleData = data.site.siteMetadata.title
+
+    return (
+      <div>
+        <Helmet
+          title={siteTitleData}
+          meta={[
+            { name: 'description', content: 'Sample' },
+            { name: 'keywords', content: 'sample, something' },
+          ]}
+        >
+          <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
           />
-        )}
-        <MainContainer>{children()}</MainContainer>
-      </main>
-      <Footer />
-    </div>
-  )
+          <html lang="en" />
+        </Helmet>
+        <Header cartItemsCount={this.state.cartItemsCount} />
+        <main>
+          {console.log()}
+          {location.pathname === '/' && (
+            <GatsbyImage
+              resolutions={heroImageData.resolutions}
+              alt={'Hero Image'}
+            />
+          )}
+          <MainContainer>
+            {children({
+              ...this.props,
+              updateCartItemsCount: this.updateCartItemsCount,
+            })}
+          </MainContainer>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 }
 
 Layout.propTypes = {
