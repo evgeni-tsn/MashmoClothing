@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import TextArea from 'react-validation/build/textarea'
 
 import colors from '../../utils/colors'
 
-export const TextAreaField = styled.textarea`
+export const TextAreaField = styled(TextArea)`
   display: block;
   margin: 0 auto;
   width: 60%;

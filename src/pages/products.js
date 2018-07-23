@@ -15,12 +15,12 @@ class Products extends React.Component {
     const { data } = this.props
     return (
       <div>
-        <Row>
+        {/* <Row>
           <Col span={2}>Cat1</Col>
           <Col span={2}>Cat2</Col>
           <Col span={2}>Cat3</Col>
         </Row>
-        <hr />
+        <hr /> */}
 
         <ProductListRow gutter={20} align={'middle'}>
           {data.allContentfulProduct.edges.map(({ node }) => (

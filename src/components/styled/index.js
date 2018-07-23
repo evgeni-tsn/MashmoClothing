@@ -1,5 +1,5 @@
 import { Container } from './Container'
-import { FeaturedButton } from './FeaturedButton'
+import { FeaturedButton, SubmitButton } from './FeaturedButton'
 import { FeaturedButtonLink } from './FeaturedButtonLink'
 import { GhostButton } from './GhostButton'
 import { GhostButtonLink } from './GhostButtonLink'
@@ -12,6 +12,7 @@ import { QuantityButton } from './QuantityButton'
 import { StyledLink } from './StyledLink'
 import { TextAreaField } from './TextAreaField'
 import { VerticalLine } from './VerticalLine'
+import { ErrorMsgDiv } from './ErrorMsgDiv'
 
 export {
   Container,
@@ -28,4 +29,6 @@ export {
   StyledLink,
   TextAreaField,
   VerticalLine,
+  SubmitButton,
+  ErrorMsgDiv,
 }

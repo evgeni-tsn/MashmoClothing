@@ -2,11 +2,12 @@ import React from 'react'
 import { push } from 'gatsby-link'
 import { Row, Col } from 'react-simple-flex-grid'
 import { toast } from 'react-toastify'
+import Form from 'react-validation/build/form'
 
 import { Toast, CartTable } from '../components'
 import {
   H1,
-  FeaturedButton,
+  SubmitButton,
   InputField,
   Container,
   GhostButtonLink,
@@ -14,6 +15,7 @@ import {
 } from '../components/styled'
 
 import colors from '../utils/colors'
+import { required } from '../utils/validations'
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -78,7 +80,7 @@ class Checkout extends React.Component {
         </Container>
         <br />
         <H1 underlined>Данни за доставка</H1>
-        <form
+        <Form
           name="order"
           method="post"
           action="/" //TODO: decide what to do here maybe thanks for the order ?
@@ -88,42 +90,53 @@ class Checkout extends React.Component {
             <Col xs={12} sm={12} md={12} lg={6} xl={6}>
               <InputField
                 type="text"
-                name="name"
-                placeholder="Име и Фамилия"
+                name="firstName"
+                placeholder="Име *"
+                validations={[required]}
                 onChange={this.handleChange}
               />
               <InputField
                 type="text"
-                name="name"
-                placeholder="Телефон"
+                name="lastName"
+                placeholder="Фамилия *"
+                validations={[required]}
                 onChange={this.handleChange}
               />
               <InputField
                 type="text"
-                name="name"
-                placeholder="Адрес"
+                name="phone"
+                placeholder="Телефон *"
+                validations={[required]}
                 onChange={this.handleChange}
               />
             </Col>
             <Col xs={12} sm={12} md={12} lg={6} xl={6}>
               <InputField
                 type="text"
-                name="name"
-                placeholder="Еконт офис"
+                name="city"
+                placeholder="Град *"
+                validations={[required]}
+                onChange={this.handleChange}
+              />
+              <InputField
+                type="text"
+                name="econt"
+                placeholder="Еконт офис *"
+                validations={[required]}
                 onChange={this.handleChange}
               />
               <TextAreaField
-                name="message"
-                rows={4}
+                name="note"
+                rows={2}
                 placeholder="Бележка"
                 onChange={this.handleChange}
               />
             </Col>
           </Row>
           <Row justify="center">
-            <FeaturedButton type="submit">Поръчай</FeaturedButton>
+            <SubmitButton type="submit">Поръчай</SubmitButton>
           </Row>
-        </form>
+        </Form>
         <Toast />
       </div>
     )

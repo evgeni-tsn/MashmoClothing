@@ -28,8 +28,10 @@
     "react-simple-flex-grid": "^1.2.3",
     "react-super-responsive-table": "^4.2.4",
     "react-toastify": "^4.1.0",
+    "react-validation": "^3.0.7",
     "styled-components": "^3.3.3",
-    "typography-theme-irving": "^0.15.10"
+    "typography-theme-irving": "^0.15.10",
+    "validator": "^10.4.0"
   },
   "keywords": [
     "gatsby"

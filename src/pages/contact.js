@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { navigateTo } from 'gatsby-link'
 import { toast } from 'react-toastify'
+import Form from 'react-validation/build/form'
 
 import { Toast } from '../components'
-import { FeaturedButton, InputField, TextAreaField } from '../components/styled'
+import { SubmitButton, InputField, TextAreaField } from '../components/styled'
 
 import colors from '../utils/colors'
+import { required, email, gt } from '../utils/validations'
 
 const ContactsContainer = styled.div`
   text-align: center;
@@ -66,7 +68,7 @@ export default class Contact extends React.Component {
     return (
       <ContactsContainer>
         <PageHeading>Пишете ни</PageHeading>
-        <form
+        <Form
           name="contact"
           method="post"
           action="/thanks/"
@@ -87,7 +89,8 @@ export default class Contact extends React.Component {
               <InputField
                 type="text"
                 name="name"
-                placeholder="Име"
+                placeholder="Име *"
+                validations={[required]}
                 onChange={this.handleChange}
               />
             </label>
@@ -97,7 +100,8 @@ export default class Contact extends React.Component {
               <InputField
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email *"
+                validations={[required, email]}
                 onChange={this.handleChange}
               />
             </label>
@@ -107,17 +111,18 @@ export default class Contact extends React.Component {
               <TextAreaField
                 name="message"
                 rows={4}
-                placeholder="Съобщение"
+                placeholder="Съобщение *"
+                validations={[required, gt]}
                 onChange={this.handleChange}
               />
             </label>
           </p>
-          <p>
-            <FeaturedButton type="submit" style={{ width: '15%' }}>
+          <p style={{ marginTop: '2rem' }}>
+            <SubmitButton type="submit" style={{ width: '15%' }}>
               Изпрати
-            </FeaturedButton>
+            </SubmitButton>
           </p>
-        </form>
+        </Form>
         <Toast />
       </ContactsContainer>
     )

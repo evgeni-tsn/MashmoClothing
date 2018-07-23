@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import Input from 'react-validation/build/input'
 
 import colors from '../../utils/colors'
 
-export const InputField = styled.input`
+export const InputField = styled(Input)`
   display: block;
   margin: 0 auto;
   width: 60%;
