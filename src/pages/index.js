@@ -13,7 +13,7 @@ const ProductListRow = styled(Row)`
 const IndexPage = ({ data }) => {
   return (
     <div>
-      <FeaturedSection allProducts={data.allContentfulProduct} />
+      {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
       <h2>Rest</h2>
       <hr />
       <ProductListRow gutter={20} align={'middle'}>

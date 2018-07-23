@@ -178,7 +178,7 @@ class ProductTemplate extends React.Component {
           </Col>
         </Row>
         <br />
-        <FeaturedSection filterOut={productData} allProducts={allProducts} />
+        {/* <FeaturedSection filterOut={productData} allProducts={allProducts} /> */}
         <Toast />
       </div>
     )

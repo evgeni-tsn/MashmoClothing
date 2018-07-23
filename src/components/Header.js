@@ -84,7 +84,7 @@ export class Header extends React.Component {
               <NavLink to="/gallery">Галерия</NavLink>
             </DesktopMenuItem>
             <DesktopMenuItem>
-              <NavLink to="/info">Полезно</NavLink>
+              <NavLink to="/info">Информация</NavLink>
             </DesktopMenuItem>
             <DesktopMenuItem>
               <FeaturedButtonLink to="/products">Продукти</FeaturedButtonLink>

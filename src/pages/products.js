@@ -29,7 +29,7 @@ class Products extends React.Component {
             </Col>
           ))}
         </ProductListRow>
-        <FeaturedSection allProducts={data.allContentfulProduct} />
+        {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
       </div>
     )
   }

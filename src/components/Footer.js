@@ -69,7 +69,7 @@ export const Footer = () => {
           </FooterLinks>
           <VerticalLine />
           <FooterLinks smaller thin light to="/info" exact={true}>
-            Полезно
+            Информация
           </FooterLinks>
           <VerticalLine />
           <FooterLinks smaller thin light to="/products" exact={true}>
@@ -78,20 +78,20 @@ export const Footer = () => {
         </FooterLinksContainer>
         <div>
           <IconExternalLink
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/mashmoclothing/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <HeaderIcon src={fbIcon} alt={'facebook'} />
           </IconExternalLink>
           <IconExternalLink
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/mashmoclothing/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <HeaderIcon src={igIcon} alt={'instagram'} />
           </IconExternalLink>
-          <IconLink to="/contacts">
+          <IconLink to="/contact">
             <HeaderIcon src={mailIcon} alt={'mail'} />
           </IconLink>
         </div>
