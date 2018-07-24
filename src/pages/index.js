@@ -14,8 +14,8 @@ const IndexPage = ({ data }) => {
   return (
     <div>
       {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
-      <h2>Rest</h2>
-      <hr />
+      {/* <h2>Rest</h2> */}
+      {/* <hr /> */}
       <ProductListRow gutter={20} align={'middle'}>
         {data.allContentfulProduct.edges.map(({ node }) => (
           <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
@@ -38,7 +38,14 @@ export const query = graphql`
           isOnSale
           onSalePrice
           price
-          quantity
+          sizes {
+            XS
+            S
+            M
+            L
+            XL
+            OneSize
+          }
           contentful_id
           createdAt
           photos {

@@ -56,8 +56,8 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
             </TD>
             <TD>{product.price}лв.</TD>
             <TD>---</TD>
-            <TD>{product.quantity}</TD>
-            <TD>{product.price * product.quantity}лв.</TD>
+            <TD>{product.addedQuantity}</TD>
+            <TD>{product.price * product.addedQuantity}лв.</TD>
 
             <TD>
               {/* TODO: Display modal msg are you sure? */}

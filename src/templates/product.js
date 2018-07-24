@@ -9,6 +9,7 @@ import { FeaturedSection, Toast } from '../components'
 import { H1, QuantityButton } from '../components/styled'
 
 import colors from '../utils/colors'
+import { totalAvailableQuantity } from '../utils/utilFunctions'
 
 const Image = styled.img`
   max-width: 300px;
@@ -52,13 +53,16 @@ class ProductTemplate extends React.Component {
       for (const savedItem of oldItems) {
         if (savedItem.contentful_id === productData.contentful_id) {
           updateQuantity = true
-          savedItem.quantity =
-            Number(this.state.quantityValue) + Number(savedItem.quantity)
+          savedItem.addedQuantity =
+            Number(this.state.quantityValue) + Number(savedItem.addedQuantity)
         }
       }
 
       if (!updateQuantity)
-        oldItems.push({ ...productData, quantity: this.state.quantityValue })
+        oldItems.push({
+          ...productData,
+          addedQuantity: this.state.quantityValue,
+        })
 
       localStorage.setItem('cart', JSON.stringify(oldItems))
       let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
@@ -161,7 +165,7 @@ class ProductTemplate extends React.Component {
             >
               +
             </QuantityButton>
-            <p>Quantity {productData.updatedAt}</p>
+            <p>Quantity {totalAvailableQuantity(productData.sizes)}</p>
             <br />
             <button
               disabled={
@@ -198,7 +202,6 @@ export const productQuery = graphql`
           isOnSale
           onSalePrice
           price
-          quantity
           contentful_id
           createdAt
           updatedAt
@@ -208,6 +211,14 @@ export const productQuery = graphql`
               src
               tracedSVG
             }
+          }
+          sizes {
+            XS
+            S
+            M
+            L
+            XL
+            OneSize
           }
         }
       }

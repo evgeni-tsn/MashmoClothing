@@ -48,7 +48,14 @@ export const query = graphql`
           isOnSale
           onSalePrice
           price
-          quantity
+          sizes {
+            XS
+            S
+            M
+            L
+            XL
+            OneSize
+          }
           contentful_id
           createdAt
           photos {

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { StyledLink } from './styled'
 
 import colors from '../utils/colors'
+import { totalAvailableQuantity } from '../utils/utilFunctions'
 
 const ProductCardContainer = styled.div`
   border: 2px solid ${colors.grey};
@@ -95,17 +96,18 @@ const ProductCardFooter = styled.div`
 export class ProductCard extends React.Component {
   render() {
     const { productData: node } = this.props
+    const availableQuantity = totalAvailableQuantity(node.sizes)
     return (
       <ProductCardContainer>
         <StyledLink to={node.slug}>
           {/* TODO: Add taglabels (out of stock & limited & hotsale) */}
           <ProductImageWrapper>
             <ProductCardImage
-              crossout={node.quantity === 0}
+              crossout={availableQuantity === 0}
               resolutions={node.photos[0].resolutions}
             />
             <ProductCardImage
-              crossout={node.quantity === 0}
+              crossout={availableQuantity === 0}
               resolutions={node.photos[1].resolutions}
             />
           </ProductImageWrapper>
@@ -118,7 +120,7 @@ export class ProductCard extends React.Component {
                     {node.onSalePrice}лв.
                   </ProductPrice>
                 )}
-              <ProductPrice crossout={node.quantity === 0}>
+              <ProductPrice crossout={availableQuantity === 0}>
                 {node.price}лв.
               </ProductPrice>
             </ProductPriceWrapper>
