@@ -21,6 +21,8 @@ export const FeaturedButton = styled.button`
 `
 export const SubmitButton = styled(Button)`
   border: none;
+  text-align: center;
+  min-width: 15rem;
   background-color: ${colors.main};
   color: ${colors.white};
   padding: 0.5rem 1rem;
@@ -28,6 +30,7 @@ export const SubmitButton = styled(Button)`
   font-weight: lighter;
   text-transform: uppercase;
   outline: none;
+  margin-bottom: 1rem;
 
   &:hover {
     color: ${colors.black};

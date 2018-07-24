@@ -16,6 +16,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             isOnSale
             onSalePrice
             price
+            description
             sizes {
               XS
               S

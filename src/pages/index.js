@@ -38,6 +38,7 @@ export const query = graphql`
           isOnSale
           onSalePrice
           price
+          description
           sizes {
             XS
             S
@@ -50,7 +51,7 @@ export const query = graphql`
           createdAt
           photos {
             id
-            resolutions(width: 600, height: 600) {
+            resolutions(width: 500, height: 500) {
               src
               tracedSVG
             }

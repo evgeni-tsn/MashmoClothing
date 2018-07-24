@@ -4,6 +4,9 @@ import { StyledLink } from './StyledLink'
 import colors from '../../utils/colors'
 
 export const GhostButtonLink = styled(StyledLink)`
+  display: inline-block;
+  text-align: center;
+  min-width: 15rem;
   border: none;
   color: ${colors.main};
   padding: 0.5rem 1rem;

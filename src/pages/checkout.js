@@ -74,7 +74,7 @@ class Checkout extends React.Component {
           <CartTable readOnly={true} cartItems={cartItems} />
           <Row justify="end">
             <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
-              Обратно към кошницата
+              Обратно към количката
             </GhostButtonLink>
           </Row>
         </Container>
