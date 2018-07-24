@@ -93,6 +93,33 @@ const ProductCardFooter = styled.div`
   font-size: 0.9rem;
   background-color: ${colors.grey};
 `
+
+const Label = styled.div`
+  position: absolute;
+  z-index: 999;
+  width: 93%;
+  text-align: center;
+  padding: 0.6rem 0;
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: 0.9;
+`
+
+const SaleLabel = Label.extend`
+  color: ${colors.white};
+  background-color: ${colors.main};
+`
+
+const OutOfStockLabel = Label.extend`
+  color: ${colors.white};
+  background-color: ${colors.darkGrey};
+`
+
+const LimitedLabel = Label.extend`
+  color: ${colors.white};
+  background-color: ${colors.red};
+`
+
 export class ProductCard extends React.Component {
   render() {
     const { productData: node } = this.props
@@ -100,7 +127,12 @@ export class ProductCard extends React.Component {
     return (
       <ProductCardContainer>
         <StyledLink to={node.slug}>
-          {/* TODO: Add taglabels (out of stock & limited & hotsale) */}
+          {node.isOnSale && <SaleLabel>SALE</SaleLabel>}
+          {availableQuantity < 5 &&
+            availableQuantity > 0 && <LimitedLabel>LAST ITEMS</LimitedLabel>}
+          {availableQuantity === 0 && (
+            <OutOfStockLabel>OUT OF STOCK</OutOfStockLabel>
+          )}
           <ProductImageWrapper>
             <ProductCardImage
               crossout={availableQuantity === 0}
