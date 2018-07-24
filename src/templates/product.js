@@ -6,7 +6,12 @@ import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
 
 import { FeaturedSection, Toast } from '../components'
-import { H1, QuantityButton } from '../components/styled'
+import {
+  H1,
+  QuantityButton,
+  GhostButtonLink,
+  FeaturedButton,
+} from '../components/styled'
 
 import colors from '../utils/colors'
 import { totalAvailableQuantity } from '../utils/utilFunctions'
@@ -22,6 +27,23 @@ const SmallImage1 = styled.img`
 `
 const SmallImage2 = styled(SmallImage1)`
   margin-left: 10px;
+`
+
+const PriceTag = styled.h3`
+  margin-top: 0.7rem;
+  font-size: 2rem;
+  font-weight: 400;
+  color: ${colors.main};
+`
+
+const FreeDeliveryMsg = styled.p`
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+  color: ${colors.main};
+`
+
+const DescriptionMsg = styled.p`
+  max-width: 20rem;
 `
 
 class ProductTemplate extends React.Component {
@@ -119,17 +141,29 @@ class ProductTemplate extends React.Component {
     this.setState({ mainImage: e.target.src })
   }
 
+  showAvailableSizes(sizes) {
+    let availableSizes = {}
+    for (const key in sizes) {
+      if (sizes[key] !== null && sizes[key] !== 0)
+        availableSizes[key] = sizes[key]
+    }
+    return Object.keys(availableSizes).map(function(key) {
+      return <li key={key}>{key + ' ' + availableSizes[key]}</li>
+    })
+  }
+
   render() {
     const {
       node: productData,
     } = this.props.data.allContentfulProduct.edges.find(
       ({ node }) => node.slug === this.props.pathContext.slug
     )
+    const availableSizes = this.showAvailableSizes(productData.sizes)
     const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
         <Row justify={'center'}>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+          <Col xs={12} sm={12} md={6} lg={5} xl={5}>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <Image src={this.state.mainImage} />
@@ -148,10 +182,14 @@ class ProductTemplate extends React.Component {
               </Col>
             </Row>
           </Col>
-          <Col span={6}>
-            <H1 underlined>{productData.name}</H1>
-            <h3>Price: {productData.price}</h3>
-            <span>Quantity: </span>
+          <Col xs={12} sm={12} md={6} lg={7} xl={7}>
+            <H1>{productData.name}</H1>
+            <DescriptionMsg>{productData.description}</DescriptionMsg>
+            <PriceTag>{productData.price}лв.</PriceTag>
+            <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
+            <p>Размер:</p>
+            <ul>{availableSizes}</ul>
+            <p>Количество:</p>
             <QuantityButton
               onClick={() => this.decreaseQuantity()}
               disabled={this.state.disableMinusButton}
@@ -165,20 +203,25 @@ class ProductTemplate extends React.Component {
             >
               +
             </QuantityButton>
-            <p>Quantity {totalAvailableQuantity(productData.sizes)}</p>
             <br />
-            <button
+            <br />
+            <FeaturedButton
               disabled={
                 this.state.quantityValue < this.state.minimumQuantity ||
                 this.state.quantityValue > this.state.maximumQuantity
               }
               onClick={() => this.addToCart(productData)}
             >
-              Add to Cart
-            </button>
+              Добави в количката
+            </FeaturedButton>
             {this.state.errorMsgShow && (
               <p>Quantity must be between 1 and 8 items.</p>
             )}
+            <br />
+            {/* <br />
+            <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
+              Виж количката
+            </GhostButtonLink> */}
           </Col>
         </Row>
         <br />
@@ -202,12 +245,13 @@ export const productQuery = graphql`
           isOnSale
           onSalePrice
           price
+          description
           contentful_id
           createdAt
           updatedAt
           photos {
             id
-            resolutions(width: 600, height: 600) {
+            resolutions(width: 500, height: 500) {
               src
               tracedSVG
             }

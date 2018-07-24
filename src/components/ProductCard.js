@@ -147,7 +147,8 @@ export class ProductCard extends React.Component {
             <ProductTitle>{node.name}</ProductTitle>
             <ProductPriceWrapper>
               {node.isOnSale &&
-                node.onSalePrice && (
+                node.onSalePrice &&
+                availableQuantity !== 0 && (
                   <ProductPrice crossout={true}>
                     {node.onSalePrice}лв.
                   </ProductPrice>
