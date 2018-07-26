@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
 
-import { FeaturedSection, Toast } from '../components'
+import { FeaturedSection, Toast, SizesButtonGroup } from '../components'
 import {
   H1,
   QuantityButton,
@@ -46,6 +46,22 @@ const DescriptionMsg = styled.p`
   max-width: 20rem;
 `
 
+const QuantitySpan = styled.span`
+  display: inline-block;
+  padding: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  padding-top: 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid ${colors.main};
+`
+const QuantityControls = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+
 class ProductTemplate extends React.Component {
   state = {
     quantityValue: 1,
@@ -55,6 +71,7 @@ class ProductTemplate extends React.Component {
     disablePlusButton: false,
     errorMsgShow: false,
     mainImage: '',
+    sizeChoice: '',
   }
 
   componentDidMount() {
@@ -147,9 +164,11 @@ class ProductTemplate extends React.Component {
       if (sizes[key] !== null && sizes[key] !== 0)
         availableSizes[key] = sizes[key]
     }
-    return Object.keys(availableSizes).map(function(key) {
-      return <li key={key}>{key + ' ' + availableSizes[key]}</li>
-    })
+    return Object.keys(availableSizes)
+  }
+
+  updateSizeSelection(e) {
+    this.setState({ sizeChoice: e.id })
   }
 
   render() {
@@ -188,21 +207,27 @@ class ProductTemplate extends React.Component {
             <PriceTag>{productData.price}лв.</PriceTag>
             <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
             <p>Размер:</p>
-            <ul>{availableSizes}</ul>
+            <SizesButtonGroup
+              sizes={availableSizes}
+              selected={this.state.sizeChoice}
+              onChange={e => this.updateSizeSelection(e)}
+            />
             <p>Количество:</p>
-            <QuantityButton
-              onClick={() => this.decreaseQuantity()}
-              disabled={this.state.disableMinusButton}
-            >
-              -
-            </QuantityButton>
-            <span>{this.state.quantityValue}</span>
-            <QuantityButton
-              onClick={() => this.increaseQuantity()}
-              disabled={this.state.disablePlusButton}
-            >
-              +
-            </QuantityButton>
+            <QuantityControls>
+              <QuantityButton
+                onClick={() => this.decreaseQuantity()}
+                disabled={this.state.disableMinusButton}
+              >
+                –
+              </QuantityButton>
+              <QuantitySpan>{this.state.quantityValue}</QuantitySpan>
+              <QuantityButton
+                onClick={() => this.increaseQuantity()}
+                disabled={this.state.disablePlusButton}
+              >
+                +
+              </QuantityButton>
+            </QuantityControls>
             <br />
             <br />
             <FeaturedButton

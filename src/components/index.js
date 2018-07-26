@@ -5,6 +5,7 @@ import { GalleryImageComponent } from './GalleryImageComponent'
 import { Header } from './Header'
 import { ProductCard } from './ProductCard'
 import { Toast } from './Toast'
+import { SizesButtonGroup } from './SizesButtonGroup'
 
 export {
   CartTable,
@@ -14,4 +15,5 @@ export {
   Header,
   ProductCard,
   Toast,
+  SizesButtonGroup,
 }
