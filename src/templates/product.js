@@ -5,13 +5,13 @@ import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
 
-import { FeaturedSection, Toast, SizesButtonGroup } from '../components'
 import {
-  H1,
-  QuantityButton,
-  GhostButtonLink,
-  FeaturedButton,
-} from '../components/styled'
+  FeaturedSection,
+  Toast,
+  SizesButtonGroup,
+  QuantityControls,
+} from '../components'
+import { H1, GhostButtonLink, FeaturedButton } from '../components/styled'
 
 import colors from '../utils/colors'
 import { totalAvailableQuantity } from '../utils/utilFunctions'
@@ -46,20 +46,9 @@ const DescriptionMsg = styled.p`
   max-width: 20rem;
 `
 
-const QuantitySpan = styled.span`
-  display: inline-block;
-  padding: 0.4rem;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  padding-top: 0.25rem;
-  border-radius: 0.25rem;
-  border: 1px solid ${colors.main};
-`
-const QuantityControls = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+const P = styled.p`
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
 `
 
 class ProductTemplate extends React.Component {
@@ -206,28 +195,20 @@ class ProductTemplate extends React.Component {
             <DescriptionMsg>{productData.description}</DescriptionMsg>
             <PriceTag>{productData.price}лв.</PriceTag>
             <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
-            <p>Размер:</p>
+            <P>Размер</P>
             <SizesButtonGroup
               sizes={availableSizes}
               selected={this.state.sizeChoice}
               onChange={e => this.updateSizeSelection(e)}
             />
-            <p>Количество:</p>
-            <QuantityControls>
-              <QuantityButton
-                onClick={() => this.decreaseQuantity()}
-                disabled={this.state.disableMinusButton}
-              >
-                –
-              </QuantityButton>
-              <QuantitySpan>{this.state.quantityValue}</QuantitySpan>
-              <QuantityButton
-                onClick={() => this.increaseQuantity()}
-                disabled={this.state.disablePlusButton}
-              >
-                +
-              </QuantityButton>
-            </QuantityControls>
+            <P>Количество</P>
+            <QuantityControls
+              decreaseTrigger={() => this.decreaseQuantity()}
+              increaseTrigger={() => this.increaseQuantity()}
+              disableMinusButton={this.state.disableMinusButton}
+              disablePlusButton={this.state.disablePlusButton}
+              value={this.state.quantityValue}
+            />
             <br />
             <br />
             <FeaturedButton
@@ -240,13 +221,8 @@ class ProductTemplate extends React.Component {
               Добави в количката
             </FeaturedButton>
             {this.state.errorMsgShow && (
-              <p>Quantity must be between 1 and 8 items.</p>
+              <p>Броя артикули може да е между 1 и 8.</p>
             )}
-            <br />
-            {/* <br />
-            <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
-              Виж количката
-            </GhostButtonLink> */}
           </Col>
         </Row>
         <br />

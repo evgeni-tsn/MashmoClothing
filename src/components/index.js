@@ -6,6 +6,7 @@ import { Header } from './Header'
 import { ProductCard } from './ProductCard'
 import { Toast } from './Toast'
 import { SizesButtonGroup } from './SizesButtonGroup'
+import { QuantityControls } from './QuantityControls'
 
 export {
   CartTable,
@@ -16,4 +17,5 @@ export {
   ProductCard,
   Toast,
   SizesButtonGroup,
+  QuantityControls,
 }

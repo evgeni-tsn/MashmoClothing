@@ -8,7 +8,6 @@ import { HeaderIcon } from './HeaderIcon'
 import { IconLink } from './IconLink'
 import { InputField } from './InputField'
 import { Logo } from './Logo'
-import { QuantityButton } from './QuantityButton'
 import { StyledLink } from './StyledLink'
 import { TextAreaField } from './TextAreaField'
 import { VerticalLine } from './VerticalLine'
@@ -25,7 +24,6 @@ export {
   IconLink,
   InputField,
   Logo,
-  QuantityButton,
   StyledLink,
   TextAreaField,
   VerticalLine,
