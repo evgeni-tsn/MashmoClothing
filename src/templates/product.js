@@ -29,16 +29,13 @@ const SmallImage2 = styled(SmallImage1)`
   margin-left: 10px;
 `
 
-const PriceTag = styled.h3`
-  margin-top: 0.7rem;
-  font-size: 2rem;
-  font-weight: 400;
-  color: ${colors.main};
+const ErrorMsg = styled.p`
+  color: ${colors.red};
 `
 
 const FreeDeliveryMsg = styled.p`
-  margin-top: 0.7rem;
-  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
   color: ${colors.main};
 `
 
@@ -47,8 +44,24 @@ const DescriptionMsg = styled.p`
 `
 
 const P = styled.p`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-bottom: 0.8rem;
+`
+
+const ProductPriceWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+`
+
+const ProductPrice = styled.h3`
+  color: ${({ crossout }) => (crossout ? colors.darkGrey : colors.main)};
+  padding-right: 1rem;
+  margin-top: 0.7rem;
+  text-decoration: ${({ crossout }) => (crossout ? 'line-through' : 'none')};
+  font-size: ${({ crossout }) => (crossout ? '1.5rem' : '2rem')};
+  font-weight: 400;
 `
 
 class ProductTemplate extends React.Component {
@@ -61,6 +74,7 @@ class ProductTemplate extends React.Component {
     errorMsgShow: false,
     mainImage: '',
     sizeChoice: '',
+    displayError: false,
   }
 
   componentDidMount() {
@@ -73,29 +87,43 @@ class ProductTemplate extends React.Component {
   }
 
   addToCart = productData => {
-    //TODO: Diferentiate the Sizes of each product
-    if (typeof window !== 'undefined' && window.localStorage) {
-      let oldItems = JSON.parse(localStorage.getItem('cart')) || []
-      let updateQuantity = false
-      //TODO: Add only needed data not all (remove images for ex.)
-      for (const savedItem of oldItems) {
-        if (savedItem.contentful_id === productData.contentful_id) {
-          updateQuantity = true
-          savedItem.addedQuantity =
-            Number(this.state.quantityValue) + Number(savedItem.addedQuantity)
+    if (!this.checkDisabledSubmit()) {
+      this.setState({ displayError: false })
+      //TODO: Diferentiate the Sizes of each product
+      if (typeof window !== 'undefined' && window.localStorage) {
+        let oldItems = JSON.parse(localStorage.getItem('cart')) || []
+        let updateQuantity = false
+        //TODO: Add only needed data not all (remove images for ex.)
+        for (const savedItem of oldItems) {
+          if (
+            savedItem.contentful_id === productData.contentful_id &&
+            savedItem.selectedSize === this.state.sizeChoice
+          ) {
+            updateQuantity = true
+            savedItem.quantity =
+              Number(this.state.quantityValue) + Number(savedItem.quantity)
+          }
         }
+
+        if (!updateQuantity)
+          oldItems.push({
+            contentful_id: productData.contentful_id,
+            name: productData.name,
+            price: productData.isOnSale
+              ? productData.onSalePrice
+              : productData.price,
+            slug: productData.slug,
+            quantity: this.state.quantityValue,
+            selectedSize: this.state.sizeChoice,
+          })
+
+        localStorage.setItem('cart', JSON.stringify(oldItems))
+        let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
+        this.props.updateCartItemsCount(cartItems)
+        this.successAddedItemToast()
       }
-
-      if (!updateQuantity)
-        oldItems.push({
-          ...productData,
-          addedQuantity: this.state.quantityValue,
-        })
-
-      localStorage.setItem('cart', JSON.stringify(oldItems))
-      let cartItems = JSON.parse(localStorage.getItem('cart')).length || 0
-      this.props.updateCartItemsCount(cartItems)
-      this.successAddedItemToast()
+    } else {
+      this.setState({ displayError: true })
     }
   }
 
@@ -134,14 +162,17 @@ class ProductTemplate extends React.Component {
 
   //TODO: Maybe we can display a little info for the product itself
   successAddedItemToast = () =>
-    toast(() => (
-      <div>
-        <div style={{ color: colors.black }}>
-          Продуктът беше добавен в количката! 😎
+    toast(
+      () => (
+        <div style={{ color: colors.white }}>
+          <div>Продуктът беше добавен! 😎</div>
+          <Link style={{ color: colors.white }} to="/cart">
+            Виж количка
+          </Link>
         </div>
-        <Link to="/cart">Виж количка</Link>
-      </div>
-    ))
+      ),
+      { className: 'gold-background' }
+    )
 
   changeMainImage(e) {
     this.setState({ mainImage: e.target.src })
@@ -157,7 +188,15 @@ class ProductTemplate extends React.Component {
   }
 
   updateSizeSelection(e) {
-    this.setState({ sizeChoice: e.id })
+    this.setState({ sizeChoice: e.id, displayError: false })
+  }
+
+  checkDisabledSubmit() {
+    return (
+      this.state.quantityValue < this.state.minimumQuantity ||
+      this.state.quantityValue > this.state.maximumQuantity ||
+      this.state.sizeChoice === ''
+    )
   }
 
   render() {
@@ -166,6 +205,7 @@ class ProductTemplate extends React.Component {
     } = this.props.data.allContentfulProduct.edges.find(
       ({ node }) => node.slug === this.props.pathContext.slug
     )
+    const totalQuantity = totalAvailableQuantity(productData.sizes)
     const availableSizes = this.showAvailableSizes(productData.sizes)
     const allProducts = this.props.data.allContentfulProduct
     return (
@@ -193,7 +233,18 @@ class ProductTemplate extends React.Component {
           <Col xs={12} sm={12} md={6} lg={7} xl={7}>
             <H1>{productData.name}</H1>
             <DescriptionMsg>{productData.description}</DescriptionMsg>
-            <PriceTag>{productData.price}лв.</PriceTag>
+            <ProductPriceWrapper>
+              <ProductPrice crossout={totalQuantity === 0}>
+                {productData.onSalePrice && productData.onSalePrice}лв.
+              </ProductPrice>
+              {productData.isOnSale &&
+                productData.onSalePrice &&
+                totalQuantity !== 0 && (
+                  <ProductPrice crossout={true}>
+                    {productData.price}лв.
+                  </ProductPrice>
+                )}
+            </ProductPriceWrapper>
             <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
             <P>Размер</P>
             <SizesButtonGroup
@@ -210,16 +261,15 @@ class ProductTemplate extends React.Component {
               value={this.state.quantityValue}
             />
             <br />
-            <br />
             <FeaturedButton
-              disabled={
-                this.state.quantityValue < this.state.minimumQuantity ||
-                this.state.quantityValue > this.state.maximumQuantity
-              }
+              grayedOut={!this.state.sizeChoice}
               onClick={() => this.addToCart(productData)}
             >
               Добави в количката
             </FeaturedButton>
+            {this.state.displayError && (
+              <ErrorMsg>Моля изберете размер</ErrorMsg>
+            )}
             {this.state.errorMsgShow && (
               <p>Броя артикули може да е между 1 и 8.</p>
             )}

@@ -9,8 +9,4 @@ const ErrorMsg = styled.div`
   width: 100%;
   text-align: center;
 `
-export const ErrorMsgDiv = ({ children }) => (
-  <div>
-    <ErrorMsg>{children}</ErrorMsg>
-  </div>
-)
+export const ErrorMsgDiv = ({ children }) => <ErrorMsg>{children}</ErrorMsg>

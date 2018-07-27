@@ -50,14 +50,14 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
       </Thead>
       <Tbody>
         {cartItems.map(product => (
-          <TR key={product.contentful_id}>
+          <TR key={product.contentful_id + product.selectedSize}>
             <TD>
               <Link to={product.slug}>{product.name}</Link>
             </TD>
             <TD>{product.price}лв.</TD>
-            <TD>---</TD>
-            <TD>{product.addedQuantity}</TD>
-            <TD>{product.price * product.addedQuantity}лв.</TD>
+            <TD>{product.selectedSize}</TD>
+            <TD>{product.quantity}</TD>
+            <TD>{product.price * product.quantity}лв.</TD>
 
             <TD>
               {/* TODO: Display modal msg are you sure? */}

@@ -14,8 +14,9 @@ export const GhostButton = styled.button`
   border: 1px solid transparent;
 
   &:hover {
-    border: 1px solid ${colors.main};
-    border-radius: 1rem;
+    color: ${colors.darkGrey};
+    /* border: 1px solid ${colors.main}; */
+    /* border-radius: 1rem; */
     cursor: pointer;
   }
 `

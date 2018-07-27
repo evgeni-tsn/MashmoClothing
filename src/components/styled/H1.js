@@ -19,7 +19,7 @@ const HR = styled.hr`
 
 const StyledH1 = styled.h1`
   /* margin-left: 1rem; */
-  margin-top: 0.8rem;
+  /* margin-top: 0.8rem; */
   margin-bottom: 0.8rem;
   color: ${colors.black};
 `

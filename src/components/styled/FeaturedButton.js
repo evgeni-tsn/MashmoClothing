@@ -5,7 +5,8 @@ import colors from '../../utils/colors'
 
 export const FeaturedButton = styled.button`
   border: none;
-  background-color: ${colors.main};
+  background-color: ${({ grayedOut }) =>
+    grayedOut ? colors.darkGrey : colors.main};
   color: ${colors.white};
   padding: 0.5rem 1rem;
   border-radius: 1rem;
@@ -14,9 +15,14 @@ export const FeaturedButton = styled.button`
   outline: none;
 
   &:hover {
-    color: ${colors.black};
-    cursor: pointer;
+    color: ${({ grayedOut }) => (grayedOut ? colors.white : colors.black)};
+    cursor: ${({ grayedOut }) => (grayedOut ? 'auto' : 'pointer')};
     box-shadow: 0px 1px 8px 0px ${colors.dark};
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: ${colors.darkGrey};
   }
 `
 export const SubmitButton = styled(Button)`

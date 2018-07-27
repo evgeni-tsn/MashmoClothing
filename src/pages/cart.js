@@ -50,7 +50,7 @@ class Cart extends React.Component {
 
   calculateTotal = cartItems => {
     return cartItems.reduce(
-      (total, curr) => total + Number(curr.price * curr.addedQuantity),
+      (total, curr) => total + Number(curr.price * curr.quantity),
       0
     )
   }

@@ -34,9 +34,13 @@ class Template extends React.Component {
 
   componentDidMount() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      this.setState({
-        cartItemsCount: JSON.parse(localStorage.getItem('cart')).length || 0,
-      })
+      if (localStorage.getItem('cart')) {
+        this.setState({
+          cartItemsCount: JSON.parse(localStorage.getItem('cart')).length || 0,
+        })
+      } else {
+        localStorage.setItem('cart', '[]')
+      }
     }
   }
 

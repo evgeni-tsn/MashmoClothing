@@ -621,3 +621,12 @@ pre tt:after {
 .galleryOuterImages {
   display: inline-block;
 }
+
+.gold-background {
+  background-color: #bfa26e;
+  border-radius: 0.5rem;
+}
+
+.gold-background:first-child {
+  margin-top: 3rem;
+}
