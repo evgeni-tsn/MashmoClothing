@@ -37,13 +37,16 @@ export default class Contact extends React.Component {
   //TODO: catch possible error and display another err toast
   //TODO: redirect to a page with success msg is also an option
   successSubmittedForm = () =>
-    toast(() => (
-      <div>
-        <div style={{ color: colors.black }}>
-          Съобщението ви беше изпратено успешно! 😎
+    toast(
+      () => (
+        <div>
+          <div style={{ color: colors.white }}>
+            Съобщението ви беше изпратено успешно! 😎
+          </div>
         </div>
-      </div>
-    ))
+      ),
+      { className: 'gold-background' }
+    )
 
   handleSubmit = e => {
     e.preventDefault()

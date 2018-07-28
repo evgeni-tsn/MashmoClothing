@@ -63,7 +63,7 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
               {/* TODO: Display modal msg are you sure? */}
               {!readOnly && (
                 <GhostButton
-                  id={product.contentful_id}
+                  id={product.contentful_id + product.selectedSize}
                   onClick={e => removeItemFromCart(e)}
                 >
                   ✕

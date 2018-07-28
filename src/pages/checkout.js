@@ -48,18 +48,22 @@ class Checkout extends React.Component {
   }
 
   successMadeOrder = () =>
-    toast(() => (
-      <div>
-        <div style={{ color: colors.black }}>
-          Поръчката беше направена успешно! 😎
+    toast(
+      () => (
+        <div>
+          <div style={{ color: colors.white }}>
+            Поръчката беше направена успешно! 😎
+          </div>
         </div>
-      </div>
-    ))
+      ),
+      { className: 'gold-background' }
+    )
 
   handleSubmit = e => {
     //TODO: Create Validations
     e.preventDefault()
     console.log('Submit Order')
+    console.log(this.state)
     this.successMadeOrder()
   }
 
@@ -69,7 +73,7 @@ class Checkout extends React.Component {
 
     return (
       <div>
-        <H1 underlined>Завършване на поръчката</H1>
+        <H1 centered>Завършване на поръчката</H1>
         <Container backgroundColor={colors.grey} height="0.9rem">
           <CartTable readOnly={true} cartItems={cartItems} />
           <Row justify="end">
@@ -79,7 +83,7 @@ class Checkout extends React.Component {
           </Row>
         </Container>
         <br />
-        <H1 underlined>Данни за доставка</H1>
+        <H1 centered>Данни за доставка</H1>
         <Form
           name="order"
           method="post"

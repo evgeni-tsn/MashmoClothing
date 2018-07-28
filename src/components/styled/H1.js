@@ -18,15 +18,17 @@ const HR = styled.hr`
 `
 
 const StyledH1 = styled.h1`
-  /* margin-left: 1rem; */
-  /* margin-top: 0.8rem; */
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.87rem;
   color: ${colors.black};
+  text-align: ${({ centered }) => centered && 'center'};
 `
 
-export const H1 = ({ children, underlined }) => (
+export const H1 = ({ children, underlined, centered, faded }) => (
   <div>
-    <StyledH1>{children}</StyledH1>
+    <StyledH1 faded={faded} centered={centered}>
+      {children}
+    </StyledH1>
     {underlined && <HR />}
   </div>
 )

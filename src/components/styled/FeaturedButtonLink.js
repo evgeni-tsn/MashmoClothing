@@ -8,13 +8,20 @@ export const FeaturedButtonLink = styled(StyledLink)`
   background-color: ${colors.main};
   color: ${colors.white};
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   font-weight: lighter;
   text-transform: uppercase;
   outline: none;
 
   &:hover {
-    color: ${colors.black};
+    color: ${colors.white};
     box-shadow: 0px 1px 8px 0px ${colors.dark};
+  }
+
+  &:disabled {
+    cursor: auto;
+    background-color: ${colors.white};
+    color: ${colors.darkGrey};
+    border: 1px solid ${colors.darkGrey};
   }
 `

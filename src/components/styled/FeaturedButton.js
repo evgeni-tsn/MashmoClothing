@@ -9,7 +9,7 @@ export const FeaturedButton = styled.button`
     grayedOut ? colors.darkGrey : colors.main};
   color: ${colors.white};
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   font-weight: lighter;
   text-transform: uppercase;
   outline: none;
@@ -22,7 +22,9 @@ export const FeaturedButton = styled.button`
 
   &:disabled {
     cursor: auto;
-    background-color: ${colors.darkGrey};
+    background-color: ${colors.white};
+    color: ${colors.darkGrey};
+    border: 1px solid ${colors.darkGrey};
   }
 `
 export const SubmitButton = styled(Button)`
@@ -32,20 +34,26 @@ export const SubmitButton = styled(Button)`
   background-color: ${colors.main};
   color: ${colors.white};
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   font-weight: lighter;
   text-transform: uppercase;
   outline: none;
   margin-bottom: 1rem;
 
   &:hover {
-    color: ${colors.black};
+    /* color: ${colors.black}; */
     cursor: pointer;
     box-shadow: 0px 1px 8px 0px ${colors.dark};
   }
 
+  &:disabled:hover {
+    box-shadow: none;
+  }
+
   &:disabled {
     cursor: auto;
-    background-color: ${colors.darkGrey};
+    background-color: ${colors.white};
+    color: ${colors.darkGrey};
+    border: 1px solid ${colors.darkGrey};
   }
 `

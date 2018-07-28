@@ -6,7 +6,12 @@ import { Row, Col } from 'react-simple-flex-grid'
 import '../utils/responsiveTablesCSS.css'
 
 import { Toast, CartTable } from '../components'
-import { Container, FeaturedButtonLink, H1 } from '../components/styled'
+import {
+  Container,
+  FeaturedButtonLink,
+  H1,
+  GhostButtonLink,
+} from '../components/styled'
 
 import colors from '../utils/colors'
 
@@ -35,6 +40,13 @@ const TdValue = styled.td`
   text-align: right;
 `
 
+const EmptyCartLabel = styled.h2`
+  margin-top: 2rem;
+  font-weight: 300;
+  color: ${colors.darkGrey};
+  text-align: center;
+`
+
 class Cart extends React.Component {
   state = {
     cartItems: [],
@@ -56,20 +68,27 @@ class Cart extends React.Component {
   }
 
   successRemovedItemToast = () =>
-    toast(() => (
-      <div>
-        <div style={{ color: colors.black }}>
-          Продуктът беше премахнат от количката! 😎
+    toast(
+      () => (
+        <div>
+          <div style={{ color: colors.white }}>
+            Продуктът беше премахнат от количката! 😎
+          </div>
+          <Link style={{ color: colors.white }} to="/products">
+            Виж всички продукти
+          </Link>
         </div>
-        <Link to="/products">Виж всички продукти</Link>
-      </div>
-    ))
+      ),
+      { className: 'gold-background' }
+    )
 
   removeItemFromCart = e => {
     this.state.cartItems.forEach(cartItem => {
-      if (cartItem.contentful_id === e.target.id) {
+      if (cartItem.contentful_id + cartItem.selectedSize === e.target.id) {
         let updatedItems = this.state.cartItems.filter(
-          e => e.contentful_id !== cartItem.contentful_id
+          e =>
+            e.contentful_id + e.selectedSize !==
+            cartItem.contentful_id + cartItem.selectedSize
         )
         this.setState({ cartItems: updatedItems }, () => {
           if (typeof window !== 'undefined' && window.localStorage) {
@@ -86,8 +105,19 @@ class Cart extends React.Component {
   renderEmptyCart = () => {
     //TODO: Add more cool msg and redirect
     return (
-      <Container backgroundColor={colors.grey} height="0.9rem">
-        <h1>The Cart is Empty</h1>
+      <Container height="0.9rem">
+        <EmptyCartLabel>Твоята количка е празна</EmptyCartLabel>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '3rem',
+          }}
+        >
+          <GhostButtonLink to="/products" style={{ fontSize: '1rem' }}>
+            Виж продуктите
+          </GhostButtonLink>
+        </div>
       </Container>
     )
   }
@@ -129,7 +159,6 @@ class Cart extends React.Component {
         <Row justify="end" align="middle" style={{ marginTop: '1rem' }}>
           <FeaturedButtonLink to="/checkout">Продължи</FeaturedButtonLink>
         </Row>
-        <Toast />
       </div>
     )
   }
@@ -140,10 +169,11 @@ class Cart extends React.Component {
 
     return (
       <div>
-        <H1>Количка</H1>
+        <H1 centered>Количка</H1>
         {isCartEmpty
           ? this.renderEmptyCart()
           : this.renderCartContent(cartItems)}
+        <Toast />
       </div>
     )
   }
