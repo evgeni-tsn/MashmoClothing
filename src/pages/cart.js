@@ -103,7 +103,6 @@ class Cart extends React.Component {
   }
 
   renderEmptyCart = () => {
-    //TODO: Add more cool msg and redirect
     return (
       <Container height="0.9rem">
         <EmptyCartLabel>Твоята количка е празна</EmptyCartLabel>

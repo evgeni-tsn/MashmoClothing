@@ -16,14 +16,16 @@ import {
 
 import colors from '../utils/colors'
 import { required } from '../utils/validations'
+import { createOrder } from '../services/contentfulManagement'
+
+const initialState = {
+  cartItems: [],
+}
 
 class Checkout extends React.Component {
   constructor(props) {
     super(props)
-    //TODO: Redirect from this page to Products if there is nothing in the cart
-    this.state = {
-      cartItems: [],
-    }
+    this.state = initialState
   }
 
   componentDidMount() {
@@ -34,7 +36,6 @@ class Checkout extends React.Component {
         },
         () => {
           if (this.state.cartItems.length === 0) {
-            //TODO: Display toastr msg for redirect
             this.props.history.push('/products')
           }
         }
@@ -43,7 +44,7 @@ class Checkout extends React.Component {
   }
 
   handleChange = e => {
-    //TODO: Create Validations
+    //TODO: Create Validations if we reenable button
     this.setState({ [e.target.name]: e.target.value })
   }
 
@@ -63,14 +64,22 @@ class Checkout extends React.Component {
     //TODO: Create Validations
     e.preventDefault()
     console.log('Submit Order')
-    console.log(this.state)
-    this.successMadeOrder()
+    createOrder(this.state)
+      .then(entry => {
+        console.log(entry)
+        this.setState(initialState)
+        this.successMadeOrder()
+        localStorage.setItem('cart', JSON.stringify([]))
+        this.props.updateCartItemsCount(0)
+      })
+      .catch(err => console.log(err))
+
+    //TODO: Validate backend fields
+    //TODO: Redirect to Success Page Thanks!
   }
 
   render() {
     const { cartItems } = this.state
-    let isCartEmpty = cartItems.length === 0
-
     return (
       <div>
         <H1 centered>Завършване на поръчката</H1>
@@ -87,7 +96,7 @@ class Checkout extends React.Component {
         <Form
           name="order"
           method="post"
-          action="/" //TODO: decide what to do here maybe thanks for the order ?
+          action="/"
           onSubmit={this.handleSubmit}
         >
           <Row gutter={40}>

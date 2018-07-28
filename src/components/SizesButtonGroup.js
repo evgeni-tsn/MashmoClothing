@@ -29,7 +29,7 @@ export class SizesButtonGroup extends React.Component {
             key={button}
             id={button}
           >
-            {button}
+            {button === 'OneSize' ? 'One Size' : button}
           </SizeButton>
         ))}
       </div>

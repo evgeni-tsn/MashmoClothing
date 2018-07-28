@@ -4,25 +4,47 @@ const client = createClient({
   accessToken: process.env.GATSBY_CONTENTFUL_API_CALLS_TOKEN,
 })
 
-export function createOrder() {
-  client
+export function createOrder(orderDetails) {
+  let orderedItemsStr = ''
+  orderDetails.cartItems.forEach(item => {
+    for (const key in item) {
+      if (item.hasOwnProperty(key)) {
+        const element = item[key]
+        orderedItemsStr += `${key}: ${element} | `
+      }
+    }
+    orderedItemsStr += '\n'
+  })
+
+  console.log(orderedItemsStr)
+  return client
     .getSpace('5l0wzl1wbtvw')
     .then(space => space.getEnvironment('master'))
     .then(environment =>
       environment.createEntry('order', {
         fields: {
-          name: {
-            'en-US': 'First Customer',
+          firstName: {
+            'en-US': orderDetails.firstName,
+          },
+          lastName: {
+            'en-US': orderDetails.lastName,
           },
           phone: {
-            'en-US': '0888888888',
+            'en-US': orderDetails.phone,
           },
-          econtAddress: {
-            'en-US': 'Sofia Business Park',
+          econt: {
+            'en-US': orderDetails.econt,
+          },
+          city: {
+            'en-US': orderDetails.city,
+          },
+          note: {
+            'en-US': orderDetails.note,
+          },
+          orderedProducts: {
+            'en-US': orderedItemsStr,
           },
         },
       })
     )
-    .then(entry => console.log(entry))
-    .catch(console.error)
 }

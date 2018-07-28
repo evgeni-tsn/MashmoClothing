@@ -41,8 +41,8 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
       <Thead>
         <Tr>
           <TH>Продукт</TH>
-          <TH>Цена</TH>
           <TH>Размер</TH>
+          <TH>Цена</TH>
           <TH>Количество</TH>
           <TH>Общо</TH>
           <TH />
@@ -54,8 +54,12 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
             <TD>
               <Link to={product.slug}>{product.name}</Link>
             </TD>
+            <TD>
+              {product.selectedSize === 'OneSize'
+                ? 'One Size'
+                : product.selectedSize}
+            </TD>
             <TD>{product.price}лв.</TD>
-            <TD>{product.selectedSize}</TD>
             <TD>{product.quantity}</TD>
             <TD>{product.price * product.quantity}лв.</TD>
 

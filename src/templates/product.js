@@ -89,11 +89,9 @@ class ProductTemplate extends React.Component {
   addToCart = productData => {
     if (!this.checkDisabledSubmit()) {
       this.setState({ displayError: false })
-      //TODO: Diferentiate the Sizes of each product
       if (typeof window !== 'undefined' && window.localStorage) {
         let oldItems = JSON.parse(localStorage.getItem('cart')) || []
         let updateQuantity = false
-        //TODO: Add only needed data not all (remove images for ex.)
         for (const savedItem of oldItems) {
           if (
             savedItem.contentful_id === productData.contentful_id &&
@@ -107,7 +105,7 @@ class ProductTemplate extends React.Component {
 
         if (!updateQuantity)
           oldItems.push({
-            contentful_id: productData.contentful_id,
+            // contentful_id: productData.contentful_id,
             name: productData.name,
             price: productData.isOnSale
               ? productData.onSalePrice
@@ -246,6 +244,8 @@ class ProductTemplate extends React.Component {
                 )}
             </ProductPriceWrapper>
             <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
+            {/* TODO: Display product label and hide size if no quantity */}
+            {/* TODO: Disable button and error for no quantity */}
             <P>Размер</P>
             <SizesButtonGroup
               sizes={availableSizes}

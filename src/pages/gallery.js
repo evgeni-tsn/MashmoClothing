@@ -149,7 +149,6 @@ class Gallery extends React.Component {
   }
 }
 
-//TODO: Sort images by order
 //TODO: Consider adding description of the images and use thar for alt tag
 export const query = graphql`
   query GalleryPageQuery {
