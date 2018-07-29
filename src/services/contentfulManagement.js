@@ -4,6 +4,8 @@ const client = createClient({
   accessToken: process.env.GATSBY_CONTENTFUL_API_CALLS_TOKEN,
 })
 
+const SPACE_ID = '5l0wzl1wbtvw'
+
 export function createOrder(orderDetails) {
   let orderedItemsStr = ''
   orderDetails.cartItems.forEach(item => {
@@ -16,9 +18,8 @@ export function createOrder(orderDetails) {
     orderedItemsStr += '\n'
   })
 
-  console.log(orderedItemsStr)
   return client
-    .getSpace('5l0wzl1wbtvw')
+    .getSpace(SPACE_ID)
     .then(space => space.getEnvironment('master'))
     .then(environment =>
       environment.createEntry('order', {
@@ -47,4 +48,20 @@ export function createOrder(orderDetails) {
         },
       })
     )
+}
+
+export function updateEntry(product) {
+  const updateId = product.contentful_id
+  client
+    .getSpace(SPACE_ID)
+    .then(space => space.getEnvironment('master'))
+    .then(environment => environment.getEntry(updateId))
+    .then(entry => {
+      console.log('entry', entry)
+      entry.fields.sizes['en-US'][product.selectedSize] -= product.quantity
+      return entry.update()
+    })
+    .then(entry => entry.publish())
+    .then(entry => console.log(`Entry ${entry.sys.id} updated and published.`))
+    .catch(console.error)
 }

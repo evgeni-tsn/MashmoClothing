@@ -16,7 +16,7 @@ import {
 
 import colors from '../utils/colors'
 import { required } from '../utils/validations'
-import { createOrder } from '../services/contentfulManagement'
+import { createOrder, updateEntry } from '../services/contentfulManagement'
 
 const initialState = {
   cartItems: [],
@@ -67,6 +67,9 @@ class Checkout extends React.Component {
     createOrder(this.state)
       .then(entry => {
         console.log(entry)
+        this.state.cartItems.forEach(item => {
+          updateEntry(item)
+        })
         this.setState(initialState)
         this.successMadeOrder()
         localStorage.setItem('cart', JSON.stringify([]))

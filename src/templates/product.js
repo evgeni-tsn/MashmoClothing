@@ -105,7 +105,7 @@ class ProductTemplate extends React.Component {
 
         if (!updateQuantity)
           oldItems.push({
-            // contentful_id: productData.contentful_id,
+            contentful_id: productData.contentful_id,
             name: productData.name,
             price: productData.isOnSale
               ? productData.onSalePrice
