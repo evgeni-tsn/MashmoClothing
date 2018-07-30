@@ -57,11 +57,12 @@ export function updateEntry(product) {
     .then(space => space.getEnvironment('master'))
     .then(environment => environment.getEntry(updateId))
     .then(entry => {
-      console.log('entry', entry)
-      entry.fields.sizes['en-US'][product.selectedSize] -= product.quantity
+      for (let i = 0; i < product.selectedSize.length; i++) {
+        entry.fields.sizes['en-US'][product.selectedSize[i]] -=
+          product.quantity[i]
+      }
       return entry.update()
     })
     .then(entry => entry.publish())
-    .then(entry => console.log(`Entry ${entry.sys.id} updated and published.`))
     .catch(console.error)
 }

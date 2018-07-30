@@ -61,13 +61,32 @@ class Checkout extends React.Component {
     )
 
   handleSubmit = e => {
-    //TODO: Create Validations
     e.preventDefault()
-    console.log('Submit Order')
+    const updateReadyItems = []
+    this.state.cartItems.forEach(item => {
+      let updatedFlag = false
+      for (const key in updateReadyItems) {
+        if (item.contentful_id === updateReadyItems[key].contentful_id) {
+          updatedFlag = true
+          updateReadyItems[key].selectedSize = [
+            ...updateReadyItems[key].selectedSize,
+            item.selectedSize,
+          ]
+          updateReadyItems[key].quantity = [
+            ...updateReadyItems[key].quantity,
+            item.quantity,
+          ]
+        }
+      }
+      if (!updatedFlag) {
+        updateReadyItems.push(item)
+      }
+    })
+
     createOrder(this.state)
       .then(entry => {
         console.log(entry)
-        this.state.cartItems.forEach(item => {
+        updateReadyItems.forEach(item => {
           updateEntry(item)
         })
         this.setState(initialState)
