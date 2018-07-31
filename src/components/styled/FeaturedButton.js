@@ -4,10 +4,11 @@ import Button from 'react-validation/build/button'
 import colors from '../../utils/colors'
 
 export const FeaturedButton = styled.button`
-  border: none;
+  border: ${({ grayedOut }) =>
+    grayedOut ? `1px solid ${colors.darkGrey}` : 'none'};
   background-color: ${({ grayedOut }) =>
-    grayedOut ? colors.darkGrey : colors.main};
-  color: ${colors.white};
+    grayedOut ? colors.white : colors.main};
+  color: ${({ grayedOut }) => (grayedOut ? colors.darkGrey : colors.white)};
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
   font-weight: lighter;
@@ -15,9 +16,10 @@ export const FeaturedButton = styled.button`
   outline: none;
 
   &:hover {
-    color: ${({ grayedOut }) => (grayedOut ? colors.white : colors.black)};
+    color: ${colors.black};
     cursor: ${({ grayedOut }) => (grayedOut ? 'auto' : 'pointer')};
-    box-shadow: 0px 1px 8px 0px ${colors.dark};
+    box-shadow: ${({ grayedOut }) =>
+      grayedOut ? 'none' : `0px 1px 8px 0px ${colors.dark}`};
   }
 
   &:disabled {

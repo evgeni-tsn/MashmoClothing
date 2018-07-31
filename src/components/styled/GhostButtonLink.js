@@ -17,7 +17,8 @@ export const GhostButtonLink = styled(StyledLink)`
   border: 1px solid transparent;
 
   &:hover {
-    border: 1px solid ${colors.main};
-    border-radius: 1rem;
+    text-decoration: underline;
+    /* border: 1px solid ${colors.main};
+    border-radius: 1rem; */
   }
 `
