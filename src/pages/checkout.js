@@ -16,6 +16,7 @@ import {
 
 import colors from '../utils/colors'
 import { required } from '../utils/validations'
+import { calculateTotal } from '../utils/utilFunctions'
 import { createOrder, updateEntry } from '../services/contentfulManagement'
 
 const initialState = {
@@ -89,14 +90,14 @@ class Checkout extends React.Component {
 
     createOrder(this.state)
       .then(entry => {
-        console.log(entry)
         updateReadyItems.forEach(item => {
           updateEntry(item)
         })
         this.setState(initialState)
         this.successMadeOrder()
-        localStorage.setItem('cart', JSON.stringify([]))
+        // localStorage.setItem('cart', JSON.stringify([]))
         this.props.updateCartItemsCount(0)
+        this.props.history.push('/summary')
       })
       .catch(err => console.log(err))
 
@@ -111,10 +112,22 @@ class Checkout extends React.Component {
         <H1 centered>Завършване на поръчката</H1>
         <Container backgroundColor={colors.grey} height="0.9rem">
           <CartTable readOnly={true} cartItems={cartItems} />
-          <Row justify="end">
-            <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
-              Обратно към количката
-            </GhostButtonLink>
+          <Row justify="space-between" align="middle">
+            <Col span={6}>
+              <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
+                Обратно към количката
+              </GhostButtonLink>
+            </Col>
+            <Col span={6}>
+              <div style={{ marginRight: '2rem' }}>
+                <p style={{ textAlign: 'right' }}>
+                  Обща сума: <strong>{calculateTotal(cartItems)}лв.</strong>
+                </p>
+                <p style={{ textAlign: 'right' }}>
+                  Доставка: <strong>0лв.</strong>
+                </p>
+              </div>
+            </Col>
           </Row>
         </Container>
         <br />
