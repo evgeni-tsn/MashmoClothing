@@ -81,50 +81,43 @@ export default class Contact extends React.Component {
         >
           {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
           <input type="hidden" name="form-name" value="contact" />
-          <p hidden>
-            <label>
-              Don’t fill this out:{' '}
-              <input name="bot-field" onChange={this.handleChange} />
-            </label>
-          </p>
-          <p>
-            <label>
-              <InputField
-                type="text"
-                name="name"
-                placeholder="Име *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-            </label>
-          </p>
-          <p>
-            <label>
-              <InputField
-                type="email"
-                name="email"
-                placeholder="Email *"
-                validations={[required, email]}
-                onChange={this.handleChange}
-              />
-            </label>
-          </p>
-          <p>
-            <label>
-              <TextAreaField
-                name="message"
-                rows={4}
-                placeholder="Съобщение *"
-                validations={[required, gt]}
-                onChange={this.handleChange}
-              />
-            </label>
-          </p>
-          <p style={{ marginTop: '2rem' }}>
-            <SubmitButton type="submit" style={{ width: '15%' }}>
-              Изпрати
-            </SubmitButton>
-          </p>
+          <label hidden>
+            Don’t fill this out:{' '}
+            <input name="bot-field" onChange={this.handleChange} />
+          </label>
+          <label>
+            <InputField
+              type="text"
+              name="name"
+              placeholder="Име *"
+              validations={[required]}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            <InputField
+              type="email"
+              name="email"
+              placeholder="Email *"
+              validations={[required, email]}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            <TextAreaField
+              name="message"
+              rows={4}
+              placeholder="Съобщение *"
+              validations={[required, gt]}
+              onChange={this.handleChange}
+            />
+          </label>
+          <SubmitButton
+            type="submit"
+            style={{ width: '15%', marginTop: '2rem' }}
+          >
+            Изпрати
+          </SubmitButton>
         </Form>
         <Toast />
       </ContactsContainer>
