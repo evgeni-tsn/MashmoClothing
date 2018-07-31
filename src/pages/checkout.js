@@ -79,7 +79,11 @@ class Checkout extends React.Component {
         }
       }
       if (!updatedFlag) {
-        updateReadyItems.push(item)
+        updateReadyItems.push({
+          ...item,
+          selectedSize: [item.selectedSize],
+          quantity: [item.quantity],
+        })
       }
     })
 
