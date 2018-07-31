@@ -60,10 +60,10 @@ export const Footer = () => {
             Начало
           </FooterLinks>
           <VerticalLine />
-          <FooterLinks smaller thin light to="/influencers" exact={true}>
+          {/* <FooterLinks smaller thin light to="/influencers" exact={true}>
             Инфлуенсъри
-          </FooterLinks>
-          <VerticalLine />
+          </FooterLinks> */}
+          {/* <VerticalLine /> */}
           <FooterLinks smaller thin light to="/gallery" exact={true}>
             Галерия
           </FooterLinks>

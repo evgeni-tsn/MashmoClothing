@@ -127,11 +127,13 @@ export class ProductCard extends React.Component {
     return (
       <ProductCardContainer>
         <StyledLink to={node.slug}>
-          {node.isOnSale && <SaleLabel>SALE</SaleLabel>}
+          {node.isOnSale && <SaleLabel>НАМАЛЕНО</SaleLabel>}
           {availableQuantity < 5 &&
-            availableQuantity > 0 && <LimitedLabel>LAST ITEMS</LimitedLabel>}
+            availableQuantity > 0 && (
+              <LimitedLabel>ПОСЛЕДНИ БРОЙКИ</LimitedLabel>
+            )}
           {availableQuantity === 0 && (
-            <OutOfStockLabel>OUT OF STOCK</OutOfStockLabel>
+            <OutOfStockLabel>ИЗЧЕРПАНО</OutOfStockLabel>
           )}
           <ProductImageWrapper>
             <ProductCardImage
