@@ -243,27 +243,35 @@ class ProductTemplate extends React.Component {
                   </ProductPrice>
                 )}
             </ProductPriceWrapper>
-            <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
+            {totalQuantity > 0 ? (
+              <div>
+                <FreeDeliveryMsg>Безплатна доставка</FreeDeliveryMsg>
+
+                <P>Размер</P>
+                <SizesButtonGroup
+                  sizes={availableSizes}
+                  selected={this.state.sizeChoice}
+                  onChange={e => this.updateSizeSelection(e)}
+                />
+                <P>Количество</P>
+                <QuantityControls
+                  decreaseTrigger={() => this.decreaseQuantity()}
+                  increaseTrigger={() => this.increaseQuantity()}
+                  disableMinusButton={this.state.disableMinusButton}
+                  disablePlusButton={this.state.disablePlusButton}
+                  value={this.state.quantityValue}
+                />
+              </div>
+            ) : (
+              <div style={{ marginTop: '2rem' }}>ИЗЧЕРПАНО</div>
+            )}
             {/* TODO: Display product label and hide size if no quantity */}
             {/* TODO: Disable button and error for no quantity */}
-            <P>Размер</P>
-            <SizesButtonGroup
-              sizes={availableSizes}
-              selected={this.state.sizeChoice}
-              onChange={e => this.updateSizeSelection(e)}
-            />
-            <P>Количество</P>
-            <QuantityControls
-              decreaseTrigger={() => this.decreaseQuantity()}
-              increaseTrigger={() => this.increaseQuantity()}
-              disableMinusButton={this.state.disableMinusButton}
-              disablePlusButton={this.state.disablePlusButton}
-              value={this.state.quantityValue}
-            />
             <br />
             <FeaturedButton
               grayedOut={!this.state.sizeChoice}
               onClick={() => this.addToCart(productData)}
+              disabled={totalQuantity <= 0}
             >
               Добави в количката
             </FeaturedButton>
