@@ -7,6 +7,7 @@ import { ProductCard } from './ProductCard'
 import { Toast } from './Toast'
 import { SizesButtonGroup } from './SizesButtonGroup'
 import { QuantityControls } from './QuantityControls'
+import { TotalPriceContainer } from './TotalPriceContainer'
 
 export {
   CartTable,
@@ -18,4 +19,5 @@ export {
   Toast,
   SizesButtonGroup,
   QuantityControls,
+  TotalPriceContainer,
 }

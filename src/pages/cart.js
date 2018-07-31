@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import '../utils/responsiveTablesCSS.css'
 
-import { Toast, CartTable } from '../components'
+import { Toast, CartTable, TotalPriceContainer } from '../components'
 import {
   Container,
   FeaturedButtonLink,
@@ -14,31 +14,6 @@ import {
 } from '../components/styled'
 
 import colors from '../utils/colors'
-
-const Span = styled.span`
-  color: ${colors.main};
-`
-
-const TotalContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 2rem;
-`
-
-const P = styled.p`
-  margin-right: 1rem;
-  font-size: 1.2rem;
-`
-
-const TdLabel = styled.td`
-  padding-left: 1rem !important;
-`
-const TdValue = styled.td`
-  padding-right: 1rem !important;
-  text-align: right;
-`
 
 const EmptyCartLabel = styled.h2`
   margin-top: 2rem;
@@ -131,30 +106,7 @@ class Cart extends React.Component {
             removeItemFromCart={this.removeItemFromCart}
           />
         </Container>
-        <TotalContainer>
-          <Row justify="end" align="middle">
-            <Col>
-              <table>
-                <tbody>
-                  <tr>
-                    <TdLabel>Междинна сума:</TdLabel>
-                    <TdValue>{this.calculateTotal(cartItems)}лв.</TdValue>
-                  </tr>
-                  <tr style={{ backgroundColor: colors.grey }}>
-                    <TdLabel>Доставка:</TdLabel>
-                    <TdValue>0лв.</TdValue>
-                  </tr>
-                  <tr>
-                    <TdLabel>Общо:</TdLabel>
-                    <TdValue>
-                      <Span>{this.calculateTotal(cartItems)}лв.</Span>
-                    </TdValue>
-                  </tr>
-                </tbody>
-              </table>
-            </Col>
-          </Row>
-        </TotalContainer>
+        <TotalPriceContainer cartItems={cartItems} />
         <Row justify="end" align="middle" style={{ marginTop: '1rem' }}>
           <FeaturedButtonLink to="/checkout">Продължи</FeaturedButtonLink>
         </Row>
