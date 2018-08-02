@@ -8,7 +8,7 @@ const colors = {
   black: '#2A2A2A',
   fullWhite: '#FFFFFF',
   fullBlack: '#101010',
-  red: '#f70d1a',
+  red: '#9d5050',
 }
 
 export default colors

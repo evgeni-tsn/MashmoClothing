@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
+import Lightbox from 'react-images'
 import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
@@ -15,6 +16,7 @@ import { H1, GhostButtonLink, FeaturedButton } from '../components/styled'
 
 import colors from '../utils/colors'
 import { totalAvailableQuantity } from '../utils/utilFunctions'
+import { theme } from '../utils/lightboxTheme'
 
 const Image = styled.img`
   max-width: 300px;
@@ -72,9 +74,14 @@ class ProductTemplate extends React.Component {
     disableMinusButton: true,
     disablePlusButton: false,
     errorMsgShow: false,
-    mainImage: '',
+    mainImage: {
+      src: '',
+      index: '',
+    },
     sizeChoice: '',
     displayError: false,
+    currentImage: 0,
+    lightboxIsOpen: false,
   }
 
   componentDidMount() {
@@ -83,7 +90,9 @@ class ProductTemplate extends React.Component {
     } = this.props.data.allContentfulProduct.edges.find(
       ({ node }) => node.slug === this.props.pathContext.slug
     )
-    this.setState({ mainImage: productData.photos[0].resolutions.src })
+    this.setState({
+      mainImage: { src: productData.photos[0].resolutions.src, index: 0 },
+    })
   }
 
   addToCart = productData => {
@@ -172,8 +181,8 @@ class ProductTemplate extends React.Component {
       { className: 'gold-background' }
     )
 
-  changeMainImage(e) {
-    this.setState({ mainImage: e.target.src })
+  changeMainImage(e, index) {
+    this.setState({ mainImage: { src: e.target.src, index: index } })
   }
 
   showAvailableSizes(sizes) {
@@ -197,12 +206,46 @@ class ProductTemplate extends React.Component {
     )
   }
 
+  openLightbox = (event, obj) => {
+    this.setState({
+      currentImage: obj.index,
+      lightboxIsOpen: true,
+    })
+  }
+  closeLightbox = () => {
+    this.setState({
+      currentImage: 0,
+      lightboxIsOpen: false,
+    })
+  }
+  gotoPrevious = () => {
+    this.setState({
+      currentImage: this.state.currentImage - 1,
+    })
+  }
+  gotoNext = () => {
+    this.setState({
+      currentImage: this.state.currentImage + 1,
+    })
+  }
+
   render() {
     const {
       node: productData,
     } = this.props.data.allContentfulProduct.edges.find(
       ({ node }) => node.slug === this.props.pathContext.slug
     )
+
+    const photos = productData.photos.map((e, idx) => {
+      return {
+        src: e.resolutions.src,
+        srcSet: e.resolutions.srcSet.split(',\n'),
+        tracedSVG: e.resolutions.tracedSVG,
+        alt: e.title,
+        index: idx,
+      }
+    })
+    console.log('phtooss', productData.photos)
     const totalQuantity = totalAvailableQuantity(productData.sizes)
     const availableSizes = this.showAvailableSizes(productData.sizes)
     const allProducts = this.props.data.allContentfulProduct
@@ -212,23 +255,52 @@ class ProductTemplate extends React.Component {
           <Col xs={12} sm={12} md={6} lg={5} xl={5}>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
-                <Image src={this.state.mainImage} />
+                <Image
+                  src={this.state.mainImage.src}
+                  onClick={(e, o) => this.openLightbox(e, this.state.mainImage)}
+                />
               </Col>
             </Row>
             <Row justify={'center'}>
               <Col offset={2} span={8}>
                 <SmallImage1
-                  onClick={e => this.changeMainImage(e)}
+                  onClick={e => this.changeMainImage(e, 0)}
                   src={productData.photos[0].resolutions.src}
                 />
                 <SmallImage2
-                  onClick={e => this.changeMainImage(e)}
+                  onClick={e => this.changeMainImage(e, 1)}
                   src={productData.photos[1].resolutions.src}
                 />
               </Col>
             </Row>
           </Col>
           <Col xs={12} sm={12} md={6} lg={7} xl={7}>
+            {productData.isOnSale &&
+              totalQuantity > 0 && (
+                <div
+                  style={{
+                    color: colors.main,
+                    fontWeight: 'bold',
+                    fontSize: '1.1rem',
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  ПРОМОЦИЯ
+                </div>
+              )}
+            {totalQuantity < 5 &&
+              totalQuantity > 0 && (
+                <span
+                  style={{
+                    color: colors.red,
+                    fontWeight: 'bold',
+                    fontSize: '1.1rem',
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  ПОСЛЕДНИ БРОЙКИ
+                </span>
+              )}
             <H1>{productData.name}</H1>
             <DescriptionMsg>{productData.description}</DescriptionMsg>
             <ProductPriceWrapper>
@@ -263,10 +335,17 @@ class ProductTemplate extends React.Component {
                 />
               </div>
             ) : (
-              <div style={{ marginTop: '2rem' }}>ИЗЧЕРПАНО</div>
+              <div
+                style={{
+                  color: colors.darkGrey,
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
+                  marginTop: '2rem',
+                }}
+              >
+                ИЗЧЕРПАНО
+              </div>
             )}
-            {/* TODO: Display product label and hide size if no quantity */}
-            {/* TODO: Disable button and error for no quantity */}
             <br />
             <FeaturedButton
               grayedOut={!this.state.sizeChoice}
@@ -286,6 +365,20 @@ class ProductTemplate extends React.Component {
         <br />
         {/* <FeaturedSection filterOut={productData} allProducts={allProducts} /> */}
         <Toast />
+        <Lightbox
+          images={photos}
+          onClose={this.closeLightbox}
+          onClickPrev={this.gotoPrevious}
+          onClickNext={this.gotoNext}
+          currentImage={this.state.currentImage}
+          isOpen={this.state.lightboxIsOpen}
+          onClickImage={this.gotoNext}
+          backdropClosesModal
+          imageCountSeparator=" / "
+          spinnerColor={colors.main}
+          spinnerSize={150}
+          theme={theme}
+        />
       </div>
     )
   }
@@ -310,8 +403,10 @@ export const productQuery = graphql`
           updatedAt
           photos {
             id
+            title
             resolutions(width: 500, height: 500) {
               src
+              srcSet
               tracedSVG
             }
           }
