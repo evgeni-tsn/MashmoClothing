@@ -66,6 +66,18 @@ const ProductPrice = styled.h3`
   font-weight: 400;
 `
 
+const ClickToZoom = styled.div`
+  opacity: 0.8;
+  color: ${colors.white};
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: ${colors.darkGrey};
+  border-radius: 0.75rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.7rem;
+`
+
 class ProductTemplate extends React.Component {
   state = {
     quantityValue: 1,
@@ -254,11 +266,13 @@ class ProductTemplate extends React.Component {
         <Row justify={'center'}>
           <Col xs={12} sm={12} md={6} lg={5} xl={5}>
             <Row justify={'center'}>
-              <Col offset={2} span={8}>
-                <Image
-                  src={this.state.mainImage.src}
-                  onClick={(e, o) => this.openLightbox(e, this.state.mainImage)}
-                />
+              <Col
+                offset={2}
+                span={8}
+                onClick={(e, o) => this.openLightbox(e, this.state.mainImage)}
+              >
+                <ClickToZoom>CLICK TO ZOOM</ClickToZoom>
+                <Image src={this.state.mainImage.src} />
               </Col>
             </Row>
             <Row justify={'center'}>
