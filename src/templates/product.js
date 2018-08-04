@@ -19,6 +19,7 @@ import { totalAvailableQuantity } from '../utils/utilFunctions'
 import { theme } from '../utils/lightboxTheme'
 
 const Image = styled.img`
+  cursor: pointer;
   max-width: 300px;
 `
 const SmallImage1 = styled.img`
@@ -76,6 +77,7 @@ const ClickToZoom = styled.div`
   border-radius: 0.75rem;
   padding: 0.1rem 0.6rem;
   font-size: 0.7rem;
+  cursor: pointer;
 `
 
 class ProductTemplate extends React.Component {
@@ -257,7 +259,6 @@ class ProductTemplate extends React.Component {
         index: idx,
       }
     })
-    console.log('phtooss', productData.photos)
     const totalQuantity = totalAvailableQuantity(productData.sizes)
     const availableSizes = this.showAvailableSizes(productData.sizes)
     const allProducts = this.props.data.allContentfulProduct
