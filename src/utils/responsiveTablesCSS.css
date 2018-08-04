@@ -7,7 +7,7 @@
   display: none;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 767px) {
   .responsiveTable {
     /* Force table elements to not behave like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */

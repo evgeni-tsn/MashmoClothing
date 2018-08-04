@@ -37,16 +37,24 @@ const IconExternalLink = styled.a`
 `
 
 const FooterLinks = styled(StyledLink)`
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  margin: 0.5rem;
+`
+
+const FooterVerticalLine = styled(VerticalLine)`
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
 `
 
 const FooterLinksContainer = styled.div`
   margin-top: 1.4rem;
   margin-bottom: 1.4rem;
 
-  @media only screen and (max-width: 900px) {
-    display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `
 
@@ -59,19 +67,19 @@ export const Footer = () => {
           <FooterLinks smaller thin light to="/" exact={true}>
             Начало
           </FooterLinks>
-          <VerticalLine />
+          <FooterVerticalLine />
           {/* <FooterLinks smaller thin light to="/influencers" exact={true}>
             Инфлуенсъри
           </FooterLinks> */}
-          {/* <VerticalLine /> */}
+          {/* <FooterVerticalLine /> */}
           <FooterLinks smaller thin light to="/gallery" exact={true}>
             Галерия
           </FooterLinks>
-          <VerticalLine />
+          <FooterVerticalLine />
           <FooterLinks smaller thin light to="/info" exact={true}>
             Информация
           </FooterLinks>
-          <VerticalLine />
+          <FooterVerticalLine />
           <FooterLinks smaller thin light to="/products" exact={true}>
             Продукти
           </FooterLinks>

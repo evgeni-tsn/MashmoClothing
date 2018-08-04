@@ -10,6 +10,13 @@ const ProductListRow = styled(Row)`
   padding-top: 1rem;
 `
 
+const ExtendedCol = styled(Col)`
+  @media only screen and (max-width: 576px) {
+    display: block !important;
+    width: 100% !important;
+  }
+`
+
 const IndexPage = ({ data }) => {
   return (
     <div>
@@ -18,9 +25,16 @@ const IndexPage = ({ data }) => {
       {/* <hr /> */}
       <ProductListRow gutter={20} align={'middle'}>
         {data.allContentfulProduct.edges.map(({ node }) => (
-          <Col xs={12} sm={6} md={6} lg={4} xl={4} key={node.contentful_id}>
+          <ExtendedCol
+            xs={6}
+            sm={6}
+            md={4}
+            lg={4}
+            xl={4}
+            key={node.contentful_id}
+          >
             <ProductCard productData={node} />
-          </Col>
+          </ExtendedCol>
         ))}
       </ProductListRow>
     </div>

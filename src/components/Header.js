@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import NotificationBadge, { Effect } from 'react-notification-badge'
+import HamburgerMenu from 'react-hamburger-menu'
 
 import {
   StyledLink,
@@ -40,6 +41,22 @@ const DesktopMenu = styled.ul`
   }
 `
 
+const MobileMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (min-width: 901px) {
+    display: none;
+  }
+`
+
+const MobileVerticalLine = styled(VerticalLine)`
+  border-color: ${colors.black};
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+`
+
 const DesktopMenuItem = styled.li`
   padding-left: 30px;
   padding: 0.4rem 0.6rem;
@@ -66,11 +83,50 @@ const MailIconLink = styled(IconLink)`
   margin-left: 0.4rem;
 `
 export class Header extends React.Component {
+  state = {
+    isOpen: false,
+  }
+  handleClick = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    })
+  }
   render() {
     return (
       <HeaderContent>
         <HeaderContainer>
           <Logo />
+          <MobileMenu>
+            <HamburgerMenu
+              isOpen={this.state.isOpen}
+              menuClicked={this.handleClick.bind(this)}
+              width={22}
+              height={18}
+              strokeWidth={2}
+              rotate={0}
+              color="black"
+              borderRadius={0}
+              animationDuration={0.5}
+            />
+            <MobileVerticalLine />
+            <MailIconLink to="/cart">
+              <div>
+                <NotificationBadge
+                  style={{
+                    backgroundColor: colors.main,
+                    top: '-0.31rem',
+                  }}
+                  count={this.props.cartItemsCount}
+                  effect={Effect.SCALE}
+                />
+                <HeaderIcon
+                  src={cartIcon}
+                  alt={'cart'}
+                  style={{ width: '1.5rem', marginTop: 0 }}
+                />
+              </div>
+            </MailIconLink>
+          </MobileMenu>
           <DesktopMenu>
             <DesktopMenuItem>
               <NavLink to="/" exact={true}>

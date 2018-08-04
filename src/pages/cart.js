@@ -99,7 +99,12 @@ class Cart extends React.Component {
   renderCartContent = cartItems => {
     return (
       <div>
-        <Container backgroundColor={colors.grey} height="0.9rem">
+        <Container
+          backgroundColor={colors.grey}
+          height="0.9rem"
+          paddingHeight="0.8rem"
+          paddingWidth="1.2rem"
+        >
           <CartTable
             readOnly={false}
             cartItems={cartItems}
