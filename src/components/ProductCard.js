@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
+import Measure from 'react-measure'
 import styled from 'styled-components'
 
 import { StyledLink } from './styled'
@@ -97,7 +98,7 @@ const ProductCardFooter = styled.div`
 const Label = styled.div`
   position: absolute;
   z-index: 999;
-  width: 93%;
+  /* width: 93%; */
   text-align: center;
   padding: 0.6rem 0;
   font-size: 1.2rem;
@@ -121,50 +122,78 @@ const LimitedLabel = Label.extend`
 `
 
 export class ProductCard extends React.Component {
+  state = {
+    calculatedLabelWidth: 0,
+  }
   render() {
     const { productData: node } = this.props
     const availableQuantity = totalAvailableQuantity(node.sizes)
     return (
-      <ProductCardContainer>
-        <StyledLink to={node.slug}>
-          {node.isOnSale && <SaleLabel>НАМАЛЕНО</SaleLabel>}
-          {availableQuantity < 5 &&
-            availableQuantity > 0 && (
-              <LimitedLabel>ПОСЛЕДНИ БРОЙКИ</LimitedLabel>
-            )}
-          {availableQuantity === 0 && (
-            <OutOfStockLabel>ИЗЧЕРПАНО</OutOfStockLabel>
-          )}
-          <ProductImageWrapper>
-            <ProductCardImage
-              crossout={availableQuantity === 0}
-              resolutions={node.photos[0].resolutions}
-            />
-            <ProductCardImage
-              crossout={availableQuantity === 0}
-              resolutions={node.photos[1].resolutions}
-            />
-          </ProductImageWrapper>
-          <ProductCardInfo>
-            <ProductTitle>{node.name}</ProductTitle>
-            <ProductPriceWrapper>
-              {node.isOnSale &&
-                node.onSalePrice &&
-                availableQuantity !== 0 && (
-                  <ProductPrice crossout={true}>{node.price}лв.</ProductPrice>
-                )}
-              <ProductPrice crossout={availableQuantity === 0}>
-                {node.onSalePrice && node.onSalePrice}лв.
-              </ProductPrice>
-            </ProductPriceWrapper>
-          </ProductCardInfo>
-        </StyledLink>
-        <StyledLink to={node.slug}>
-          <ProductCardFooter>
-            <p>Детайли</p>
-          </ProductCardFooter>
-        </StyledLink>
-      </ProductCardContainer>
+      <Measure
+        bounds
+        onResize={contentRect => {
+          console.log('contentRect', contentRect.bounds.width)
+          this.setState({ calculatedLabelWidth: contentRect.bounds.width - 4 })
+        }}
+      >
+        {({ measureRef }) => {
+          const { calculatedLabelWidth } = this.state
+          return (
+            <div ref={measureRef}>
+              <ProductCardContainer>
+                <StyledLink to={node.slug}>
+                  {node.isOnSale && (
+                    <SaleLabel style={{ width: calculatedLabelWidth }}>
+                      НАМАЛЕНО
+                    </SaleLabel>
+                  )}
+                  {availableQuantity < 5 &&
+                    availableQuantity > 0 && (
+                      <LimitedLabel style={{ width: calculatedLabelWidth }}>
+                        ПОСЛЕДНИ БРОЙКИ
+                      </LimitedLabel>
+                    )}
+                  {availableQuantity === 0 && (
+                    <OutOfStockLabel style={{ width: calculatedLabelWidth }}>
+                      ИЗЧЕРПАНО
+                    </OutOfStockLabel>
+                  )}
+                  <ProductImageWrapper>
+                    <ProductCardImage
+                      crossout={availableQuantity === 0}
+                      resolutions={node.photos[0].resolutions}
+                    />
+                    <ProductCardImage
+                      crossout={availableQuantity === 0}
+                      resolutions={node.photos[1].resolutions}
+                    />
+                  </ProductImageWrapper>
+                  <ProductCardInfo>
+                    <ProductTitle>{node.name}</ProductTitle>
+                    <ProductPriceWrapper>
+                      {node.isOnSale &&
+                        node.onSalePrice &&
+                        availableQuantity !== 0 && (
+                          <ProductPrice crossout={true}>
+                            {node.price}лв.
+                          </ProductPrice>
+                        )}
+                      <ProductPrice crossout={availableQuantity === 0}>
+                        {node.onSalePrice && node.onSalePrice}лв.
+                      </ProductPrice>
+                    </ProductPriceWrapper>
+                  </ProductCardInfo>
+                </StyledLink>
+                <StyledLink to={node.slug}>
+                  <ProductCardFooter>
+                    <p>Детайли</p>
+                  </ProductCardFooter>
+                </StyledLink>
+              </ProductCardContainer>
+            </div>
+          )
+        }}
+      </Measure>
     )
   }
 }
