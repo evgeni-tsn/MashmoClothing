@@ -97,8 +97,7 @@ const ProductCardFooter = styled.div`
 
 const Label = styled.div`
   position: absolute;
-  z-index: 999;
-  /* width: 93%; */
+  z-index: 998;
   text-align: center;
   padding: 0.6rem 0;
   font-size: 1.2rem;

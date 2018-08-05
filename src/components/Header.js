@@ -82,6 +82,40 @@ const MailIconLink = styled(IconLink)`
   padding-top: 0.1rem;
   margin-left: 0.4rem;
 `
+
+const DropdownMenu = styled.div`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  position: absolute;
+  top: 3.9rem;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: ${colors.white};
+`
+
+const Ul = styled.ul`
+  text-align: center;
+  list-style-type: none;
+`
+
+const Hr = styled.hr`
+  margin: 0 auto;
+  width: 65%;
+  height: 0;
+  border: 0;
+  border-top: 1px solid ${colors.main};
+`
+
+const MobileNavLink = styled(StyledLink).attrs({ activeClassName })`
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  &.${activeClassName} {
+    color: ${colors.main};
+    padding-bottom: 0.2rem;
+  }
+`
+
 export class Header extends React.Component {
   state = {
     isOpen: false,
@@ -127,6 +161,58 @@ export class Header extends React.Component {
               </div>
             </MailIconLink>
           </MobileMenu>
+
+          <DropdownMenu isOpen={this.state.isOpen}>
+            <Ul>
+              <MobileNavLink to="/" exact={true}>
+                Начало
+              </MobileNavLink>
+              <Hr />
+              <MobileNavLink to="/gallery">Галерия</MobileNavLink>
+              <Hr />
+              <MobileNavLink to="/info">Информация</MobileNavLink>
+              <Hr />
+              <MobileNavLink to="/products">Продукти</MobileNavLink>
+              <Hr />
+              <div
+                style={{
+                  display: 'block',
+                  marginTop: '1.5rem',
+                  marginBottom: '1.5rem',
+                }}
+              >
+                <IconExternalLink
+                  href="https://www.facebook.com/mashmoclothing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <HeaderIcon
+                    src={fbIcon}
+                    alt={'facebook'}
+                    style={{ width: '0.6rem' }}
+                  />
+                </IconExternalLink>
+                <IconExternalLink
+                  href="https://www.instagram.com/mashmoclothing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <HeaderIcon
+                    src={igIcon}
+                    alt={'instagram'}
+                    style={{ width: '1.4rem', marginTop: '0.4rem' }}
+                  />
+                </IconExternalLink>
+                <MailIconLink to="/contact">
+                  <HeaderIcon
+                    src={mailIcon}
+                    alt={'mail'}
+                    style={{ width: '1.4rem', marginTop: '0.4rem' }}
+                  />
+                </MailIconLink>
+              </div>
+            </Ul>
+          </DropdownMenu>
           <DesktopMenu>
             <DesktopMenuItem>
               <NavLink to="/" exact={true}>
