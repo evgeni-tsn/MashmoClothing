@@ -33,6 +33,19 @@ const TR = styled(Tr)`
   &:nth-child(even) {
     background: ${colors.grey};
   }
+
+  @media only screen and (max-width: 900px) {
+    border: none !important;
+    border-bottom: 1px solid ${colors.darkGrey} !important;
+    border-top: 1px solid ${colors.darkGrey} !important;
+    &:nth-child(odd) {
+      background: ${colors.white};
+    }
+
+    &:nth-child(even) {
+      background: ${colors.white};
+    }
+  }
 `
 
 export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {

@@ -18,4 +18,8 @@ export const TextAreaField = styled(TextArea)`
     color: ${colors.black};
     opacity: 1;
   }
+
+  @media only screen and (max-width: 900px) {
+    width: 80%;
+  }
 `

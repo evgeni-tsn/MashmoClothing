@@ -13,6 +13,10 @@ export const FeaturedButtonLink = styled(StyledLink)`
   text-transform: uppercase;
   outline: none;
 
+  @media only screen and (max-width: 900px) {
+    padding: 0.5rem 4rem;
+  }
+
   &:hover {
     color: ${colors.white};
     box-shadow: 0px 1px 8px 0px ${colors.dark};

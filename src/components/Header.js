@@ -107,8 +107,8 @@ const Hr = styled.hr`
 `
 
 const MobileNavLink = styled(StyledLink).attrs({ activeClassName })`
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.7rem;
+  margin-bottom: 1.7rem;
   display: block;
   &.${activeClassName} {
     color: ${colors.main};
@@ -164,15 +164,34 @@ export class Header extends React.Component {
 
           <DropdownMenu isOpen={this.state.isOpen}>
             <Ul>
-              <MobileNavLink to="/" exact={true}>
+              <MobileNavLink
+                to="/"
+                exact={true}
+                onClick={() => this.setState({ isOpen: false })}
+              >
                 Начало
               </MobileNavLink>
               <Hr />
-              <MobileNavLink to="/gallery">Галерия</MobileNavLink>
+              <MobileNavLink
+                to="/gallery"
+                onClick={() => this.setState({ isOpen: false })}
+              >
+                Галерия
+              </MobileNavLink>
               <Hr />
-              <MobileNavLink to="/info">Информация</MobileNavLink>
+              <MobileNavLink
+                to="/info"
+                onClick={() => this.setState({ isOpen: false })}
+              >
+                Информация
+              </MobileNavLink>
               <Hr />
-              <MobileNavLink to="/products">Продукти</MobileNavLink>
+              <MobileNavLink
+                to="/products"
+                onClick={() => this.setState({ isOpen: false })}
+              >
+                Продукти
+              </MobileNavLink>
               <Hr />
               <div
                 style={{
@@ -185,6 +204,7 @@ export class Header extends React.Component {
                   href="https://www.facebook.com/mashmoclothing/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => this.setState({ isOpen: false })}
                 >
                   <HeaderIcon
                     src={fbIcon}
@@ -196,6 +216,7 @@ export class Header extends React.Component {
                   href="https://www.instagram.com/mashmoclothing/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => this.setState({ isOpen: false })}
                 >
                   <HeaderIcon
                     src={igIcon}
@@ -203,7 +224,10 @@ export class Header extends React.Component {
                     style={{ width: '1.4rem', marginTop: '0.4rem' }}
                   />
                 </IconExternalLink>
-                <MailIconLink to="/contact">
+                <MailIconLink
+                  to="/contact"
+                  onClick={() => this.setState({ isOpen: false })}
+                >
                   <HeaderIcon
                     src={mailIcon}
                     alt={'mail'}

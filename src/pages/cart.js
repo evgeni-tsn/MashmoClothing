@@ -22,6 +22,21 @@ const EmptyCartLabel = styled.h2`
   text-align: center;
 `
 
+const ResponsiveRow = styled(Row)`
+  justify-content: flex-end !important;
+
+  @media only screen and (max-width: 900px) {
+    justify-content: center !important;
+  }
+`
+
+const CartContainer = styled(Container)`
+  background-color: ${colors.grey};
+  @media only screen and (max-width: 766px) {
+    background-color: ${colors.white};
+  }
+`
+
 class Cart extends React.Component {
   state = {
     cartItems: [],
@@ -99,8 +114,7 @@ class Cart extends React.Component {
   renderCartContent = cartItems => {
     return (
       <div>
-        <Container
-          backgroundColor={colors.grey}
+        <CartContainer
           height="0.9rem"
           paddingHeight="0.8rem"
           paddingWidth="1.2rem"
@@ -110,11 +124,11 @@ class Cart extends React.Component {
             cartItems={cartItems}
             removeItemFromCart={this.removeItemFromCart}
           />
-        </Container>
+        </CartContainer>
         <TotalPriceContainer cartItems={cartItems} />
-        <Row justify="end" align="middle" style={{ marginTop: '1rem' }}>
+        <ResponsiveRow align="middle" style={{ marginTop: '1rem' }}>
           <FeaturedButtonLink to="/checkout">Продължи</FeaturedButtonLink>
-        </Row>
+        </ResponsiveRow>
       </div>
     )
   }
