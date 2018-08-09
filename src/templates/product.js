@@ -20,16 +20,17 @@ import { theme } from '../utils/lightboxTheme'
 
 const Image = styled.img`
   cursor: pointer;
-  max-width: 300px;
+  width: 18.75rem;
+  margin-right: 0.5rem;
 `
 const SmallImage1 = styled.img`
-  max-width: 145px;
+  max-width: 8rem;
   &:hover {
     cursor: pointer;
   }
 `
 const SmallImage2 = styled(SmallImage1)`
-  margin-left: 10px;
+  margin-left: 0.5rem;
 `
 
 const ErrorMsg = styled.p`
@@ -72,7 +73,7 @@ const ClickToZoom = styled.div`
   color: ${colors.white};
   position: absolute;
   bottom: 1rem;
-  right: 1rem;
+  right: 5rem;
   background-color: ${colors.darkGrey};
   border-radius: 0.75rem;
   padding: 0.1rem 0.6rem;
@@ -265,31 +266,42 @@ class ProductTemplate extends React.Component {
     return (
       <div>
         <Row justify={'center'}>
-          <Col xs={12} sm={12} md={6} lg={5} xl={5}>
-            <Row justify={'center'}>
+          <Col xs={12} sm={5} md={5} lg={5} xl={5}>
+            <Row justify={'end'}>
               <Col
-                offset={2}
-                span={8}
+                xs={12}
+                sm={12}
+                md={{ span: 10, offset: 2 }}
+                lg={{ span: 10, offset: 2 }}
+                xl={{ span: 10, offset: 2 }}
                 onClick={(e, o) => this.openLightbox(e, this.state.mainImage)}
               >
                 <ClickToZoom>CLICK TO ZOOM</ClickToZoom>
                 <Image src={this.state.mainImage.src} />
               </Col>
             </Row>
-            <Row justify={'center'}>
-              <Col offset={2} span={8}>
-                <SmallImage1
-                  onClick={e => this.changeMainImage(e, 0)}
-                  src={productData.photos[0].resolutions.src}
-                />
-                <SmallImage2
-                  onClick={e => this.changeMainImage(e, 1)}
-                  src={productData.photos[1].resolutions.src}
-                />
+            <Row justify={'end'}>
+              <Col
+                xs={12}
+                sm={12}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+              >
+                <div>
+                  <SmallImage1
+                    onClick={e => this.changeMainImage(e, 0)}
+                    src={productData.photos[0].resolutions.src}
+                  />
+                  <SmallImage2
+                    onClick={e => this.changeMainImage(e, 1)}
+                    src={productData.photos[1].resolutions.src}
+                  />
+                </div>
               </Col>
             </Row>
           </Col>
-          <Col xs={12} sm={12} md={6} lg={7} xl={7}>
+          <Col xs={12} sm={7} md={7} lg={7} xl={7}>
             {productData.isOnSale &&
               totalQuantity > 0 && (
                 <div
