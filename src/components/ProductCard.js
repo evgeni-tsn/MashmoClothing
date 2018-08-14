@@ -152,7 +152,7 @@ export class ProductCard extends React.Component {
                         ПОСЛЕДНИ БРОЙКИ
                       </LimitedLabel>
                     )}
-                  {availableQuantity === 0 && (
+                  {availableQuantity <= 0 && (
                     <OutOfStockLabel style={{ width: calculatedLabelWidth }}>
                       ИЗЧЕРПАНО
                     </OutOfStockLabel>

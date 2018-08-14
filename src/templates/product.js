@@ -24,13 +24,29 @@ const Image = styled.img`
   margin-right: 0.5rem;
 `
 const SmallImage1 = styled.img`
-  max-width: 8rem;
+  margin-left: -0.5rem;
+  padding-top: 1rem;
+  width: 9rem;
+  height: 100%;
   &:hover {
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 886px) {
+    width: 8.4rem;
+  }
+
+  @media only screen and (max-width: 796px) {
+    width: 7.7rem;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 9rem;
+    padding-bottom: 2rem;
+  }
 `
 const SmallImage2 = styled(SmallImage1)`
-  margin-left: 0.5rem;
+  margin-left: 0.8rem;
 `
 
 const ErrorMsg = styled.p`
@@ -265,30 +281,40 @@ class ProductTemplate extends React.Component {
     const allProducts = this.props.data.allContentfulProduct
     return (
       <div>
-        <Row justify={'center'}>
+        <Row justify="center" gutter={10}>
           <Col xs={12} sm={5} md={5} lg={5} xl={5}>
-            <Row justify={'end'}>
+            <Row justify="center">
               <Col
                 xs={12}
                 sm={12}
-                md={{ span: 10, offset: 2 }}
-                lg={{ span: 10, offset: 2 }}
-                xl={{ span: 10, offset: 2 }}
+                md={12}
+                lg={12}
+                xl={12}
                 onClick={(e, o) => this.openLightbox(e, this.state.mainImage)}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
               >
-                <ClickToZoom>CLICK TO ZOOM</ClickToZoom>
+                {/* <ClickToZoom>CLICK TO ZOOM</ClickToZoom> */}
                 <Image src={this.state.mainImage.src} />
               </Col>
             </Row>
-            <Row justify={'end'}>
+            <Row justify="center" gutter={20}>
               <Col
                 xs={12}
                 sm={12}
-                md={{ span: 12 }}
-                lg={{ span: 12 }}
-                xl={{ span: 12 }}
+                md={12}
+                lg={12}
+                xl={12}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
               >
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
                   <SmallImage1
                     onClick={e => this.changeMainImage(e, 0)}
                     src={productData.photos[0].resolutions.src}
