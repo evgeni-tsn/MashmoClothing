@@ -25,6 +25,14 @@ const TD = styled(Td)`
   text-align: center;
 `
 
+const GhostButtonReponsive = styled(GhostButton)`
+  @media only screen and (max-width: 767px) {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 12.5rem;
+  }
+`
+
 const TR = styled(Tr)`
   &:nth-child(odd) {
     background: ${colors.white};
@@ -63,7 +71,10 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
       </Thead>
       <Tbody>
         {cartItems.map(product => (
-          <TR key={product.contentful_id + product.selectedSize}>
+          <TR
+            style={{ position: 'relative' }}
+            key={product.contentful_id + product.selectedSize}
+          >
             <TD>
               <Link to={product.slug}>{product.name}</Link>
             </TD>
@@ -76,15 +87,15 @@ export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
             <TD>{product.quantity}</TD>
             <TD>{product.price * product.quantity}лв.</TD>
 
-            <TD>
+            <TD style={{ position: 'absolute', right: '0.5rem', top: '0rem' }}>
               {/* TODO: Display modal msg are you sure? */}
               {!readOnly && (
-                <GhostButton
+                <GhostButtonReponsive
                   id={product.contentful_id + product.selectedSize}
                   onClick={e => removeItemFromCart(e)}
                 >
                   ✕
-                </GhostButton>
+                </GhostButtonReponsive>
               )}
             </TD>
           </TR>

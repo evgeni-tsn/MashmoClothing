@@ -32,7 +32,7 @@ const ResponsiveRow = styled(Row)`
 
 const CartContainer = styled(Container)`
   background-color: ${colors.grey};
-  @media only screen and (max-width: 766px) {
+  @media only screen and (max-width: 767px) {
     background-color: ${colors.white};
   }
 `

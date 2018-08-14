@@ -15,6 +15,9 @@ const TotalContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-top: 2rem;
+  @media only screen and (max-width: 767px) {
+    margin-top: 1rem;
+  }
 `
 
 const TdLabel = styled.td`
@@ -25,9 +28,17 @@ const TdValue = styled.td`
   text-align: right;
 `
 
+const TotalContainerResponsive = styled(TotalContainer)`
+  justify-content: flex-end;
+
+  @media only screen and (max-width: 767px) {
+    justify-content: center;
+  }
+`
+
 export const TotalPriceContainer = ({ cartItems }) => (
-  <TotalContainer>
-    <Row justify="end" align="middle">
+  <TotalContainerResponsive>
+    <Row align="middle">
       <Col>
         <table>
           <tbody>
@@ -49,5 +60,5 @@ export const TotalPriceContainer = ({ cartItems }) => (
         </table>
       </Col>
     </Row>
-  </TotalContainer>
+  </TotalContainerResponsive>
 )
