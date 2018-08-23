@@ -11,6 +11,7 @@ import {
   FeaturedButtonLink,
   H1,
   GhostButtonLink,
+  CartContainer,
 } from '../components/styled'
 
 import colors from '../utils/colors'
@@ -27,13 +28,6 @@ const ResponsiveRow = styled(Row)`
 
   @media only screen and (max-width: 900px) {
     justify-content: center !important;
-  }
-`
-
-const CartContainer = styled(Container)`
-  background-color: ${colors.grey};
-  @media only screen and (max-width: 767px) {
-    background-color: ${colors.white};
   }
 `
 

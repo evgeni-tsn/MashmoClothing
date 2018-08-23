@@ -12,6 +12,7 @@ import { StyledLink } from './StyledLink'
 import { TextAreaField } from './TextAreaField'
 import { VerticalLine } from './VerticalLine'
 import { ErrorMsgDiv } from './ErrorMsgDiv'
+import { CartContainer } from './CartContainer'
 
 export {
   Container,
@@ -29,4 +30,5 @@ export {
   VerticalLine,
   SubmitButton,
   ErrorMsgDiv,
+  CartContainer,
 }

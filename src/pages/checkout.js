@@ -12,6 +12,7 @@ import {
   Container,
   GhostButtonLink,
   TextAreaField,
+  CartContainer,
 } from '../components/styled'
 
 import colors from '../utils/colors'
@@ -110,7 +111,7 @@ class Checkout extends React.Component {
     return (
       <div>
         <H1 centered>Завършване на поръчката</H1>
-        <Container backgroundColor={colors.grey} height="0.9rem">
+        <CartContainer height="0.9rem">
           <CartTable readOnly={true} cartItems={cartItems} />
           <Row justify="space-between" align="middle">
             <Col span={6}>
@@ -129,7 +130,7 @@ class Checkout extends React.Component {
               </div>
             </Col>
           </Row>
-        </Container>
+        </CartContainer>
         <br />
         <H1 centered>Данни за доставка</H1>
         <Form
