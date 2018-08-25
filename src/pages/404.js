@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { GhostButtonLink } from '../components/styled'
+import { GhostButtonLink, Container } from '../components/styled'
 
 import notFoundImage from '../images/404.png'
 
@@ -12,16 +12,20 @@ const NotFoundContainer = styled.div`
   align-items: center;
 `
 const NotFoundPage = () => (
-  <NotFoundContainer>
-    <h1>NOT FOUND</h1>
-    <img src={notFoundImage} style={{ marginTop: '2.5rem' }} />
-    <GhostButtonLink
-      to="/products"
-      style={{ fontSize: '1.4rem', marginTop: '2.5rem' }}
-    >
-      Обратно към продуктите
-    </GhostButtonLink>
-  </NotFoundContainer>
+  <Container>
+    <NotFoundContainer>
+      <img src={notFoundImage} style={{ maxWidth: '75%' }} />
+      <h1 style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+        Съжаляваме, но тази страница не бе открита
+      </h1>
+      <GhostButtonLink
+        to="/products"
+        style={{ fontSize: '1.4rem', marginTop: '2.5rem' }}
+      >
+        Обратно към продуктите
+      </GhostButtonLink>
+    </NotFoundContainer>
+  </Container>
 )
 
 export default NotFoundPage
