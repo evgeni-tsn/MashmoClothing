@@ -42,7 +42,7 @@ const TR = styled(Tr)`
     background: ${colors.grey};
   }
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 767px) {
     border: none !important;
     border-bottom: 1px solid ${colors.darkGrey} !important;
     border-top: 1px solid ${colors.darkGrey} !important;

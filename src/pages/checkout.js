@@ -1,5 +1,5 @@
 import React from 'react'
-import { push } from 'gatsby-link'
+import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 import { toast } from 'react-toastify'
 import Form from 'react-validation/build/form'
@@ -18,6 +18,28 @@ import colors from '../utils/colors'
 import { required } from '../utils/validations'
 import { calculateTotal } from '../utils/utilFunctions'
 import { createOrder, updateEntry } from '../services/contentfulManagement'
+
+const CheckoutGhostButtonLink = styled(GhostButtonLink)`
+  font-size: 1rem;
+  min-width: unset;
+
+  @media only screen and (max-width: 767px) {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+`
+
+const InfoText = styled.p`
+  text-align: right;
+  margin-right: 2rem;
+  font-size: 1.1rem;
+
+  @media only screen and (max-width: 767px) {
+    text-align: center;
+    width: 100%;
+  }
+`
 
 const initialState = {
   cartItems: [],
@@ -113,19 +135,19 @@ class Checkout extends React.Component {
         <CartContainer height="0.9rem">
           <CartTable readOnly={true} cartItems={cartItems} />
           <Row justify="space-between" align="middle">
-            <Col span={6}>
-              <GhostButtonLink to="/cart" style={{ fontSize: '1rem' }}>
-                Обратно към количката
-              </GhostButtonLink>
+            <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <CheckoutGhostButtonLink to="/cart">
+                Виж количка
+              </CheckoutGhostButtonLink>
             </Col>
-            <Col span={6}>
-              <div style={{ marginRight: '2rem' }}>
-                <p style={{ textAlign: 'right' }}>
-                  Обща сума: <strong>{calculateTotal(cartItems)}лв.</strong>
-                </p>
-                <p style={{ textAlign: 'right' }}>
+            <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+              <div>
+                <InfoText>
                   Доставка: <strong>0лв.</strong>
-                </p>
+                </InfoText>
+                <InfoText>
+                  Обща сума: <strong>{calculateTotal(cartItems)}лв.</strong>
+                </InfoText>
               </div>
             </Col>
           </Row>

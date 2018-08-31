@@ -26,7 +26,7 @@ const EmptyCartLabel = styled.h2`
 const ResponsiveRow = styled(Row)`
   justify-content: flex-end !important;
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 768px) {
     justify-content: center !important;
   }
 `

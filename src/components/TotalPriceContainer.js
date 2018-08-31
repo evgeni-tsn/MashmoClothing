@@ -42,16 +42,16 @@ export const TotalPriceContainer = ({ cartItems }) => (
       <Col>
         <table>
           <tbody>
-            <tr>
+            {/* <tr>
               <TdLabel>Междинна сума:</TdLabel>
               <TdValue>{calculateTotal(cartItems)}лв.</TdValue>
-            </tr>
-            <tr style={{ backgroundColor: colors.grey }}>
+            </tr> */}
+            {/* <tr style={{ backgroundColor: colors.grey }}>
               <TdLabel>Доставка:</TdLabel>
               <TdValue>0лв.</TdValue>
-            </tr>
+            </tr> */}
             <tr>
-              <TdLabel>Общо:</TdLabel>
+              <TdLabel>Обща сума:</TdLabel>
               <TdValue>
                 <Span>{calculateTotal(cartItems)}лв.</Span>
               </TdValue>
