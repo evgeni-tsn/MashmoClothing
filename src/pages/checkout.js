@@ -117,9 +117,9 @@ class Checkout extends React.Component {
         })
         this.setState(initialState)
         this.successMadeOrder()
-        // localStorage.setItem('cart', JSON.stringify([]))
-        this.props.updateCartItemsCount(0)
         this.props.history.push('/summary')
+        this.props.updateCartItemsCount(0)
+        localStorage.setItem('cart', JSON.stringify([]))
       })
       .catch(err => console.log(err))
 
