@@ -26,7 +26,7 @@ export class Logo extends React.Component {
   }
   render() {
     const { maxWidth } = this.props
-    let showLogo = logo
+    let showLogo = ''
     return (
       <Measure
         bounds
