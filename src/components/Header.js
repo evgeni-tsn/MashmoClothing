@@ -84,7 +84,7 @@ const MailIconLink = styled(IconLink)`
 `
 
 const DropdownMenu = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ firstOpen }) => (firstOpen ? 'none' : 'block')};
   position: absolute;
   top: 3.9rem;
   left: 0;
@@ -107,8 +107,8 @@ const Hr = styled.hr`
 `
 
 const MobileNavLink = styled(StyledLink).attrs({ activeClassName })`
-  margin-top: 1.7rem;
-  margin-bottom: 1.7rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   display: block;
   &.${activeClassName} {
     color: ${colors.main};
@@ -119,10 +119,12 @@ const MobileNavLink = styled(StyledLink).attrs({ activeClassName })`
 export class Header extends React.Component {
   state = {
     isOpen: false,
+    firstOpen: true,
   }
   handleClick = () => {
     this.setState({
       isOpen: !this.state.isOpen,
+      firstOpen: false,
     })
   }
   render() {
@@ -162,7 +164,17 @@ export class Header extends React.Component {
             </MailIconLink>
           </MobileMenu>
 
-          <DropdownMenu isOpen={this.state.isOpen}>
+          <DropdownMenu
+            firstOpen={this.state.firstOpen}
+            isOpen={this.state.isOpen}
+            className={
+              this.state.firstOpen
+                ? ''
+                : this.state.isOpen
+                  ? 'scale-in-ver-top'
+                  : 'scale-out-ver-top'
+            }
+          >
             <Ul>
               <MobileNavLink
                 to="/"
