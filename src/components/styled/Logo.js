@@ -22,11 +22,16 @@ const StyledLink = styled(({ logoSize, ...rest }) => <Link {...rest} />)`
 export class Logo extends React.Component {
   state = {
     width: 0,
-    logoSize: window.innerWidth > 480 ? 'full' : 'small',
+    logoSize:
+      typeof window !== 'undefined' && window.innerWidth > 480
+        ? 'full'
+        : 'small',
   }
+
   render() {
     const { maxWidth } = this.props
-    let showLogo = window.innerWidth > 480 ? logo : headLogo
+    let showLogo =
+      typeof window !== 'undefined' && window.innerWidth > 480 ? logo : headLogo
     return (
       <Measure
         bounds
