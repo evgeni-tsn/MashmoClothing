@@ -20,10 +20,13 @@ const GatsbyImage = styled(Img)`
   height: 440px;
 
   @media only screen and (max-width: 1220px) {
+    height: 300px;
+  }
+  @media only screen and (max-width: 767px) {
     height: 200px;
   }
   @media only screen and (max-width: 580px) {
-    height: 100px;
+    height: 140px;
   }
 `
 
@@ -107,9 +110,10 @@ export const query = graphql`
         node {
           heroImage {
             title
-            resolutions(width: 1920, quality: 70) {
+            resolutions(width: 800, quality: 80) {
               tracedSVG
               src
+              srcSet
             }
           }
         }
