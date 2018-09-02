@@ -131,7 +131,6 @@ export class ProductCard extends React.Component {
       <Measure
         bounds
         onResize={contentRect => {
-          console.log('contentRect', contentRect.bounds.width)
           this.setState({ calculatedLabelWidth: contentRect.bounds.width - 4 })
         }}
       >

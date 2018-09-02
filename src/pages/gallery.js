@@ -55,9 +55,9 @@ class Gallery extends React.Component {
     return (
       <Measure
         bounds
-        onResize={contentRect =>
+        onResize={contentRect => {
           this.setState({ width: contentRect.bounds.width })
-        }
+        }}
       >
         {({ measureRef }) => {
           if (width < 1) return <div ref={measureRef} />
