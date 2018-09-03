@@ -12,6 +12,9 @@ import './index.css'
 const MainContainer = styled(Container)`
   margin-top: 1.5rem;
   min-height: 75vh;
+  @media only screen and (max-width: 767px) {
+    margin-top: 0rem;
+  }
 `
 
 //TODO: Experimental

@@ -49,6 +49,20 @@ const SmallImage2 = styled(SmallImage1)`
   margin-left: 0.8rem;
 `
 
+const DesktopH1 = styled(H1)`
+  display: block;
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+`
+
+const MobileH1 = styled(H1)`
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
+  }
+`
+
 const ErrorMsg = styled.p`
   color: ${colors.red};
 `
@@ -297,6 +311,7 @@ class ProductTemplate extends React.Component {
                   alignItems: 'center',
                 }}
               >
+                <MobileH1>{productData.name}</MobileH1>
                 {/* <ClickToZoom>CLICK TO ZOOM</ClickToZoom> */}
                 <Image src={this.state.mainImage.src} />
               </Col>
@@ -354,7 +369,7 @@ class ProductTemplate extends React.Component {
                   ПОСЛЕДНИ БРОЙКИ
                 </span>
               )}
-            <H1>{productData.name}</H1>
+            <DesktopH1>{productData.name}</DesktopH1>
             <DescriptionMsg>{productData.description}</DescriptionMsg>
             <ProductPriceWrapper>
               <ProductPrice crossout={totalQuantity === 0}>
