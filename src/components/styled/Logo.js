@@ -29,9 +29,20 @@ export class Logo extends React.Component {
   }
 
   render() {
-    const { maxWidth } = this.props
+    const { maxWidth, footer } = this.props
     let showLogo =
       typeof window !== 'undefined' && window.innerWidth > 480 ? logo : headLogo
+    if (footer) {
+      return (
+        <StyledLink className="logo" to="/">
+          <StyledLogo
+            alt={'Mashmo Clothing logo'}
+            src={logo}
+            maxWidth={maxWidth}
+          />
+        </StyledLink>
+      )
+    }
     return (
       <Measure
         bounds

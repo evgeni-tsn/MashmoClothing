@@ -62,7 +62,7 @@ export const Footer = () => {
   return (
     <FooterContent>
       <FooterContainer>
-        <Logo />
+        <Logo footer />
         <FooterLinksContainer>
           <FooterLinks smaller thin light to="/" exact={true}>
             Начало
