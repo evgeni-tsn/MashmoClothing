@@ -316,9 +316,9 @@ class ProductTemplate extends React.Component {
                 <MagnifyImage
                   src={this.state.mainImage.src}
                   width="18.75rem"
-                  mgShape="Square"
-                  mgWidth={190}
-                  mgHeight={190}
+                  zoomFactor={0.75}
+                  mgWidth={240}
+                  mgHeight={240}
                 />
               </Col>
             </Row>
