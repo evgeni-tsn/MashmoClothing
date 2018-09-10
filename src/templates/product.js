@@ -5,6 +5,7 @@ import Lightbox from 'react-images'
 import { toast } from 'react-toastify'
 import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
+import Magnifier from 'react-magnifier'
 
 import {
   FeaturedSection,
@@ -18,7 +19,7 @@ import colors from '../utils/colors'
 import { totalAvailableQuantity } from '../utils/utilFunctions'
 import { theme } from '../utils/lightboxTheme'
 
-const Image = styled.img`
+const MagnifyImage = styled(Magnifier)`
   cursor: pointer;
   width: 18.75rem;
   margin-right: 0.5rem;
@@ -120,7 +121,7 @@ class ProductTemplate extends React.Component {
     disablePlusButton: false,
     errorMsgShow: false,
     mainImage: {
-      src: '',
+      src: 'https://via.placeholder.com/500',
       index: '',
     },
     sizeChoice: '',
@@ -312,8 +313,13 @@ class ProductTemplate extends React.Component {
                 }}
               >
                 <MobileH1>{productData.name}</MobileH1>
-                {/* <ClickToZoom>CLICK TO ZOOM</ClickToZoom> */}
-                <Image src={this.state.mainImage.src} />
+                <MagnifyImage
+                  src={this.state.mainImage.src}
+                  width="18.75rem"
+                  mgShape="Square"
+                  mgWidth={190}
+                  mgHeight={190}
+                />
               </Col>
             </Row>
             <Row justify="center" gutter={20}>
