@@ -478,7 +478,7 @@ export const productQuery = graphql`
           photos {
             id
             title
-            resolutions(width: 500, height: 500) {
+            resolutions(width: 600, height: 600) {
               src
               srcSet
               tracedSVG
