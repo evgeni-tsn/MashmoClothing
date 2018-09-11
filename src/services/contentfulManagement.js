@@ -1,4 +1,5 @@
 import { createClient } from 'contentful-management'
+import { getRandomNumber } from '../utils/utilFunctions'
 
 const client = createClient({
   accessToken: process.env.GATSBY_CONTENTFUL_API_CALLS_TOKEN,
@@ -24,6 +25,9 @@ export function createOrder(orderDetails) {
     .then(environment =>
       environment.createEntry('order', {
         fields: {
+          orderId: {
+            'en-US': getRandomNumber(10000, 99999),
+          },
           firstName: {
             'en-US': orderDetails.firstName,
           },

@@ -8,3 +8,7 @@ export function calculateTotal(cartItems) {
     0
   )
 }
+
+export function getRandomNumber(min, max) {
+  return parseInt(Math.random() * (max - min) + min)
+}
