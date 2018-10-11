@@ -5,8 +5,8 @@ import { Row, Col } from 'react-simple-flex-grid'
 import { ProductCard } from './index'
 
 const FeaturedProductListRow = styled(Row)`
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   padding-top: 1rem;
 `
 export const FeaturedSection = ({ allProducts, filterOut }) => {
