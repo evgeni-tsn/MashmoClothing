@@ -56,19 +56,27 @@ const TR = styled(Tr)`
   }
 `
 
-export const CartTable = ({ cartItems, removeItemFromCart, readOnly }) => {
+export const CartTable = ({
+  cartItems,
+  removeItemFromCart,
+  readOnly,
+  withHeader = true,
+}) => {
   return (
     <TABLE>
-      <Thead>
-        <Tr>
-          <TH>Продукт</TH>
-          <TH>Размер</TH>
-          <TH>Цена</TH>
-          <TH>Количество</TH>
-          <TH>Общо</TH>
-          <TH />
-        </Tr>
-      </Thead>
+      {withHeader && (
+        <Thead>
+          <Tr>
+            <TH>Продукт</TH>
+            <TH>Размер</TH>
+            <TH>Цена</TH>
+            <TH>Количество</TH>
+            <TH>Общо</TH>
+            <TH />
+          </Tr>
+        </Thead>
+      )}
+
       <Tbody>
         {cartItems.map(product => (
           <TR

@@ -29,15 +29,15 @@ const TdValue = styled.td`
 `
 
 const TotalContainerResponsive = styled(TotalContainer)`
-  justify-content: flex-end;
+  justify-content: ${({ centered }) => (centered ? 'center' : 'flex-end')};
 
   @media only screen and (max-width: 767px) {
     justify-content: center;
   }
 `
 
-export const TotalPriceContainer = ({ cartItems }) => (
-  <TotalContainerResponsive>
+export const TotalPriceContainer = ({ cartItems, centered }) => (
+  <TotalContainerResponsive centered={centered}>
     <Row align="middle">
       <Col>
         <table>
