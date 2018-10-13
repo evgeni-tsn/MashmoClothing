@@ -213,12 +213,11 @@ class ProductTemplate extends React.Component {
     )
   }
 
-  //TODO: Maybe we can display a little info for the product itself
   successAddedItemToast = () =>
     toast(
       () => (
         <div style={{ color: colors.white }}>
-          <div>Продуктът беше добавен! 😎</div>
+          <div>Продуктът беше добавен! 🔥</div>
           <Link style={{ color: colors.white }} to="/cart">
             Виж количка
           </Link>

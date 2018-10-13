@@ -9,6 +9,7 @@ import {
   H1,
   SubmitButton,
   InputField,
+  FeaturedButton,
   GhostButtonLink,
   TextAreaField,
   CartContainer,
@@ -43,6 +44,7 @@ const InfoText = styled.p`
 
 const initialState = {
   cartItems: [],
+  inProcess: false,
 }
 
 class Checkout extends React.Component {
@@ -71,7 +73,7 @@ class Checkout extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  successMadeOrder = () =>
+  successMadeOrder = () => {
     toast(
       () => (
         <div>
@@ -82,9 +84,11 @@ class Checkout extends React.Component {
       ),
       { className: 'gold-background' }
     )
+  }
 
   handleSubmit = e => {
     e.preventDefault()
+    this.setState({ inProcess: true })
     const updateReadyItems = []
     this.state.cartItems.forEach(item => {
       let updatedFlag = false
@@ -115,16 +119,16 @@ class Checkout extends React.Component {
         updateReadyItems.forEach(item => {
           updateEntry(item)
         })
+        this.props.updateCartItemsCount(0)
+        const orderData = { ...this.state }
         this.setState(initialState)
         this.successMadeOrder()
-        this.props.history.push('/summary')
-        this.props.updateCartItemsCount(0)
-        localStorage.setItem('cart', JSON.stringify([]))
+        this.props.history.push('/summary', {
+          ...orderData,
+          orderId: entry.fields.orderId['en-US'],
+        })
       })
       .catch(err => console.log(err))
-
-    //TODO: Validate backend fields
-    //TODO: Redirect to Success Page Thanks!
   }
 
   render() {
@@ -208,7 +212,13 @@ class Checkout extends React.Component {
             </Col>
           </Row>
           <Row justify="center">
-            <SubmitButton type="submit">Поръчай</SubmitButton>
+            {this.state.inProcess ? (
+              <FeaturedButton grayedOut={true}>
+                Поръчката се изпълнява
+              </FeaturedButton>
+            ) : (
+              <SubmitButton type="submit">Поръчай</SubmitButton>
+            )}
           </Row>
         </Form>
         <Toast />
