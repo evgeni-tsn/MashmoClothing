@@ -379,7 +379,9 @@ class ProductTemplate extends React.Component {
             <DescriptionMsg>{productData.description}</DescriptionMsg>
             <ProductPriceWrapper>
               <ProductPrice crossout={totalQuantity === 0}>
-                {productData.onSalePrice && productData.onSalePrice}лв.
+                {productData.isOnSale
+                  ? productData.onSalePrice
+                  : productData.price}лв.
               </ProductPrice>
               {productData.isOnSale &&
                 productData.onSalePrice &&
