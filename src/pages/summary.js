@@ -14,6 +14,7 @@ class Summary extends React.Component {
   render() {
     if (this.props.location.state === undefined) {
       this.props.history.push('/cart')
+      return null
     } else {
       const orderData = this.props.location.state
       const { cartItems, ...userData } = orderData
