@@ -113,7 +113,7 @@ export const query = graphql`
         node {
           heroImage {
             title
-            resolutions(width: 800, quality: 80) {
+            resolutions(width: 1400, quality: 80) {
               tracedSVG
               src
               srcSet
