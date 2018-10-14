@@ -9,6 +9,7 @@
     "gatsby": "^1.9.273",
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.45",
+    "gatsby-plugin-favicon": "2.1.1",
     "gatsby-plugin-manifest": "^1.0.27",
     "gatsby-plugin-netlify-cache": "^0.1.0",
     "gatsby-plugin-nprogress": "^1.0.14",
@@ -35,9 +36,7 @@
     "typography-theme-irving": "^0.15.10",
     "validator": "^10.4.0"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
