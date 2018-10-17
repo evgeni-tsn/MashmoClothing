@@ -66,8 +66,9 @@ const ProductCardInfo = styled.div`
 
 const ProductTitle = styled.h3`
   margin-bottom: 0.8rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: lighter;
+  text-align: center;
 `
 
 const ProductPrice = styled.p`
