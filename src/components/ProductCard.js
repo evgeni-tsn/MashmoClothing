@@ -69,8 +69,8 @@ const ProductTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: lighter;
   text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 `
 
 const ProductPrice = styled.p`
