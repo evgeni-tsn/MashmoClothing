@@ -627,6 +627,11 @@ pre tt:after {
   border-radius: 0.5rem;
 }
 
+.error-background {
+  background-color: #9d5050;
+  border-radius: 0.5rem;
+}
+
 .gold-background:first-child {
   margin-top: 3rem;
 }
