@@ -76,7 +76,7 @@ export default class Contact extends React.Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
-        'form-name': form.getAttribute('name'),
+        'form-name': 'contact',
         name: this.state.name,
         email: this.state.email,
         message: this.state.message,
@@ -102,9 +102,10 @@ export default class Contact extends React.Component {
         {!isSent && (
           <Form
             name="contact"
-            method="post"
-            action="/thanks/"
+            method="POST"
+            // action="/thanks/"
             data-netlify="true"
+            netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={this.handleSubmit}
           >
