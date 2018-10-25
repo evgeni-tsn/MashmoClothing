@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Button from 'react-validation/build/button'
 
 import colors from '../../utils/colors'
 
@@ -29,7 +28,7 @@ export const FeaturedButton = styled.button`
     border: 1px solid ${colors.darkGrey};
   }
 `
-export const SubmitButton = styled(Button)`
+export const SubmitButton = styled.button`
   border: none;
   text-align: center;
   min-width: 15rem;
@@ -40,7 +39,7 @@ export const SubmitButton = styled(Button)`
   font-weight: lighter;
   text-transform: uppercase;
   outline: none;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
 
   &:hover {
     /* color: ${colors.black}; */

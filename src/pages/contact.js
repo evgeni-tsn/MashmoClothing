@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { navigateTo } from 'gatsby-link'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 import { toast } from 'react-toastify'
-import Form from 'react-validation/build/form'
 
 import { Toast } from '../components'
 import {
@@ -12,9 +13,7 @@ import {
   GhostButton,
   GhostButtonLink,
 } from '../components/styled'
-
 import colors from '../utils/colors'
-import { required, email, gt } from '../utils/validations'
 
 const ContactsContainer = styled.div`
   text-align: center;
@@ -33,17 +32,30 @@ function encode(data) {
 export default class Contact extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      isSent: false,
-    }
+    this.state = { isSent: false }
   }
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  handleSubmit = (values, errors) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact',
+        ...values,
+      }),
+    })
+      .then(() => {
+        this.successSubmittedForm()
+        this.setState({ isSent: true })
+      })
+      .catch(error => {
+        this.errorSubmittedForm()
+        setTimeout(() => {
+          document.location.reload()
+        }, 1500)
+      })
   }
 
-  //TODO: catch possible error and display another err toast
-  //TODO: redirect to a page with success msg is also an option
   successSubmittedForm = () =>
     toast(
       () => (
@@ -69,86 +81,119 @@ export default class Contact extends React.Component {
       { className: 'error-background' }
     )
 
-  handleSubmit = e => {
-    e.preventDefault()
-    const form = e.target
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'contact-form',
-        name: this.state.name,
-        email: this.state.email,
-        message: this.state.message,
-      }),
-    })
-      .then(() => {
-        this.successSubmittedForm()
-        this.setState({ isSent: true })
-      })
-      .catch(error => {
-        this.errorSubmittedForm()
-        setTimeout(() => {
-          document.location.reload()
-        }, 1500)
-      })
-  }
-
   render() {
     const { isSent } = this.state
     return (
       <ContactsContainer>
         {!isSent && <PageHeading>Пишете ни</PageHeading>}
         {!isSent && (
-          <Form
-            name="contact-form"
-            method="POST"
-            // action="/thanks/"
-            data-netlify="true"
-            netlify="true"
-            data-netlify-honeypot="bot-field"
-            onSubmit={this.handleSubmit}
+          <Formik
+            initialValues={{ name: '', email: '', message: '' }}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email('Невалиден e-mail адрес')
+                .required('Задължително поле'),
+              name: Yup.string()
+                .min(2, 'Името трябва да съдържа поне 2 символа')
+                .required('Задължително поле'),
+              message: Yup.string()
+                .min(10, 'Съобщението трябва да съдържа поне 10 символа')
+                .required('Задължително поле'),
+            })}
+            onSubmit={values => {
+              this.handleSubmit(values)
+            }}
           >
-            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-            <input type="hidden" name="form-name" value="contact-form" />
-            <label hidden>
-              Don’t fill this out:{' '}
-              <input name="bot-field" onChange={this.handleChange} />
-            </label>
-            <label>
-              <InputField
-                type="text"
-                name="name"
-                placeholder="Име *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              <InputField
-                type="email"
-                name="email"
-                placeholder="Email *"
-                validations={[required, email]}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              <TextAreaField
-                name="message"
-                rows={4}
-                placeholder="Съобщение *"
-                validations={[required, gt]}
-                onChange={this.handleChange}
-              />
-            </label>
-            <SubmitButton
-              type="submit"
-              style={{ width: '15%', marginTop: '2rem' }}
-            >
-              Изпрати
-            </SubmitButton>
-          </Form>
+            {props => {
+              const {
+                values,
+                touched,
+                errors,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isValid,
+                handleReset,
+              } = props
+              return (
+                <form
+                  name="contact"
+                  method="post"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                >
+                  <input type="hidden" name="contact" value="contactTest" />
+                  <p hidden>
+                    <label>
+                      Don’t fill this out:{' '}
+                      <input name="bot-field" onChange={handleChange} />
+                    </label>
+                  </p>
+                  <InputField
+                    id="name"
+                    placeholder="Име *"
+                    type="text"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.name && touched.name
+                        ? 'text-input error'
+                        : 'text-input'
+                    }
+                  />
+                  {errors.name &&
+                    touched.name && (
+                      <div style={{ color: colors.red }}>{errors.name}</div>
+                    )}
+
+                  <InputField
+                    id="email"
+                    placeholder="Email *"
+                    type="text"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.email && touched.email
+                        ? 'text-input error'
+                        : 'text-input'
+                    }
+                  />
+                  {errors.email &&
+                    touched.email && (
+                      <div style={{ color: colors.red }}>{errors.email}</div>
+                    )}
+
+                  <TextAreaField
+                    id="message"
+                    placeholder="Съобщение *"
+                    rows={4}
+                    name="message"
+                    value={values.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.message && touched.message
+                        ? 'text-input error'
+                        : 'text-input'
+                    }
+                  />
+                  {errors.message &&
+                    touched.message && (
+                      <div style={{ color: colors.red }}>{errors.message}</div>
+                    )}
+                  <SubmitButton type="submit" disabled={isSubmitting}>
+                    Изпрати
+                  </SubmitButton>
+                </form>
+              )
+            }}
+          </Formik>
         )}
         {isSent && (
           <div style={{ marginTop: '3rem' }}>
