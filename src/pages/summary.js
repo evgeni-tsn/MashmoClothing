@@ -21,27 +21,39 @@ class Summary extends React.Component {
       return (
         <div>
           <Row gutter={40}>
-            <Col span={6} offset={3}>
-              <H1 centered>Успешно направена поръчка!</H1>
-              <h3 style={{ textAlign: 'center' }}>
-                Номер на поръчката: {userData.orderId}
+            <Col span={10} offset={1}>
+              <h2 style={{ textAlign: 'center' }}>Успешно направена поръчка</h2>
+              <h3 style={{ marginTop: '.4rem', textAlign: 'center' }}>
+                #{userData.orderId}
               </h3>
+              <h4 style={{ marginTop: '.8rem', textAlign: 'center' }}>
+                Данни за доставка
+              </h4>
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
                   alignItems: 'center',
                   paddingTop: '1rem',
                   paddingBottom: '1rem',
                 }}
               >
-                <p>{userData.firstName}</p>
-                <p>{userData.lastName}</p>
-                <p>{userData.econt}</p>
+                <p>
+                  <strong>Име:</strong> {userData.firstName} {userData.lastName}
+                </p>
+                <p>
+                  <strong>Телефон:</strong> {userData.phone}
+                </p>
+                <p>
+                  <strong>Град:</strong> {userData.city}
+                </p>
+                <p>
+                  <strong>Еконт:</strong> {userData.econt}
+                </p>
               </div>
               <CartTable
-                withHeader={false}
+                withHeader={true}
                 readOnly={true}
                 cartItems={cartItems}
               />
