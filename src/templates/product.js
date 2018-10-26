@@ -19,6 +19,8 @@ import colors from '../utils/colors'
 import { totalAvailableQuantity } from '../utils/utilFunctions'
 import { theme } from '../utils/lightboxTheme'
 
+import mashmoPlaceholder from '../images/mashmo-placeholder.png'
+
 const MagnifyImage = styled(Magnifier)`
   cursor: pointer;
   width: 18.75rem;
@@ -121,7 +123,7 @@ class ProductTemplate extends React.Component {
     disablePlusButton: false,
     errorMsgShow: false,
     mainImage: {
-      src: 'https://via.placeholder.com/500',
+      src: mashmoPlaceholder,
       index: '',
     },
     sizeChoice: '',
