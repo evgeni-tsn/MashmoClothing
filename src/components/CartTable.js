@@ -28,8 +28,8 @@ const TD = styled(Td)`
 const GhostButtonReponsive = styled(GhostButton)`
   @media only screen and (max-width: 767px) {
     position: absolute;
-    right: 0.5rem;
-    bottom: 12.5rem;
+    right: -1.5rem;
+    top: -18rem;
   }
 `
 

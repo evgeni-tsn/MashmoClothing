@@ -213,7 +213,7 @@ class Checkout extends React.Component {
           </Row>
           <Row justify="center">
             {this.state.inProcess ? (
-              <FeaturedButton grayedOut={true}>
+              <FeaturedButton style={{ marginTop: '2rem' }} grayedOut={true}>
                 Поръчката се изпълнява
               </FeaturedButton>
             ) : (
