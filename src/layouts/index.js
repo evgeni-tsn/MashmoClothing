@@ -64,8 +64,20 @@ class Template extends React.Component {
         <Helmet
           title={siteTitleData}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            {
+              name: 'description',
+              content:
+                'Mashmo Clothing е нов уличен бранд, който тръгва от Варна, България. Основното вдъхновение за стила на дрехите са хип-хоп музиката и начинът на живот, който жанра представлява. Идеята на Mashmo Clothing е да събере всеки, който разпознава себе си в тази мода в една голяма общност.',
+            },
+            {
+              name: 'keywords',
+              content:
+                'Mashmo, MashmoClothing, Clothing, Brand, Style, Clothes',
+            },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1.0',
+            },
           ]}
         >
           <link
