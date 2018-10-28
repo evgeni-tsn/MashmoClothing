@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 import { toast } from 'react-toastify'
-import Form from 'react-validation/build/form'
+import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 import { Toast, CartTable } from '../components'
 import {
@@ -16,7 +17,6 @@ import {
 } from '../components/styled'
 
 import colors from '../utils/colors'
-import { required } from '../utils/validations'
 import { calculateTotal } from '../utils/utilFunctions'
 import { createOrder, updateEntry } from '../services/contentfulManagement'
 
@@ -86,11 +86,11 @@ class Checkout extends React.Component {
     )
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = values => {
+    const fullOrderData = { cartItems: this.state.cartItems, ...values }
     this.setState({ inProcess: true })
     const updateReadyItems = []
-    this.state.cartItems.forEach(item => {
+    fullOrderData.cartItems.forEach(item => {
       let updatedFlag = false
       for (const key in updateReadyItems) {
         if (item.contentful_id === updateReadyItems[key].contentful_id) {
@@ -114,13 +114,13 @@ class Checkout extends React.Component {
       }
     })
 
-    createOrder(this.state)
+    createOrder(fullOrderData)
       .then(entry => {
         updateReadyItems.forEach(item => {
           updateEntry(item)
         })
         this.props.updateCartItemsCount(0)
-        const orderData = { ...this.state }
+        const orderData = { ...fullOrderData }
         this.setState(initialState)
         this.successMadeOrder()
         this.props.history.push('/summary', {
@@ -158,69 +158,199 @@ class Checkout extends React.Component {
         </CartContainer>
         <br />
         <H1 centered>Данни за доставка</H1>
-        <Form
-          name="order"
-          method="post"
-          action="/"
-          onSubmit={this.handleSubmit}
+        <Formik
+          initialValues={{
+            firstName: '',
+            lastName: '',
+            phone: '',
+            city: '',
+            econt: '',
+            note: '',
+          }}
+          validationSchema={Yup.object().shape({
+            firstName: Yup.string()
+              .min(2, 'Името трябва да съдържа поне 2 символа')
+              .required('Задължително поле'),
+            lastName: Yup.string()
+              .min(2, 'Името трябва да съдържа поне 2 символа')
+              .required('Задължително поле'),
+            phone: Yup.string().required('Задължително поле'),
+            city: Yup.string().required('Задължително поле'),
+            econt: Yup.string().required('Задължително поле'),
+            note: Yup.string(),
+          })}
+          onSubmit={values => {
+            this.handleSubmit(values)
+          }}
         >
-          <Row gutter={40}>
-            <Col xs={12} sm={12} md={12} lg={6} xl={6}>
-              <InputField
-                type="text"
-                name="firstName"
-                placeholder="Име *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-              <InputField
-                type="text"
-                name="lastName"
-                placeholder="Фамилия *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-              <InputField
-                type="text"
-                name="phone"
-                placeholder="Телефон *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-            </Col>
-            <Col xs={12} sm={12} md={12} lg={6} xl={6}>
-              <InputField
-                type="text"
-                name="city"
-                placeholder="Град *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-              <InputField
-                type="text"
-                name="econt"
-                placeholder="Еконт офис *"
-                validations={[required]}
-                onChange={this.handleChange}
-              />
-              <TextAreaField
-                name="note"
-                rows={2}
-                placeholder="Бележка"
-                onChange={this.handleChange}
-              />
-            </Col>
-          </Row>
-          <Row justify="center">
-            {this.state.inProcess ? (
-              <FeaturedButton style={{ marginTop: '2rem' }} grayedOut={true}>
-                Поръчката се изпълнява
-              </FeaturedButton>
-            ) : (
-              <SubmitButton type="submit">Поръчай</SubmitButton>
-            )}
-          </Row>
-        </Form>
+          {props => {
+            const {
+              values,
+              touched,
+              errors,
+              isSubmitting,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isValid,
+              handleReset,
+            } = props
+            return (
+              <form
+                name="order"
+                method="post"
+                action="/"
+                onSubmit={handleSubmit}
+              >
+                <Row gutter={40}>
+                  <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+                    <InputField
+                      type="text"
+                      name="firstName"
+                      placeholder="Име *"
+                      id="name"
+                      onChange={this.handleChange}
+                      value={values.firstName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.firstName && touched.firstName
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.firstName &&
+                      touched.firstName && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.firstName}
+                        </div>
+                      )}
+
+                    <InputField
+                      type="text"
+                      name="lastName"
+                      placeholder="Фамилия *"
+                      id="lastName"
+                      value={values.lastName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.lastName && touched.lastName
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.lastName &&
+                      touched.lastName && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.lastName}
+                        </div>
+                      )}
+
+                    <InputField
+                      type="text"
+                      name="phone"
+                      placeholder="Телефон *"
+                      id="phone"
+                      value={values.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.phone && touched.phone
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.phone &&
+                      touched.phone && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.phone}
+                        </div>
+                      )}
+                  </Col>
+                  <Col xs={12} sm={12} md={12} lg={6} xl={6}>
+                    <InputField
+                      type="text"
+                      name="city"
+                      placeholder="Град *"
+                      id="city"
+                      value={values.city}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.city && touched.city
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.city &&
+                      touched.city && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.city}
+                        </div>
+                      )}
+
+                    <InputField
+                      type="text"
+                      name="econt"
+                      placeholder="Еконт офис *"
+                      id="econt"
+                      value={values.econt}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.econt && touched.econt
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.econt &&
+                      touched.econt && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.econt}
+                        </div>
+                      )}
+                    <TextAreaField
+                      type="text"
+                      name="note"
+                      rows={2}
+                      placeholder="Бележка"
+                      id="note"
+                      value={values.note}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.note && touched.note
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.note &&
+                      touched.note && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.note}
+                        </div>
+                      )}
+                  </Col>
+                </Row>
+                <Row justify="center">
+                  {this.state.inProcess ? (
+                    <FeaturedButton
+                      style={{ marginTop: '2rem' }}
+                      grayedOut={true}
+                    >
+                      Поръчката се изпълнява
+                    </FeaturedButton>
+                  ) : (
+                    <SubmitButton type="submit" disabled={isSubmitting}>
+                      Поръчай
+                    </SubmitButton>
+                  )}
+                </Row>
+              </form>
+            )
+          }}
+        </Formik>
         <Toast />
       </div>
     )
