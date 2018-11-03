@@ -3,6 +3,7 @@ require('dotenv').config({ path: `.env` })
 module.exports = {
   siteMetadata: {
     title: 'Mashmo Clothing',
+    siteUrl: 'https://mashmoclothing.com',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -47,6 +48,8 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-robots-txt',
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify-cache',
     {
