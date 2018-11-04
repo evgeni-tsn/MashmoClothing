@@ -70,6 +70,10 @@ class Template extends React.Component {
                 'Mashmo Clothing е нов уличен бранд, който тръгва от Варна, България. Основното вдъхновение за стила на дрехите са хип-хоп музиката и начинът на живот, който жанра представлява. Идеята на Mashmo Clothing е да събере всеки, който разпознава себе си в тази мода в една голяма общност.',
             },
             {
+              name: 'google-site-verification',
+              content: 'S_qSIx0NOYSyYzwG1E05WUXft7cAowd5bDVHxRzwRzc',
+            },
+            {
               name: 'keywords',
               content:
                 'Mashmo, MashmoClothing, Clothing, Brand, Style, Clothes',
