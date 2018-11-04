@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+import tempHeroImage from '../images/tempHeroImage.jpg'
 import { Header, Footer } from '../components'
 import { Container } from '../components/styled'
 
@@ -18,6 +19,20 @@ const MainContainer = styled(Container)`
 `
 
 //TODO: Experimental
+const TempImage = styled.img`
+  width: 100%;
+  height: 440px;
+
+  @media only screen and (max-width: 1220px) {
+    height: 300px;
+  }
+  @media only screen and (max-width: 767px) {
+    height: 200px;
+  }
+  @media only screen and (max-width: 580px) {
+    height: 140px;
+  }
+`
 const GatsbyImage = styled(Img)`
   width: 100%;
   height: 440px;
@@ -93,10 +108,7 @@ class Template extends React.Component {
         <Header cartItemsCount={this.state.cartItemsCount} />
         <main>
           {location.pathname === '/' && (
-            <GatsbyImage
-              resolutions={heroImageData.resolutions}
-              alt={'Hero Image'}
-            />
+            <TempImage src={tempHeroImage} alt={'Hero Image'} />
           )}
           <MainContainer>
             {children({
