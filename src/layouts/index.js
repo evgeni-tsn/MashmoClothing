@@ -22,6 +22,7 @@ const MainContainer = styled(Container)`
 const TempImage = styled.img`
   width: 100%;
   height: 440px;
+  object-fit: cover;
 
   @media only screen and (max-width: 1220px) {
     height: 300px;
