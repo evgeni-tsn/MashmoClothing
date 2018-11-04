@@ -51,7 +51,7 @@ const Info = () => (
       >
         <SectionHeading>Контакти</SectionHeading>
         <Paragraph>
-          <ul style={{ listStyleType: 'none', margin: 0 }}>
+          <ul style={{ textAlign: 'center', listStyleType: 'none', margin: 0 }}>
             <li>
               <a href="mailto:mashmoclothing@gmail.com" target="_top">
                 mashmoclothing@gmail.com
