@@ -6,11 +6,12 @@ import { GhostButtonLink } from '../components/styled'
 
 const SectionHeading = styled.h2`
   margin-bottom: 1.5rem;
-  text-align: left;
+  text-align: center;
 `
 
 const Paragraph = styled.p`
   font-size: 0.9rem;
+  text-align: center;
 `
 
 const CharSpan = styled.span`
@@ -21,73 +22,53 @@ const Info = () => (
   <div>
     <Row gutter={60}>
       <Col
-        xs={12}
-        sm={12}
-        md={7}
-        lg={7}
-        xl={7}
-        style={{ marginBottom: '2rem', borderRight: '1px solid grey' }}
+        xs={{ span: 12 }}
+        sm={{ span: 12 }}
+        md={{ span: 8, offset: 2 }}
+        lg={{ span: 8, offset: 2 }}
+        xl={{ span: 8, offset: 2 }}
+        style={{ marginBottom: '2rem' }}
       >
         <SectionHeading>Доставка</SectionHeading>
         <Paragraph>
           Продуктите, предлагани в www.mashmoclothing.com се изпращат единствено
           и само чрез Еконт. Срокът за доставка е 1-3 работни дни след
-          потвърждаване на поръчката. Поръчки направени след 15:30 ч., се
-          изпращат на следващия ден. Доставката се извършва от куриерска фирма
-          Еконт Експрес, като транспортните разходи са за сметка на клиента, а
-          сумата за тях се изчислява според тарифите на куриерската фирма.
+          потвърждаване на поръчката. Доставката се извършва от куриерска фирма
+          Еконт Експрес до офис, като транспортните разходи са за наша сметка.
           Плащането се извършва чрез наложен платеж при получаване на стоката.
+          Всички продукти се изпращат с опцията преглед и тест.
         </Paragraph>
-      </Col>
-      <Col
-        xs={12}
-        sm={12}
-        md={5}
-        lg={5}
-        xl={5}
-        style={{ marginBottom: '2rem' }}
-      >
-        <SectionHeading>Начин на доставка</SectionHeading>
-        <ul>
-          <li>Доставка до офис на Еконт</li>
-          <li>Доставка до посочен адрес</li>
-          <li>Опция преглед и тест</li>
-        </ul>
       </Col>
     </Row>
     <Row gutter={60}>
       <Col
         xs={12}
         sm={12}
-        md={7}
-        lg={7}
-        xl={7}
-        style={{ marginBottom: '2rem', borderRight: '1px solid grey' }}
-      >
-        <SectionHeading>Връщане на стоки</SectionHeading>
-        <Paragraph>
-          Връщането на стоки може да се осъществи в 14 дневен срок, след
-          получаване на пратката. Съгласно чл. 50, ал. 1 от ЗЗП, потребителят
-          може да се откаже от закупена стока в 14 дневен срок, без да посочва
-          причина, като транспортните разходи са за сметка на клиента. Моля
-          свържете се с нас преди да изпратите стоки за връщане. След получаване
-          на върнатата стока, сумата за нея ще бъде възстановена в 14 дневен
-          срок.
-        </Paragraph>
-      </Col>
-      <Col
-        xs={12}
-        sm={12}
-        md={5}
-        lg={5}
-        xl={5}
+        md={12}
+        lg={12}
+        xl={12}
         style={{ marginBottom: '2rem' }}
       >
         <SectionHeading>Контакти</SectionHeading>
-        <ul>
-          <li>mashmoclothing@gmail.com</li>
-          <li>+395 899 999 999</li>
-        </ul>
+        <Paragraph>
+          <ul style={{ listStyleType: 'none', margin: 0 }}>
+            <li>
+              <a href="mailto:mashmoclothing@gmail.com" target="_top">
+                mashmoclothing@gmail.com
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="https://www.m.me/mashmoclothing">
+                Messenger
+              </a>
+            </li>
+            <li>
+              <a target="_blank" href="https://www.instagr.am/mashmoclothing">
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </Paragraph>
       </Col>
     </Row>
     <Row justify="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
