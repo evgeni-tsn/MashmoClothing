@@ -50,15 +50,6 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-robots-txt',
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-128650923-1',
-        head: true,
-        anonymize: true,
-        respectDNT: true,
-      },
-    },
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify-cache',
     {
