@@ -102,8 +102,6 @@ class Template extends React.Component {
           ]}
           link={[
             { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
-          ]}
-          link={[
             {
               rel: 'stylesheet',
               href: 'https://fonts.googleapis.com/css?family=Montserrat',
