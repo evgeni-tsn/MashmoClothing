@@ -115,11 +115,11 @@ class Template extends React.Component {
         <Header cartItemsCount={this.state.cartItemsCount} />
         <main>
           {location.pathname === '/' && (
-            <TempImage src={heroImageData.resolutions.src} alt={'Hero Image'} />
-            // <GatsbyImage
-            //   resolutions={heroImageData.resolutions}
-            //   alt={'Hero Image'}
-            // />
+            // <TempImage src={heroImageData.resolutions.src} srcSet={heroImageData.resolutions.srcSet} alt={'Hero Image'} />
+            <GatsbyImage
+              resolutions={heroImageData.resolutions}
+              alt={'Hero Image'}
+            />
           )}
           <MainContainer>
             {children({
@@ -152,7 +152,7 @@ export const query = graphql`
         node {
           heroImage {
             title
-            resolutions(width: 1400, quality: 80) {
+            resolutions(width: 1400, quality: 60) {
               tracedSVG
               src
               srcSet
