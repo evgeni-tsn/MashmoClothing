@@ -7,6 +7,7 @@ import Img from 'gatsby-image'
 import tempHeroImage from '../images/tempHeroImage.jpg'
 import { Header, Footer } from '../components'
 import { Container } from '../components/styled'
+import favicon from '../images/favicon.png'
 
 import './index.css'
 
@@ -99,17 +100,26 @@ class Template extends React.Component {
               content: 'width=device-width, initial-scale=1.0',
             },
           ]}
+          link={[
+            { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
+          ]}
+          link={[
+            {
+              rel: 'stylesheet',
+              href: 'https://fonts.googleapis.com/css?family=Montserrat',
+            },
+          ]}
         >
-          <link
-            href="https://fonts.googleapis.com/css?family=Montserrat"
-            rel="stylesheet"
-          />
           <html lang="en" />
         </Helmet>
         <Header cartItemsCount={this.state.cartItemsCount} />
         <main>
           {location.pathname === '/' && (
-            <TempImage src={tempHeroImage} alt={'Hero Image'} />
+            <TempImage src={heroImageData.resolutions.src} alt={'Hero Image'} />
+            // <GatsbyImage
+            //   resolutions={heroImageData.resolutions}
+            //   alt={'Hero Image'}
+            // />
           )}
           <MainContainer>
             {children({
