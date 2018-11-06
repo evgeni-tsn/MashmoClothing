@@ -1,5 +1,5 @@
 {
-  "name": "mashmo-clothing",
+  "name": "Mashmo Clothing",
   "description": "Gatsby default starter",
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
@@ -40,9 +40,7 @@
     "validator": "^10.4.0",
     "yup": "^0.26.6"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",

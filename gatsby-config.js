@@ -6,6 +6,24 @@ module.exports = {
     siteUrl: 'https://mashmoclothing.com',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-favicon',
+      options: {
+        logo: './src/images/favicon.png',
+        injectHTML: true,
+        icons: {
+          android: true,
+          appleIcon: true,
+          appleStartup: true,
+          coast: true,
+          favicons: true,
+          firefox: true,
+          twitter: true,
+          yandex: true,
+          windows: true,
+        },
+      },
+    },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     `gatsby-transformer-sharp`,
@@ -28,24 +46,6 @@ module.exports = {
         theme_color: '#2A2A2A',
         display: 'standalone',
         icon: 'src/images/icon.png', // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-favicon',
-      options: {
-        logo: './src/images/favicon.png',
-        injectHTML: true,
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: false,
-          favicons: true,
-          firefox: true,
-          twitter: false,
-          yandex: false,
-          windows: false,
-        },
       },
     },
     `gatsby-plugin-sitemap`,
