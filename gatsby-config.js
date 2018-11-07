@@ -44,7 +44,7 @@ module.exports = {
         short_name: 'Mashmo',
         description: 'Mashmo Clothing Online Store',
         start_url: '/',
-        background_color: '#BFA26E',
+        background_color: '#ffffff',
         theme_color: '#2A2A2A',
         display: 'standalone',
         icon: 'src/images/favicon.png', // This path is relative to the root of the site.
