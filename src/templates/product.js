@@ -146,6 +146,11 @@ class ProductTemplate extends React.Component {
   addToCart = productData => {
     if (!this.checkDisabledSubmit()) {
       this.setState({ displayError: false })
+      fbq('track', 'AddToCart', {
+        content_name: productData.name,
+        content_category: 'Mashmo',
+        content_type: 'product',
+      })
       if (typeof window !== 'undefined' && window.localStorage) {
         let oldItems = JSON.parse(localStorage.getItem('cart')) || []
         let updateQuantity = false

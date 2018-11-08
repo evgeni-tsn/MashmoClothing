@@ -2,7 +2,6 @@ import React from 'react'
 import { Row, Col } from 'react-simple-flex-grid'
 
 import { CartTable, TotalPriceContainer } from '../components'
-import { H1 } from '../components/styled'
 
 class Summary extends React.Component {
   componentDidMount() {

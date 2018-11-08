@@ -58,6 +58,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: '1900663243383009',
+      },
+    },
+    {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: '#BFA26E',

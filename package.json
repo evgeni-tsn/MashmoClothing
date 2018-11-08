@@ -10,6 +10,7 @@
     "gatsby": "^1.9.273",
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.45",
+    "gatsby-plugin-facebook-pixel": "^1.0.3",
     "gatsby-plugin-favicon": "2.1.1",
     "gatsby-plugin-manifest": "1.0.27",
     "gatsby-plugin-netlify-cache": "^0.1.0",
@@ -40,7 +41,9 @@
     "validator": "^10.4.0",
     "yup": "^0.26.6"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
