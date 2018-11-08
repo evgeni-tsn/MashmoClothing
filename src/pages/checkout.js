@@ -163,6 +163,7 @@ class Checkout extends React.Component {
             firstName: '',
             lastName: '',
             phone: '',
+            email: '',
             city: '',
             econt: '',
             note: '',
@@ -175,6 +176,10 @@ class Checkout extends React.Component {
               .min(2, 'Името трябва да съдържа поне 2 символа')
               .required('Задължително поле'),
             phone: Yup.string().required('Задължително поле'),
+            email: Yup.string()
+              .email('Невалиден email')
+              .max(40, 'Email-a не трябва да съдържа повече от 40 символа')
+              .required('Задължително поле'),
             city: Yup.string().required('Задължително поле'),
             econt: Yup.string().required('Задължително поле'),
             note: Yup.string(),
@@ -244,6 +249,27 @@ class Checkout extends React.Component {
                       touched.lastName && (
                         <div style={{ color: colors.red, textAlign: 'center' }}>
                           {errors.lastName}
+                        </div>
+                      )}
+
+                    <InputField
+                      type="email"
+                      name="email"
+                      placeholder="Email *"
+                      id="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={
+                        errors.email && touched.email
+                          ? 'text-input error'
+                          : 'text-input'
+                      }
+                    />
+                    {errors.email &&
+                      touched.email && (
+                        <div style={{ color: colors.red, textAlign: 'center' }}>
+                          {errors.email}
                         </div>
                       )}
 

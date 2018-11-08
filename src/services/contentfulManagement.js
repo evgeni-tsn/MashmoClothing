@@ -34,6 +34,9 @@ export function createOrder(orderDetails) {
           lastName: {
             'en-US': orderDetails.lastName,
           },
+          email: {
+            'en-US': orderDetails.email,
+          },
           phone: {
             'en-US': orderDetails.phone,
           },
