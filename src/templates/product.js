@@ -148,7 +148,9 @@ class ProductTemplate extends React.Component {
       this.setState({ displayError: false })
       fbq('track', 'AddToCart', {
         content_name: productData.name,
-        value: productData.name,
+        value: productData.isOnSale
+          ? productData.onSalePrice
+          : productData.price,
         content_category: 'Mashmo',
         content_type: 'product',
       })
