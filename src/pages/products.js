@@ -4,6 +4,7 @@ import { Row, Col } from 'react-simple-flex-grid'
 import 'react-simple-flex-grid/lib/main.css'
 
 import { ProductCard, FeaturedSection } from '../components'
+import { GhostButtonLink } from '../components/styled'
 
 const ProductListRow = styled(Row)`
   padding-left: 1.5rem;
@@ -44,6 +45,11 @@ class Products extends React.Component {
             </ExtendedCol>
           ))}
         </ProductListRow>
+        <div
+          style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+        >
+          <GhostButtonLink to="/gallery">Към Галерията </GhostButtonLink>
+        </div>
         {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
       </div>
     )

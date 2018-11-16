@@ -4,6 +4,7 @@ import Lightbox from 'react-images'
 import PhotoGallery from 'react-photo-gallery'
 
 import { GalleryImageComponent } from '../components'
+import { GhostButtonLink } from '../components/styled'
 
 import colors from '../utils/colors'
 import { theme } from '../utils/lightboxTheme'
@@ -88,6 +89,16 @@ class Gallery extends React.Component {
                 spinnerSize={150}
                 theme={theme}
               />
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  paddingTop: '20px',
+                }}
+              >
+                <GhostButtonLink to="/products">Към Продуктите</GhostButtonLink>
+              </div>
             </div>
           )
         }}

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 
 import { ProductCard, FeaturedSection } from '../components'
+import { GhostButtonLink } from '../components/styled'
 
 const ProductListRow = styled(Row)`
   padding-left: 1.5rem;
@@ -37,6 +38,9 @@ const IndexPage = ({ data }) => {
           </ExtendedCol>
         ))}
       </ProductListRow>
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+        <GhostButtonLink to="/gallery">Към Галерията </GhostButtonLink>
+      </div>
     </div>
   )
 }
