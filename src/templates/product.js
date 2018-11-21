@@ -173,8 +173,8 @@ class ProductTemplate extends React.Component {
             contentful_id: productData.contentful_id,
             name: productData.name,
             price: productData.isOnSale
-              ? productData.onSalePrice.toFixed(2)
-              : productData.price.toFixed(2),
+              ? productData.onSalePrice
+              : productData.price,
             slug: productData.slug,
             quantity: this.state.quantityValue,
             selectedSize: this.state.sizeChoice,
