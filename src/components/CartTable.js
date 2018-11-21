@@ -78,36 +78,41 @@ export const CartTable = ({
       )}
 
       <Tbody>
-        {cartItems.map(product => (
-          <TR
-            style={{ position: 'relative' }}
-            key={product.contentful_id + product.selectedSize}
-          >
-            <TD>
-              <Link to={product.slug}>{product.name}</Link>
-            </TD>
-            <TD>
-              {product.selectedSize === 'OneSize'
-                ? 'One Size'
-                : product.selectedSize}
-            </TD>
-            <TD>{product.price}лв.</TD>
-            <TD>{product.quantity}</TD>
-            <TD>{product.price * product.quantity}лв.</TD>
+        {cartItems.map(product => {
+          const totalPrice = product.price * product.quantity
+          return (
+            <TR
+              style={{ position: 'relative' }}
+              key={product.contentful_id + product.selectedSize}
+            >
+              <TD>
+                <Link to={product.slug}>{product.name}</Link>
+              </TD>
+              <TD>
+                {product.selectedSize === 'OneSize'
+                  ? 'One Size'
+                  : product.selectedSize}
+              </TD>
+              <TD>{product.price.toFixed(2)}лв.</TD>
+              <TD>{product.quantity}</TD>
+              <TD>{totalPrice.toFixed(2)}лв.</TD>
 
-            <TD style={{ position: 'absolute', right: '0.5rem', top: '0rem' }}>
-              {/* TODO: Display modal msg are you sure? */}
-              {!readOnly && (
-                <GhostButtonReponsive
-                  id={product.contentful_id + product.selectedSize}
-                  onClick={e => removeItemFromCart(e)}
-                >
-                  ✕
-                </GhostButtonReponsive>
-              )}
-            </TD>
-          </TR>
-        ))}
+              <TD
+                style={{ position: 'absolute', right: '0.5rem', top: '0rem' }}
+              >
+                {/* TODO: Display modal msg are you sure? */}
+                {!readOnly && (
+                  <GhostButtonReponsive
+                    id={product.contentful_id + product.selectedSize}
+                    onClick={e => removeItemFromCart(e)}
+                  >
+                    ✕
+                  </GhostButtonReponsive>
+                )}
+              </TD>
+            </TR>
+          )
+        })}
       </Tbody>
     </TABLE>
   )

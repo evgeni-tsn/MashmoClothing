@@ -150,7 +150,8 @@ class Checkout extends React.Component {
                   Доставка: <strong>0лв.</strong>
                 </InfoText>
                 <InfoText>
-                  Обща сума: <strong>{calculateTotal(cartItems)}лв.</strong>
+                  Обща сума:{' '}
+                  <strong>{calculateTotal(cartItems).toFixed(2)}лв.</strong>
                 </InfoText>
               </div>
             </Col>

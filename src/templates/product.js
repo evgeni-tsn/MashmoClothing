@@ -149,8 +149,8 @@ class ProductTemplate extends React.Component {
       fbq('track', 'AddToCart', {
         content_name: productData.name,
         value: productData.isOnSale
-          ? productData.onSalePrice
-          : productData.price,
+          ? productData.onSalePrice.toFixed(2)
+          : productData.price.toFixed(2),
         content_category: 'Mashmo',
         content_type: 'product',
       })
@@ -173,8 +173,8 @@ class ProductTemplate extends React.Component {
             contentful_id: productData.contentful_id,
             name: productData.name,
             price: productData.isOnSale
-              ? productData.onSalePrice
-              : productData.price,
+              ? productData.onSalePrice.toFixed(2)
+              : productData.price.toFixed(2),
             slug: productData.slug,
             quantity: this.state.quantityValue,
             selectedSize: this.state.sizeChoice,
@@ -389,14 +389,14 @@ class ProductTemplate extends React.Component {
             <ProductPriceWrapper>
               <ProductPrice crossout={totalQuantity === 0}>
                 {productData.isOnSale
-                  ? productData.onSalePrice
-                  : productData.price}лв.
+                  ? productData.onSalePrice.toFixed(2)
+                  : productData.price.toFixed(2)}лв.
               </ProductPrice>
               {productData.isOnSale &&
-                productData.onSalePrice &&
+                productData.onSalePrice.toFixed(2) &&
                 totalQuantity !== 0 && (
                   <ProductPrice crossout={true}>
-                    {productData.price}лв.
+                    {productData.price.toFixed(2)}лв.
                   </ProductPrice>
                 )}
             </ProductPriceWrapper>
