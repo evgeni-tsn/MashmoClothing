@@ -67,7 +67,7 @@ class Summary extends React.Component {
                 }}
               >
                 <h3 style={{ padding: '0.5rem' }}>
-                  Благодарим ви за поръчката
+                  Благодарим Ви за поръчката
                 </h3>
                 <p style={{ textAlign: 'center' }}>
                   За повече информация може да посетите страницата ни с
