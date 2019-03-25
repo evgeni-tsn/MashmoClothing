@@ -18,7 +18,7 @@ import {
 
 import colors from '../utils/colors'
 import { calculateTotal } from '../utils/utilFunctions'
-import { createOrder, updateEntry } from '../services/contentfulManagement'
+import { createOrder, updateEntry, checkDiscountCode } from '../services/contentfulManagement'
 
 const CheckoutGhostButtonLink = styled(GhostButtonLink)`
   font-size: 1rem;
@@ -45,6 +45,7 @@ const InfoText = styled.p`
 const initialState = {
   cartItems: [],
   inProcess: false,
+  discountCodeValue: ''
 }
 
 class Checkout extends React.Component {
@@ -374,9 +375,19 @@ class Checkout extends React.Component {
                   )}
                 </Row>
               </form>
+              
             )
           }}
         </Formik>
+        <label>Код за отстъпка</label>
+        <input 
+          value={this.state.discountCodeValue} 
+          onChange={(e) => this.setState({discountCodeValue: e.target.value})} 
+          type="text"
+        />
+        <button onClick={() => checkDiscountCode(this.state.discountCodeValue)}>
+          Приложи
+        </button>
         <Toast />
       </div>
     )

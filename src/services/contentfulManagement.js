@@ -1,11 +1,26 @@
-import { createClient } from 'contentful-management'
+const contentful = require('contentful')
+import { createClient as createManagementClient } from 'contentful-management'
 import { getRandomNumber } from '../utils/utilFunctions'
 
-const client = createClient({
+const SPACE_ID = '5l0wzl1wbtvw'
+
+const client = createManagementClient({
   accessToken: process.env.GATSBY_CONTENTFUL_API_CALLS_TOKEN,
 })
 
-const SPACE_ID = '5l0wzl1wbtvw'
+const clientContentfulFetch = contentful.createClient({
+  space: SPACE_ID,
+  accessToken: process.env.GATSBY_CONTENTFUL_TOKEN,
+})
+
+
+export function checkDiscountCode(discountCode) {
+  return clientContentfulFetch.getEntries({
+    content_type: 'discountCode'
+  })
+  .then((response) => console.log(response.items.filter(code => code.fields.codeName === discountCode)))
+  .catch(console.error)
+}
 
 export function createOrder(orderDetails) {
   let orderedItemsStr = ''
