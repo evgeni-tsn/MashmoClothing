@@ -1,6 +1,7 @@
 const contentful = require('contentful')
 import { createClient as createManagementClient } from 'contentful-management'
 import { getRandomNumber } from '../utils/utilFunctions'
+import { calculateTotal } from '../utils/utilFunctions'
 
 const SPACE_ID = '5l0wzl1wbtvw'
 
@@ -13,13 +14,15 @@ const clientContentfulFetch = contentful.createClient({
   accessToken: process.env.GATSBY_CONTENTFUL_TOKEN,
 })
 
-
 export function checkDiscountCode(discountCode) {
-  return clientContentfulFetch.getEntries({
-    content_type: 'discountCode'
-  })
-  .then((response) => console.log(response.items.filter(code => code.fields.codeName === discountCode)))
-  .catch(console.error)
+  return clientContentfulFetch
+    .getEntries({
+      content_type: 'discountCode',
+    })
+    .then(response =>
+      response.items.filter(code => code.fields.codeName === discountCode)
+    )
+    .catch(console.error)
 }
 
 export function createOrder(orderDetails) {
@@ -64,6 +67,14 @@ export function createOrder(orderDetails) {
           note: {
             'en-US': orderDetails.note,
           },
+          discountCode: orderDetails.discountCode || 'None',
+          discountRate: orderDetails.discountRate || 0,
+          total: orderDetails.discountRate
+            ? calculateTotal(orderDetails.cartItems) -
+              calculateTotal(orderDetails.cartItems) *
+                orderDetails.discountRate /
+                100
+            : calculateTotal(orderDetails.cartItems),
           orderedProducts: {
             'en-US': orderedItemsStr,
           },
