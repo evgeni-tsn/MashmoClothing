@@ -198,7 +198,7 @@ class Checkout extends React.Component {
                   Доставка: <strong>0лв.</strong>
                 </InfoText>
                 {hasDiscount && (
-                  <InfoText>
+                  <InfoText style={{ color: colors.main }}>
                     Отстъпка:{' '}
                     <strong>
                       {discountCode} - {discountRate}%

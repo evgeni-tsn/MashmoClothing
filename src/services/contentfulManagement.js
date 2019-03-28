@@ -67,14 +67,20 @@ export function createOrder(orderDetails) {
           note: {
             'en-US': orderDetails.note,
           },
-          discountCode: orderDetails.discountCode || 'None',
-          discountRate: orderDetails.discountRate || 0,
-          total: orderDetails.discountRate
-            ? calculateTotal(orderDetails.cartItems) -
-              calculateTotal(orderDetails.cartItems) *
-                orderDetails.discountRate /
-                100
-            : calculateTotal(orderDetails.cartItems),
+          discountCode: {
+            'en-US': orderDetails.discountCode || 'None',
+          },
+          discountRate: {
+            'en-US': orderDetails.discountRate || 0,
+          },
+          total: {
+            'en-US': orderDetails.discountRate
+              ? calculateTotal(orderDetails.cartItems) -
+                calculateTotal(orderDetails.cartItems) *
+                  orderDetails.discountRate /
+                  100
+              : calculateTotal(orderDetails.cartItems),
+          },
           orderedProducts: {
             'en-US': orderedItemsStr,
           },

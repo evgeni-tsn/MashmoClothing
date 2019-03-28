@@ -56,15 +56,17 @@ export const TotalPriceContainerSummary = ({
               <TdLabel>Доставка:</TdLabel>
               <TdValue>0лв.</TdValue>
             </tr>
-            <tr>
-              <TdLabel>Отстъпка:</TdLabel>
-              <TdValue>
-                <Span>
-                  {' '}
-                  {discountRate}% с код {discountCode}
-                </Span>
-              </TdValue>
-            </tr>
+            {discountCode && (
+              <tr>
+                <TdLabel>Отстъпка:</TdLabel>
+                <TdValue>
+                  <Span>
+                    {' '}
+                    {discountRate}% с код {discountCode}
+                  </Span>
+                </TdValue>
+              </tr>
+            )}
             <tr>
               <TdLabel>Крайна сума:</TdLabel>
               <TdValue>
