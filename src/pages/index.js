@@ -18,6 +18,7 @@ const ExtendedCol = styled(Col)`
 `
 
 const IndexPage = ({ data }) => {
+  fbq('track', 'PageView')
   return (
     <div>
       {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
