@@ -4,7 +4,6 @@ import { Row, Col } from 'react-simple-flex-grid'
 import { toast } from 'react-toastify'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-
 import { Toast, CartTable } from '../components'
 import {
   H1,
@@ -12,13 +11,18 @@ import {
   InputField,
   FeaturedButton,
   GhostButtonLink,
+  GhostButton,
   TextAreaField,
   CartContainer,
 } from '../components/styled'
 
 import colors from '../utils/colors'
 import { calculateTotal } from '../utils/utilFunctions'
-import { createOrder, updateEntry } from '../services/contentfulManagement'
+import {
+  createOrder,
+  updateEntry,
+  checkDiscountCode,
+} from '../services/contentfulManagement'
 
 const CheckoutGhostButtonLink = styled(GhostButtonLink)`
   font-size: 1rem;
@@ -45,6 +49,12 @@ const InfoText = styled.p`
 const initialState = {
   cartItems: [],
   inProcess: false,
+  discountCodeValue: '',
+  hasDiscount: false,
+  discountCode: '',
+  discountRate: 0,
+  discountExpiryDate: '',
+  discountMsg: '',
 }
 
 class Checkout extends React.Component {
@@ -86,8 +96,41 @@ class Checkout extends React.Component {
     )
   }
 
+  discount = () => {
+    checkDiscountCode(this.state.discountCodeValue).then(res => {
+      if (res.length > 0 && new Date(res[0].fields.expiryDate) > new Date()) {
+        this.setState({
+          hasDiscount: true,
+          discountCode: res[0].fields.codeName,
+          discountRate: res[0].fields.discountRate,
+          discountExpiryDate: new Date(res[0].fields.expiryDate),
+          discountMsg: `Код за ${
+            res[0].fields.discountRate
+          }% отстъпка е приложен успешно и общата сума е преизчислена.`,
+        })
+      } else {
+        this.setState({
+          hasDiscount: false,
+          discountCode: '',
+          discountRate: 0,
+          discountExpiryDate: '',
+          discountMsg: 'Кодът е изтекъл или невалиден.',
+        })
+      }
+    })
+  }
+
   handleSubmit = values => {
-    const fullOrderData = { cartItems: this.state.cartItems, ...values }
+    const fullOrderData = {
+      cartItems: this.state.cartItems,
+      ...values,
+      discountRate: this.state.discountRate,
+      discountCode: this.state.discountCode,
+      total: this.state.discountRate
+        ? calculateTotal(this.state.cartItems) -
+          calculateTotal(this.state.cartItems) * this.state.discountRate / 100
+        : calculateTotal(this.state.cartItems),
+    }
     this.setState({ inProcess: true })
     const updateReadyItems = []
     fullOrderData.cartItems.forEach(item => {
@@ -113,7 +156,6 @@ class Checkout extends React.Component {
         })
       }
     })
-
     createOrder(fullOrderData)
       .then(entry => {
         updateReadyItems.forEach(item => {
@@ -132,7 +174,13 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const { cartItems } = this.state
+    const {
+      cartItems,
+      hasDiscount,
+      discountCode,
+      discountRate,
+      discountMsg,
+    } = this.state
     return (
       <div>
         <H1 centered>Завършване на поръчката</H1>
@@ -149,14 +197,68 @@ class Checkout extends React.Component {
                 <InfoText>
                   Доставка: <strong>0лв.</strong>
                 </InfoText>
-                <InfoText>
-                  Обща сума:{' '}
-                  <strong>{calculateTotal(cartItems).toFixed(2)}лв.</strong>
-                </InfoText>
+                {hasDiscount && (
+                  <InfoText style={{ color: colors.main }}>
+                    Отстъпка:{' '}
+                    <strong>
+                      {discountCode} - {discountRate}%
+                    </strong>
+                  </InfoText>
+                )}
+                {hasDiscount && (
+                  <InfoText>
+                    Обща сума:{' '}
+                    <strong>
+                      {(
+                        calculateTotal(cartItems) -
+                        calculateTotal(cartItems) * discountRate / 100
+                      ).toFixed(2)}лв.
+                    </strong>
+                  </InfoText>
+                )}
+                {!hasDiscount && (
+                  <InfoText>
+                    Обща сума: <strong>{calculateTotal(cartItems)}лв.</strong>
+                  </InfoText>
+                )}
               </div>
             </Col>
           </Row>
         </CartContainer>
+        <br />
+        <H1 centered>Отстъпка</H1>
+        <Row justify="center">
+          <InputField
+            style={{
+              marginTop: '0 !important',
+              margin: 0,
+              width: 'auto',
+              marginRight: '1rem',
+            }}
+            type="text"
+            name="discountCode"
+            placeholder="Въведи код"
+            id="discountCode"
+            value={this.state.discountCodeValue}
+            onChange={e => this.setState({ discountCodeValue: e.target.value })}
+          />
+          <GhostButton
+            style={{
+              marginTop: 0,
+              minWidth: '6rem',
+              padding: 0,
+              fontSize: '1rem',
+            }}
+            onClick={() => this.discount()}
+          >
+            Приложи
+          </GhostButton>
+        </Row>
+        {discountMsg && (
+          <p style={{ textAlign: 'center', color: colors.main }}>
+            {discountMsg}
+          </p>
+        )}
         <br />
         <H1 centered>Данни за доставка</H1>
         <Formik

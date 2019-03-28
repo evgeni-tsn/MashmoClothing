@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col } from 'react-simple-flex-grid'
 
-import { CartTable, TotalPriceContainer } from '../components'
+import { CartTable, TotalPriceContainerSummary } from '../components'
 
 class Summary extends React.Component {
   componentDidMount() {
@@ -56,7 +56,13 @@ class Summary extends React.Component {
                 readOnly={true}
                 cartItems={cartItems}
               />
-              <TotalPriceContainer centered cartItems={cartItems} />
+              <TotalPriceContainerSummary
+                centered
+                cartItems={cartItems}
+                discountCode={userData.discountCode}
+                discountRate={userData.discountRate}
+                finalPrice={userData.total}
+              />
               <div
                 style={{
                   display: 'flex',

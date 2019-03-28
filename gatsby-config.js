@@ -30,8 +30,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACEID,
-        accessToken: process.env.CONTENTFUL_TOKEN,
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACEID,
+        accessToken: process.env.GATSBY_CONTENTFUL_TOKEN,
       },
     },
     `gatsby-plugin-sitemap`,
@@ -60,7 +60,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
-        pixelId: '1900663243383009',
+        pixelId: process.env.GATSBY_FACEBOOK_PIXEL_ID,
       },
     },
     {

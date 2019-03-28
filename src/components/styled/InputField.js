@@ -11,7 +11,7 @@ export const InputField = styled.input`
   border: none;
   border-bottom: 1px solid ${colors.main};
   margin-bottom: 0.5rem !important;
-  margin-top: 3rem !important;
+  margin-top: 3rem;
 
   &::placeholder {
     color: ${colors.black};
