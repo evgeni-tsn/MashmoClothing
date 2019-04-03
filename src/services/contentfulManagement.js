@@ -87,6 +87,7 @@ export function createOrder(orderDetails) {
         },
       })
     )
+    .then(entry => entry.publish())
 }
 
 export function updateEntry(product) {
