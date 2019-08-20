@@ -12,8 +12,8 @@ import favicon from '../images/favicon.png'
 import './index.css'
 
 const MainContainer = styled(Container)`
-  margin-top: 1.5rem;
-  min-height: 75vh;
+  margin-top: ${location.pathname !== '/' && '1.5rem'};
+  min-height: ${location.pathname !== '/' && '75vh'};
   @media only screen and (max-width: 767px) {
     margin-top: 0rem;
   }
@@ -37,16 +37,16 @@ const TempImage = styled.img`
 `
 const GatsbyImage = styled(Img)`
   width: 100%;
-  height: 440px;
+  height: 500px;
 
   @media only screen and (max-width: 1220px) {
-    height: 300px;
+    height: 400px;
   }
   @media only screen and (max-width: 767px) {
-    height: 200px;
+    height: 400px;
   }
   @media only screen and (max-width: 580px) {
-    height: 140px;
+    height: 340px;
   }
 `
 
