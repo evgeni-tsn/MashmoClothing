@@ -185,10 +185,10 @@ export class Header extends React.Component {
               </MobileNavLink>
               <Hr />
               <MobileNavLink
-                to="/gallery"
+                to="/features"
                 onClick={() => this.setState({ isOpen: false })}
               >
-                Галерия
+                Фийчъри
               </MobileNavLink>
               <Hr />
               <MobileNavLink
@@ -255,11 +255,8 @@ export class Header extends React.Component {
                 Начало
               </NavLink>
             </DesktopMenuItem>
-            {/* <DesktopMenuItem>
-              <NavLink to="/influencers">Инфлуенсъри</NavLink>
-            </DesktopMenuItem> */}
             <DesktopMenuItem>
-              <NavLink to="/gallery">Галерия</NavLink>
+              <NavLink to="/features">Фийчъри</NavLink>
             </DesktopMenuItem>
             <DesktopMenuItem>
               <NavLink to="/info">Информация</NavLink>
@@ -268,7 +265,6 @@ export class Header extends React.Component {
               <FeaturedButtonLink to="/products">Продукти</FeaturedButtonLink>
             </DesktopMenuItem>
             <VerticalLine />
-
             <IconExternalLink
               href="https://www.facebook.com/mashmoclothing/"
               target="_blank"
