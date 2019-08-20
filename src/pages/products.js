@@ -36,9 +36,9 @@ class Products extends React.Component {
             <ExtendedCol
               xs={6}
               sm={6}
-              md={4}
-              lg={4}
-              xl={4}
+              md={3}
+              lg={3}
+              xl={3}
               key={node.contentful_id}
             >
               <ProductCard productData={node} />

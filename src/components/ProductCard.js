@@ -32,7 +32,7 @@ const ProductCardImage = styled(Img)`
 const ProductImageWrapper = styled.figure`
   overflow: hidden;
   position: relative;
-  height: 300px;
+  height: 250px;
 
   & > div {
     position: absolute !important;
@@ -66,7 +66,7 @@ const ProductCardInfo = styled.div`
 
 const ProductTitle = styled.h3`
   margin-bottom: 0.8rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   text-align: center;
   padding-left: 10px;
@@ -75,7 +75,7 @@ const ProductTitle = styled.h3`
 
 const ProductPrice = styled.p`
   color: ${({ crossout }) => (crossout ? colors.darkGrey : colors.main)};
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -102,8 +102,8 @@ const Label = styled.div`
   position: absolute;
   z-index: 998;
   text-align: center;
-  padding: 0.6rem 0;
-  font-size: 1.2rem;
+  padding: 0.5rem 0;
+  font-size: 1rem;
   font-weight: 300;
   opacity: 0.9;
 `
@@ -170,7 +170,16 @@ export class ProductCard extends React.Component {
                     />
                   </ProductImageWrapper>
                   <ProductCardInfo>
-                    <ProductTitle>{node.name}</ProductTitle>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        minHeight: '3.5rem',
+                      }}
+                    >
+                      <ProductTitle>{node.name}</ProductTitle>
+                    </div>
                     <ProductPriceWrapper>
                       {node.isOnSale &&
                         node.onSalePrice.toFixed(2) &&
