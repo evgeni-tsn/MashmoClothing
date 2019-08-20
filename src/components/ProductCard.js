@@ -66,7 +66,7 @@ const ProductCardInfo = styled.div`
 
 const ProductTitle = styled.h3`
   margin-bottom: 0.8rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: lighter;
   text-align: center;
   padding-left: 10px;
@@ -103,7 +103,7 @@ const Label = styled.div`
   z-index: 998;
   text-align: center;
   padding: 0.5rem 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 300;
   opacity: 0.9;
 `
