@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Row, Col } from 'react-simple-flex-grid'
 
-import { GhostButtonLink } from '../components/styled'
+import { FeaturedButtonLink } from '../components/styled'
 
 const SectionHeading = styled.h2`
   margin-bottom: 1.5rem;
@@ -16,6 +16,13 @@ const Paragraph = styled.p`
 
 const CharSpan = styled.span`
   font-size: 2rem;
+`
+const HomeFeaturedButtonLink = styled(FeaturedButtonLink)`
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.1rem;
 `
 
 const Info = () => (
@@ -71,9 +78,17 @@ const Info = () => (
       </Col>
     </Row>
     <Row justify="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <GhostButtonLink to="/products">
-        Към продуктите <CharSpan>→</CharSpan>{' '}
-      </GhostButtonLink>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          width: '100%',
+        }}
+      >
+        <HomeFeaturedButtonLink to="/">Начало</HomeFeaturedButtonLink>
+        <HomeFeaturedButtonLink to="/products">Продукти</HomeFeaturedButtonLink>
+        <HomeFeaturedButtonLink to="/features">Фийчъри</HomeFeaturedButtonLink>
+      </div>
     </Row>
   </div>
 )
