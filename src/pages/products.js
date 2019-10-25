@@ -27,7 +27,7 @@ class Products extends React.Component {
     return (
       <div>
         {this.props.data.allContentfulCategory.edges
-          .sort((a, b) => a.id > b.id)
+          .sort((a, b) => a.node.contentfulid > b.node.contentfulid)
           .map(categoryNode => {
             const category = categoryNode.node
             return (
