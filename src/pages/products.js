@@ -51,12 +51,6 @@ class Products extends React.Component {
               </ExtendedCol>
             ))}
         </ProductListRow>
-        <div
-          style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
-        >
-          <GhostButtonLink to="/features">Фийчъри</GhostButtonLink>
-        </div>
-        {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
       </div>
     )
   }

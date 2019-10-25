@@ -15,9 +15,6 @@ const MainContainer = styled(Container)`
   margin-top: ${typeof window !== 'undefined' &&
     document.location.pathname !== '/' &&
     '1.5rem'};
-  min-height: ${typeof window !== 'undefined' &&
-    document.location.pathname !== '/' &&
-    '75vh'};
   @media only screen and (max-width: 767px) {
     margin-top: 0rem;
   }
@@ -81,7 +78,9 @@ class Template extends React.Component {
     const siteTitleData = data.site.siteMetadata.title
 
     return (
-      <div>
+      <div
+        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+      >
         <Helmet
           title={siteTitleData}
           meta={[
@@ -115,10 +114,10 @@ class Template extends React.Component {
           <html lang="en" />
         </Helmet>
         <Header cartItemsCount={this.state.cartItemsCount} />
-        <main>
+        <main style={{ flex: 1 }}>
           {location.pathname === '/' && (
-            // <TempImage src={heroImageData.resolutions.src} srcSet={heroImageData.resolutions.srcSet} alt={'Hero Image'} />
             <GatsbyImage
+              style={{ maxHeight: '50vh' }}
               resolutions={heroImageData.resolutions}
               alt={'Hero Image'}
             />

@@ -23,6 +23,24 @@ const HomeFeaturedButtonLink = styled(FeaturedButtonLink)`
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 1.1rem;
+  text-align: center;
+  width: 40%;
+  @media only screen and (max-width: 660px) {
+    display: block !important;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 80%;
+  }
+`
+
+const ButtonsRow = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  @media only screen and (max-width: 660px) {
+    display: block !important;
+  }
 `
 
 const Info = () => (
@@ -77,19 +95,15 @@ const Info = () => (
         </Paragraph>
       </Col>
     </Row>
-    <Row justify="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          width: '100%',
-        }}
-      >
-        <HomeFeaturedButtonLink to="/">Начало</HomeFeaturedButtonLink>
-        <HomeFeaturedButtonLink to="/products">Продукти</HomeFeaturedButtonLink>
-        <HomeFeaturedButtonLink to="/features">Фийчъри</HomeFeaturedButtonLink>
-      </div>
-    </Row>
+    <ButtonsRow>
+      <HomeFeaturedButtonLink to="/">Начало</HomeFeaturedButtonLink>
+    </ButtonsRow>
+    <ButtonsRow>
+      <HomeFeaturedButtonLink to="/products">Продукти</HomeFeaturedButtonLink>
+    </ButtonsRow>
+    <ButtonsRow>
+      <HomeFeaturedButtonLink to="/features">Фийчъри</HomeFeaturedButtonLink>
+    </ButtonsRow>
   </div>
 )
 

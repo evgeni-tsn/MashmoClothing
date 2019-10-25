@@ -5,16 +5,12 @@ import { Row, Col } from 'react-simple-flex-grid'
 import { ProductCard, FeaturedSection } from '../components'
 import { FeaturedButtonLink } from '../components/styled'
 
-const ProductListRow = styled(Row)`
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-`
-
-const ExtendedCol = styled(Col)`
+const ButtonsRow = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
   @media only screen and (max-width: 576px) {
     display: block !important;
-    width: 100% !important;
   }
 `
 
@@ -24,6 +20,13 @@ const HomeFeaturedButtonLink = styled(FeaturedButtonLink)`
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 1.1rem;
+  text-align: center;
+  @media only screen and (max-width: 576px) {
+    display: block !important;
+    width: 80% !important;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+  }
 `
 
 const IndexPage = ({ data }) => {
@@ -32,18 +35,10 @@ const IndexPage = ({ data }) => {
   // }
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          width: '100%',
-        }}
-      >
-        <HomeFeaturedButtonLink to="/features">Фийчъри</HomeFeaturedButtonLink>
-        <HomeFeaturedButtonLink to="/products">Продукти</HomeFeaturedButtonLink>
-      </div>
-    </div>
+    <ButtonsRow>
+      <HomeFeaturedButtonLink to="/features">Фийчъри</HomeFeaturedButtonLink>
+      <HomeFeaturedButtonLink to="/products">Продукти</HomeFeaturedButtonLink>
+    </ButtonsRow>
   )
 }
 

@@ -10,6 +10,24 @@ const FeaturesFeaturedButtonLink = styled(FeaturedButtonLink)`
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 1.1rem;
+  text-align: center;
+  width: 40%;
+  @media only screen and (max-width: 660px) {
+    display: block !important;
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 80%;
+  }
+`
+
+const ButtonsRow = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 1rem;
+  @media only screen and (max-width: 660px) {
+    display: block !important;
+  }
 `
 
 class Features extends React.Component {
@@ -19,43 +37,22 @@ class Features extends React.Component {
     return (
       <div>
         <H1>Фийчъри</H1>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            width: '100%',
-          }}
-        >
-          <div
-            style={{
-              width: '55%',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <FeaturesFeaturedButtonLink to="/products">
-              Продукти
-            </FeaturesFeaturedButtonLink>
-            <FeaturesFeaturedButtonLink to="/info">
-              Информация
-            </FeaturesFeaturedButtonLink>
-          </div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: '2rem',
-          }}
-        >
-          <FeaturesFeaturedButtonLink
-            style={{ width: '55%', textAlign: 'center' }}
-            to="/"
-          >
+
+        <ButtonsRow>
+          <FeaturesFeaturedButtonLink to="/products">
+            Продукти
+          </FeaturesFeaturedButtonLink>
+        </ButtonsRow>
+        <ButtonsRow>
+          <FeaturesFeaturedButtonLink to="/info">
+            Информация
+          </FeaturesFeaturedButtonLink>
+        </ButtonsRow>
+        <ButtonsRow>
+          <FeaturesFeaturedButtonLink to="/">
             Запиши се за фийчър
           </FeaturesFeaturedButtonLink>
-        </div>
+        </ButtonsRow>
       </div>
     )
   }
