@@ -68,14 +68,14 @@ export const Footer = () => {
             Начало
           </FooterLinks>
           <FooterVerticalLine />
-          {/* <FooterLinks smaller thin light to="/influencers" exact={true}>
-            Инфлуенсъри
-          </FooterLinks> */}
-          {/* <FooterVerticalLine /> */}
-          <FooterLinks smaller thin light to="/gallery" exact={true}>
-            Галерия
+          <FooterLinks smaller thin light to="/features" exact={true}>
+            Фийчъри
           </FooterLinks>
           <FooterVerticalLine />
+          {/* <FooterLinks smaller thin light to="/gallery" exact={true}>
+            Галерия
+          </FooterLinks>
+          <FooterVerticalLine /> */}
           <FooterLinks smaller thin light to="/info" exact={true}>
             Информация
           </FooterLinks>

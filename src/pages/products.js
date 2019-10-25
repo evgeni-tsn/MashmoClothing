@@ -54,7 +54,7 @@ class Products extends React.Component {
         <div
           style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
         >
-          <GhostButtonLink to="/gallery">Към Галерията </GhostButtonLink>
+          <GhostButtonLink to="/features">Фийчъри</GhostButtonLink>
         </div>
         {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
       </div>
