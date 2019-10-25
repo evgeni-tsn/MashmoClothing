@@ -128,8 +128,8 @@ export class ProductCard extends React.Component {
     calculatedLabelWidth: 0,
   }
   render() {
-    const { productData: node } = this.props
-    const availableQuantity = totalAvailableQuantity(node.sizes)
+    const { productData } = this.props
+    const availableQuantity = totalAvailableQuantity(productData.sizes)
     return (
       <Measure
         bounds
@@ -142,8 +142,8 @@ export class ProductCard extends React.Component {
           return (
             <div ref={measureRef}>
               <ProductCardContainer>
-                <StyledLink to={node.slug}>
-                  {node.isOnSale && (
+                <StyledLink to={productData.slug}>
+                  {productData.isOnSale && (
                     <SaleLabel style={{ width: calculatedLabelWidth }}>
                       НАМАЛЕНО
                     </SaleLabel>
@@ -162,11 +162,11 @@ export class ProductCard extends React.Component {
                   <ProductImageWrapper>
                     <ProductCardImage
                       crossout={availableQuantity === 0}
-                      resolutions={node.photos[0].resolutions}
+                      resolutions={productData.photos[0].resolutions}
                     />
                     <ProductCardImage
                       crossout={availableQuantity === 0}
-                      resolutions={node.photos[1].resolutions}
+                      resolutions={productData.photos[1].resolutions}
                     />
                   </ProductImageWrapper>
                   <ProductCardInfo>
@@ -178,25 +178,25 @@ export class ProductCard extends React.Component {
                         minHeight: '3.5rem',
                       }}
                     >
-                      <ProductTitle>{node.name}</ProductTitle>
+                      <ProductTitle>{productData.name}</ProductTitle>
                     </div>
                     <ProductPriceWrapper>
-                      {node.isOnSale &&
-                        node.onSalePrice.toFixed(2) &&
+                      {productData.isOnSale &&
+                        productData.onSalePrice.toFixed(2) &&
                         availableQuantity > 0 && (
                           <ProductPrice crossout={true}>
-                            {node.price.toFixed(2)}лв.
+                            {productData.price.toFixed(2)}лв.
                           </ProductPrice>
                         )}
                       <ProductPrice crossout={availableQuantity <= 0}>
-                        {node.isOnSale
-                          ? node.onSalePrice.toFixed(2)
-                          : node.price.toFixed(2)}лв.
+                        {productData.isOnSale
+                          ? productData.onSalePrice.toFixed(2)
+                          : productData.price.toFixed(2)}лв.
                       </ProductPrice>
                     </ProductPriceWrapper>
                   </ProductCardInfo>
                 </StyledLink>
-                <StyledLink to={node.slug}>
+                <StyledLink to={productData.slug}>
                   <ProductCardFooter>
                     <p>Детайли</p>
                   </ProductCardFooter>

@@ -208,5 +208,40 @@ export const query = graphql`
         }
       }
     }
+    allContentfulCategory {
+      edges {
+        node {
+          id
+          name
+          contentfulid
+          product {
+            slug
+            name
+            isFeatured
+            isOnSale
+            onSalePrice
+            price
+            description
+            sizes {
+              XS
+              S
+              M
+              L
+              XL
+              OneSize
+            }
+            contentful_id
+            createdAt
+            photos {
+              id
+              resolutions(width: 500, height: 500) {
+                src
+                tracedSVG
+              }
+            }
+          }
+        }
+      }
+    }
   }
 `

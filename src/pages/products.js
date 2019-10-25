@@ -12,6 +12,8 @@ const ProductListRow = styled(Row)`
   padding-top: 1rem;
 `
 
+const SectionHeading = styled.h2``
+
 const ExtendedCol = styled(Col)`
   @media only screen and (max-width: 576px) {
     display: block !important;
@@ -22,35 +24,35 @@ const ExtendedCol = styled(Col)`
 class Products extends React.Component {
   render() {
     const { data } = this.props
-    console.log(this.props)
-    console.log(
-      'data.allContentfulProduct',
-      this.props.data.allContentfulProducts
-    )
     return (
       <div>
-        {/* <Row>
-          <Col span={2}>Cat1</Col>
-          <Col span={2}>Cat2</Col>
-          <Col span={2}>Cat3</Col>
-        </Row>
-        <hr /> */}
-
-        <ProductListRow gutter={20} align={'middle'}>
-          {data.allContentfulProduct &&
-            data.allContentfulProduct.edges.map(({ node }) => (
-              <ExtendedCol
-                xs={6}
-                sm={6}
-                md={3}
-                lg={3}
-                xl={3}
-                key={node.contentful_id}
-              >
-                <ProductCard productData={node} />
-              </ExtendedCol>
-            ))}
-        </ProductListRow>
+        {this.props.data.allContentfulCategory.edges
+          .reverse()
+          .map(categoryNode => {
+            const category = categoryNode.node
+            return (
+              <div key={category.contentfulid}>
+                <SectionHeading>{category.name}</SectionHeading>
+                <hr style={{ marginBottom: '0.5rem' }} />
+                <ProductListRow gutter={20} align={'middle'}>
+                  {category.product.map(p => {
+                    return (
+                      <ExtendedCol
+                        xs={6}
+                        sm={6}
+                        md={3}
+                        lg={3}
+                        xl={3}
+                        key={p.contentful_id}
+                      >
+                        <ProductCard productData={p} />
+                      </ExtendedCol>
+                    )
+                  })}
+                </ProductListRow>
+              </div>
+            )
+          })}
       </div>
     )
   }

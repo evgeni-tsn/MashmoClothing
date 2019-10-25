@@ -27,6 +27,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             }
             contentful_id
             createdAt
+            photos {
+              id
+              resolutions(width: 500, height: 500) {
+                src
+                tracedSVG
+              }
+            }
           }
         }
       }
