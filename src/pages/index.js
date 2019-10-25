@@ -27,9 +27,9 @@ const HomeFeaturedButtonLink = styled(FeaturedButtonLink)`
 `
 
 const IndexPage = ({ data }) => {
-  if (typeof window !== 'undefined') {
-    fbq && fbq('track', 'PageView')
-  }
+  // if (typeof window !== 'undefined') {
+  //   fbq && fbq('track', 'PageView')
+  // }
 
   return (
     <div>
@@ -46,40 +46,5 @@ const IndexPage = ({ data }) => {
     </div>
   )
 }
-
-export const query = graphql`
-  query HomePageQuery {
-    allContentfulProduct {
-      edges {
-        node {
-          slug
-          name
-          isFeatured
-          isOnSale
-          onSalePrice
-          price
-          description
-          sizes {
-            XS
-            S
-            M
-            L
-            XL
-            OneSize
-          }
-          contentful_id
-          createdAt
-          photos {
-            id
-            resolutions(width: 500, height: 500) {
-              src
-              tracedSVG
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 export default IndexPage

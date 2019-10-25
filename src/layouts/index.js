@@ -12,8 +12,12 @@ import favicon from '../images/favicon.png'
 import './index.css'
 
 const MainContainer = styled(Container)`
-  margin-top: ${location.pathname !== '/' && '1.5rem'};
-  min-height: ${location.pathname !== '/' && '75vh'};
+  margin-top: ${typeof window !== 'undefined' &&
+    document.location.pathname !== '/' &&
+    '1.5rem'};
+  min-height: ${typeof window !== 'undefined' &&
+    document.location.pathname !== '/' &&
+    '75vh'};
   @media only screen and (max-width: 767px) {
     margin-top: 0rem;
   }
@@ -154,6 +158,52 @@ export const query = graphql`
               tracedSVG
               src
               srcSet
+            }
+          }
+        }
+      }
+    }
+    allContentfulProduct {
+      edges {
+        node {
+          slug
+          name
+          isFeatured
+          isOnSale
+          onSalePrice
+          price
+          description
+          sizes {
+            XS
+            S
+            M
+            L
+            XL
+            OneSize
+          }
+          contentful_id
+          createdAt
+          photos {
+            id
+            resolutions(width: 500, height: 500) {
+              src
+              tracedSVG
+            }
+          }
+        }
+      }
+    }
+    allContentfulGallery {
+      edges {
+        node {
+          photos {
+            title
+            resolutions(width: 800, quality: 50) {
+              src
+              tracedSVG
+              srcSet
+              width
+              height
             }
           }
         }

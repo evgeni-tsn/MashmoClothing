@@ -107,26 +107,4 @@ class Gallery extends React.Component {
   }
 }
 
-//TODO: Consider adding description of the images and use thar for alt tag
-export const query = graphql`
-  query GalleryPageQuery {
-    allContentfulGallery {
-      edges {
-        node {
-          photos {
-            title
-            resolutions(width: 800, quality: 50) {
-              src
-              tracedSVG
-              srcSet
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
 export default Gallery

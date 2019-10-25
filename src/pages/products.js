@@ -22,6 +22,11 @@ const ExtendedCol = styled(Col)`
 class Products extends React.Component {
   render() {
     const { data } = this.props
+    console.log(this.props)
+    console.log(
+      'data.allContentfulProduct',
+      this.props.data.allContentfulProducts
+    )
     return (
       <div>
         {/* <Row>
@@ -32,18 +37,19 @@ class Products extends React.Component {
         <hr /> */}
 
         <ProductListRow gutter={20} align={'middle'}>
-          {data.allContentfulProduct.edges.map(({ node }) => (
-            <ExtendedCol
-              xs={6}
-              sm={6}
-              md={3}
-              lg={3}
-              xl={3}
-              key={node.contentful_id}
-            >
-              <ProductCard productData={node} />
-            </ExtendedCol>
-          ))}
+          {data.allContentfulProduct &&
+            data.allContentfulProduct.edges.map(({ node }) => (
+              <ExtendedCol
+                xs={6}
+                sm={6}
+                md={3}
+                lg={3}
+                xl={3}
+                key={node.contentful_id}
+              >
+                <ProductCard productData={node} />
+              </ExtendedCol>
+            ))}
         </ProductListRow>
         <div
           style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
@@ -57,38 +63,3 @@ class Products extends React.Component {
 }
 
 export default Products
-
-export const query = graphql`
-  query ProductsPageQuery {
-    allContentfulProduct {
-      edges {
-        node {
-          slug
-          name
-          isFeatured
-          isOnSale
-          onSalePrice
-          price
-          description
-          sizes {
-            XS
-            S
-            M
-            L
-            XL
-            OneSize
-          }
-          contentful_id
-          createdAt
-          photos {
-            id
-            resolutions(width: 500, height: 500) {
-              src
-              tracedSVG
-            }
-          }
-        }
-      }
-    }
-  }
-`
