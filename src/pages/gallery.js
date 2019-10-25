@@ -23,7 +23,6 @@ class Gallery extends React.Component {
           width: e.resolutions.width,
           src: e.resolutions.src,
           srcSet: e.resolutions.srcSet.split(',\n'),
-          tracedSVG: e.resolutions.tracedSVG,
           alt: e.title,
         }
       }

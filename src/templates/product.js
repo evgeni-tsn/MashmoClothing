@@ -288,7 +288,6 @@ class ProductTemplate extends React.Component {
       return {
         src: e.resolutions.src,
         srcSet: e.resolutions.srcSet.split(',\n'),
-        tracedSVG: e.resolutions.tracedSVG,
         alt: e.title,
         index: idx,
       }
@@ -485,7 +484,6 @@ export const productQuery = graphql`
             resolutions(width: 600, height: 600) {
               src
               srcSet
-              tracedSVG
             }
           }
           sizes {

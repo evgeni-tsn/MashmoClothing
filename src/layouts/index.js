@@ -154,7 +154,6 @@ export const query = graphql`
           heroImage {
             title
             resolutions(width: 1400, quality: 60) {
-              tracedSVG
               src
               srcSet
             }
@@ -186,7 +185,6 @@ export const query = graphql`
             id
             resolutions(width: 500, height: 500) {
               src
-              tracedSVG
             }
           }
         }
@@ -199,7 +197,6 @@ export const query = graphql`
             title
             resolutions(width: 800, quality: 50) {
               src
-              tracedSVG
               srcSet
               width
               height
@@ -236,7 +233,6 @@ export const query = graphql`
               id
               resolutions(width: 500, height: 500) {
                 src
-                tracedSVG
               }
             }
           }

@@ -21,7 +21,6 @@ export const GalleryImageComponent = ({ onClick, photo, margin, index }) => {
           height: photo.height,
           width: photo.width,
           src: photo.src,
-          tracedSVG: photo.tracedSVG,
         }}
         alt={photo.alt}
         style={{

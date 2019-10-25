@@ -31,7 +31,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               id
               resolutions(width: 500, height: 500) {
                 src
-                tracedSVG
               }
             }
           }
