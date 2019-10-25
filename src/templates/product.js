@@ -133,11 +133,12 @@ class ProductTemplate extends React.Component {
   }
 
   componentDidMount() {
-    const {
-      node: productData,
-    } = this.props.data.allContentfulProduct.edges.find(
-      ({ node }) => node.slug === this.props.pathContext.slug
-    )
+    const slug = this.props.location.pathname.split('/')[1]
+    const neededNode = this.props.data.allContentfulProduct.edges.find(edge => {
+      return edge.node.slug === slug
+    })
+    const productData = neededNode.node
+
     this.setState({
       mainImage: { src: productData.photos[0].resolutions.src, index: 0 },
     })
@@ -277,11 +278,11 @@ class ProductTemplate extends React.Component {
   }
 
   render() {
-    const {
-      node: productData,
-    } = this.props.data.allContentfulProduct.edges.find(
-      ({ node }) => node.slug === this.props.pathContext.slug
-    )
+    const slug = this.props.location.pathname.split('/')[1]
+    const neededNode = this.props.data.allContentfulProduct.edges.find(edge => {
+      return edge.node.slug === slug
+    })
+    const productData = neededNode.node
 
     const photos = productData.photos.map((e, idx) => {
       return {
