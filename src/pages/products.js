@@ -26,31 +26,33 @@ class Products extends React.Component {
     const { data } = this.props
     return (
       <div>
-        {this.props.data.allContentfulCategory.edges.map(categoryNode => {
-          const category = categoryNode.node
-          return (
-            <div key={category.contentfulid}>
-              <SectionHeading>{category.name}</SectionHeading>
-              <hr style={{ marginBottom: '0.5rem' }} />
-              <ProductListRow gutter={20} align={'middle'}>
-                {category.product.map(p => {
-                  return (
-                    <ExtendedCol
-                      xs={6}
-                      sm={6}
-                      md={3}
-                      lg={3}
-                      xl={3}
-                      key={p.contentful_id}
-                    >
-                      <ProductCard productData={p} />
-                    </ExtendedCol>
-                  )
-                })}
-              </ProductListRow>
-            </div>
-          )
-        })}
+        {this.props.data.allContentfulCategory.edges
+          .sort((a, b) => a.id > b.id)
+          .map(categoryNode => {
+            const category = categoryNode.node
+            return (
+              <div key={category.contentfulid}>
+                <SectionHeading>{category.name}</SectionHeading>
+                <hr style={{ marginBottom: '0.5rem' }} />
+                <ProductListRow gutter={20} align={'middle'}>
+                  {category.product.map(p => {
+                    return (
+                      <ExtendedCol
+                        xs={6}
+                        sm={6}
+                        md={3}
+                        lg={3}
+                        xl={3}
+                        key={p.contentful_id}
+                      >
+                        <ProductCard productData={p} />
+                      </ExtendedCol>
+                    )
+                  })}
+                </ProductListRow>
+              </div>
+            )
+          })}
       </div>
     )
   }
