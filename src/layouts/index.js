@@ -205,6 +205,27 @@ export const query = graphql`
         }
       }
     }
+    allContentfulProductOfTheWeek {
+      edges {
+        node {
+          id
+          week
+          product {
+            slug
+            name
+            isOnSale
+            onSalePrice
+            price
+            photos {
+              id
+              resolutions(width: 500, height: 500) {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
     allContentfulCategory {
       edges {
         node {
