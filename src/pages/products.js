@@ -58,7 +58,7 @@ class Products extends React.Component {
         <StyledLink to={productOfTheWeek.node.product.slug}>
           <ProductOfTheWeekContainer>
             <img
-              style={{ maxWidth: '150px' }}
+              style={{ maxWidth: '150px', maxHeight: '150px' }}
               src={productOfTheWeek.node.product.photos[0].resolutions.src}
               alt={'Photo of the week'}
             />
