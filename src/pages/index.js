@@ -15,7 +15,7 @@ const NotFoundContainer = styled.div`
 const Soon = () => (
   <Container>
     <NotFoundContainer>
-      <img src={mashmoHead} style={{ maxWidth: '320px' }} />
+      <img src={mashmoHead} style={{ maxWidth: '35%' }} />
       <h2
         style={{
           marginTop: '2.5rem',
