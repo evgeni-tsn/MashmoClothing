@@ -11,6 +11,8 @@ const NotFoundContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
 `
 const Soon = () => (
   <Container>
