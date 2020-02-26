@@ -106,6 +106,11 @@ class Template extends React.Component {
               rel: 'stylesheet',
               href: 'https://fonts.googleapis.com/css?family=Montserrat',
             },
+            {
+              rel: 'stylesheet',
+              href:
+                'https://fonts.googleapis.com/css?family=Kaushan+Script|Lato&display=swap',
+            },
           ]}
         >
           <html lang="en" />
