@@ -1,87 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Row, Col } from 'react-simple-flex-grid'
 
-import { ProductCard, FeaturedSection } from '../components'
-import { GhostButtonLink } from '../components/styled'
+import { GhostButtonLink, Container } from '../components/styled'
 
-const ProductListRow = styled(Row)`
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
+import mashmoHead from '../images/mashmo-head.png'
+
+const NotFoundContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
+const Soon = () => (
+  <Container>
+    <NotFoundContainer>
+      <img src={mashmoHead} style={{ maxWidth: '35%' }} />
+      <h2 style={{ marginTop: '4.5rem', textAlign: 'center' }}>
+        Скоро се връщаме.
+      </h2>
+      <h2 style={{ marginTop: '1rem', textAlign: 'center' }}>
+        По-свежи от всякога.
+      </h2>
+    </NotFoundContainer>
+  </Container>
+)
 
-const ExtendedCol = styled(Col)`
-  @media only screen and (max-width: 576px) {
-    display: block !important;
-    width: 100% !important;
-  }
-`
-
-const IndexPage = ({ data }) => {
-  if (typeof window !== 'undefined') {
-    fbq && fbq('track', 'PageView')
-  }
-
-  return (
-    <div>
-      {/* <FeaturedSection allProducts={data.allContentfulProduct} /> */}
-      {/* <h2>Rest</h2> */}
-      {/* <hr /> */}
-      <ProductListRow gutter={20} align={'middle'}>
-        {data.allContentfulProduct.edges.map(({ node }) => (
-          <ExtendedCol
-            xs={6}
-            sm={6}
-            md={4}
-            lg={4}
-            xl={4}
-            key={node.contentful_id}
-          >
-            <ProductCard productData={node} />
-          </ExtendedCol>
-        ))}
-      </ProductListRow>
-      <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-        <GhostButtonLink to="/gallery">Към Галерията </GhostButtonLink>
-      </div>
-    </div>
-  )
-}
-
-export const query = graphql`
-  query HomePageQuery {
-    allContentfulProduct {
-      edges {
-        node {
-          slug
-          name
-          isFeatured
-          isOnSale
-          onSalePrice
-          price
-          description
-          sizes {
-            XS
-            S
-            M
-            L
-            XL
-            OneSize
-          }
-          contentful_id
-          createdAt
-          photos {
-            id
-            resolutions(width: 500, height: 500) {
-              src
-              tracedSVG
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-export default IndexPage
+export default Soon

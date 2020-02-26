@@ -110,15 +110,17 @@ class Template extends React.Component {
         >
           <html lang="en" />
         </Helmet>
-        <Header cartItemsCount={this.state.cartItemsCount} />
+        {/* TODO: Publish Back */}
+        {/* <Header cartItemsCount={this.state.cartItemsCount} /> */}
         <main>
-          {location.pathname === '/' && (
+          {/* TODO: Publish Back */}
+          {/* {location.pathname === '/' && (
             // <TempImage src={heroImageData.resolutions.src} srcSet={heroImageData.resolutions.srcSet} alt={'Hero Image'} />
             <GatsbyImage
               resolutions={heroImageData.resolutions}
               alt={'Hero Image'}
             />
-          )}
+          )} */}
           <MainContainer>
             {children({
               ...this.props,
@@ -126,7 +128,8 @@ class Template extends React.Component {
             })}
           </MainContainer>
         </main>
-        <Footer />
+        {/* TODO: Publish Back */}
+        {/* <Footer /> */}
       </div>
     )
   }
